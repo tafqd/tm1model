@@ -1,0 +1,43 @@
+{
+	"@type":"Process",
+	"Name":"Dim.AssetClass.Update",
+	"Code@Code.link":"Dim.AssetClass.Update.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pAssetClass",
+			"Prompt":"Asset class name",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pCostAcct",
+			"Prompt":"Cost account",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDeprAcct",
+			"Prompt":"Depreciation account",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pAccumDeprAcct",
+			"Prompt":"Accum. depreciation account",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pWIPAcct",
+			"Prompt":"WIP account",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

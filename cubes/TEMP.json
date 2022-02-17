@@ -1,0 +1,36 @@
+{
+	"@type":"Cube",
+	"Name":"TEMP",
+	"Rules@Code.link":"TEMP.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Project')"
+		},
+		{
+			"@id":"Dimensions('Currency')"
+		},
+		{
+			"@id":"Dimensions('Report Type')"
+		},
+		{
+			"@id":"Dimensions('PL Account')"
+		},
+		{
+			"@id":"Dimensions('PL Measure')"
+		}
+	],
+	"Views@Code.links":[]
+}

@@ -1,0 +1,167 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE 05/06/2015	Louise Davenport	Consultant  Added Global Variables to ensure not running on sandboxes
+#LASTCHANGE 26/02/2015	Louise Davenport	Consultant	Initial Build of Process
+#GENERALCOMMENT Process to populate PL and Financials cubes with Allocation amounts
+#GENERALCOMMENT This populates into Allocation Amount
+#PROLOGCOMMENT Define variables, Clears Target and Creates Source View
+#METADATACOMMENT N/A
+#DATACOMMENT Defines variables and loads data
+#EPILOGCOMMENT Destroy views and turns logging back on
+
+
+#########################################################
+## Define Objects managed by this TI Process                                                       ##
+#########################################################
+# Ensure use base data not active sand box
+# Declare Global Variables to get current process name
+NumericGlobalVariable('SandBoxValue');
+# Ensure this process runs on base data
+SandBoxValue = 0;
+# Declare Global Variables to determine whether applying to sandbox or base
+SetUseActiveSandBoxProperty(SandBoxValue);
+
+
+s_SourceCube = 'Allocations';
+s_SourceViewName = '}CTK_Viewbuild ' | s_SourceCube;
+s_FinancialCube = 'Financials';
+s_PLCube = 'PL';
+s_Process = '}CTK_ViewCall';
+
+
+s_CostCentreConsol = 'All Cost Centre Codes-NElements';
+s_PeriodConsol = pYear |'-NElements';
+s_AllocationsConsol = 'All Allocation Amounts-NElements';
+s_TargetMeasure = 'Allocation Amount';
+
+s_VersionDim = TabDim(s_SourceCube, 1);
+s_PeriodDim = TabDim(s_SourceCube, 2);
+s_EntityDim = TabDim(s_SourceCube, 3);
+s_CostCentreDim = TabDim(s_SourceCube, 5);
+s_ProjectDim = TabDim(s_SourceCube, 6);
+s_CurrencyDim = TabDim(s_SourceCube, 7);
+s_ReportTypeDim = TabDim(s_SourceCube, 8);
+s_SourceMeasureDim = TabDim(s_SourceCube, 13);
+
+s_PLAccountDim = TabDim(s_PLCube, 8);
+
+s_PLMeasureDim = TabDim(s_PLCube, 9);
+s_FinancialsMeasureDim = TabDim(s_FinancialCube, 9);
+
+##########################################################
+## Turn off Logging                                                                                                   ##
+##########################################################
+CubeSetLogChanges(s_PLCube,0);
+CubeSetLogChanges(s_FinancialCube,0);
+
+
+##########################################################
+## Call Target View to Zero Out                                                                                ##
+##########################################################
+# Clear out Target Cubes
+pOpt = 'Zero';
+
+# PL
+pStr = s_PLCube|','|s_VersionDim|','|pVersion|','|s_PeriodDim|','|s_PeriodConsol|','|s_PLMeasureDim|','|s_TargetMeasure;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+# Financials
+pStr = s_FinancialCube|','|s_VersionDim|','|pVersion|','|s_PeriodDim|','|s_PeriodConsol|','|s_FinancialsMeasureDim|','|s_TargetMeasure;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+##########################################################
+## Call Source View to Build                                                                                      ##
+##########################################################
+pOpt = 'BuildL0';
+pStr = s_SourceCube|','|s_VersionDim|','|pVersion|','|s_PeriodDim|','|s_PeriodConsol|','|s_SourceMeasureDim|','|s_AllocationsConsol;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+#####################################################################
+## Set Attributes of the Source Cube View                                                                                          ##
+#####################################################################
+## Suppress Zeroes
+  ViewSuppressZeroesSet(s_SourceCube, s_SourceViewName, 1);
+## Exclude consolidated values
+  ViewExtractSkipCalcsSet(s_SourceCube, s_SourceViewName, 1);
+## Exclude rule calculated values
+  ViewExtractSkipRuleValuesSet(s_SourceCube, s_SourceViewName, 1);
+## Exclude Zero values
+  ViewExtractSkipZeroesSet(s_SourceCube, s_SourceViewName, 1);
+
+
+#####################################################################
+## Reset Process Data Source                                                                                                           ##
+#####################################################################
+DataSourceType = 'VIEW';
+DataSourceNameForServer = s_SourceCube;
+DataSourceCubeView = s_SourceViewName;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#######################################
+## Define Variables                                                       ##
+#######################################
+
+
+
+#######################################
+## Load Data                                                                ##
+#######################################
+# Load Financials Cube
+n_Value = nValue + CellGetN(s_FinancialCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+CellPutN(n_Value, s_FinancialCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+
+# Also Populate Group
+s_ReportType = 'Group';
+n_Value = nValue + CellGetN(s_FinancialCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, s_ReportType, vAccount, s_TargetMeasure);
+CellPutN(n_Value, s_FinancialCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, s_ReportType, vAccount, s_TargetMeasure);
+
+# Load PL Cube
+If(DimIx(s_PLAccountDim, vAccount) > 0);
+  n_Value = nValue + CellGetN(s_PLCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+  CellPutN(n_Value, s_PLCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+
+  n_Value = nValue + CellGetN(s_PLCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, s_ReportType, vAccount, s_TargetMeasure);
+  CellPutN(n_Value, s_PLCube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, s_ReportType, vAccount, s_TargetMeasure);
+
+
+
+EndIf;
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+##########################################################
+## Destroy View                                                                                                       ##
+##########################################################
+pOpt = 'Destroy';
+pStr = s_SourceCube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+pStr = s_FinancialCube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+pStr = s_PLCube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+##########################################################
+## Turn on Logging                                                                                                   ##
+##########################################################
+CubeSetLogChanges(s_PLCube,1);
+CubeSetLogChanges(s_FinancialCube,1);
+#endregion

@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"QUBEdocs Application Group",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('QUBEdocs Application Group')/Hierarchies('QUBEdocs Application Group')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"QUBEdocs Application Group.hierarchies/QUBEdocs Application Group.json"
+	]
+}

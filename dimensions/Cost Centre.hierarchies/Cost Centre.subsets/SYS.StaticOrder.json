@@ -1,0 +1,19 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.StaticOrder",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C120')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C130')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C210')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('No Cost Centre')"
+		}
+	]
+}

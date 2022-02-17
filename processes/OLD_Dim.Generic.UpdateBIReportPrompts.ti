@@ -1,0 +1,88 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Peacock, 2014-09-01, Initial set up of process
+#GENERALCOMMENT This process sets up a consolidation of version for the BI reports based on the 'Prompt' attribute
+#DATASOURCECOMMENT All elements subset from the selected dimension 
+#PROLOGCOMMENT Checks the needed consolidation exists - creates it if it doesn't 
+#METADATACOMMENT Adds elements into the Prompts consolidation where PromptValue is set to 1
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+sAttr = 'PromptValue' ;
+sSYSConsol = 'System' ;
+sConsol = 'Prompts' ;
+sSYSConsol = 'System' ;
+sSub = 'SYS.BI Prompts Update' ;
+sProcess = '}CTK_DisconnectConsolidations' ;
+sHierarchyProcess = 'Dim.Generic.Hierarchy' ;
+#sMDX = '{TM1SUBSETALL( [' | pDim | '] )}' ;
+sMDX = '{FILTER( {TM1SUBSETALL( [' | pDim | '] )}, [' | pDim | '].[PromptValue] = 1.000000)}' ;
+
+##########################################################
+## Create 'Prompts' consolidation if non-existent                                                        ##
+##########################################################
+If (pDim@='Version');
+If (Dimix (pDim, sConsol)=0) ;
+  DimensionElementInsertDirect (pDim, '', sConsol, 'C');
+  DimensionElementComponentAdd (pDim, sSYSConsol, sConsol, 1) ;
+EndIf ;
+
+##########################################################
+## Disconnect the Prompts consolidation                                                                  ##
+##########################################################
+
+ExecuteProcess (sProcess, 'pDimName', pDim, 'pConsolidation', sConsol) ;
+#PROCESSQUIT ;
+
+##########################################################
+## Create subset to be used as data source                                                             ##
+##########################################################
+
+If (SubsetExists (pDim, sSub) = 1) ;
+   SubsetDestroy (pDim, sSub) ;
+EndIf ;
+
+SubsetCreateByMDX (sSub, sMDX);
+SubsetExpandAboveSet(pDim, sSub, 1) ;
+
+##########################################################
+## Add flagged elements to the consolidation                                                           ##
+##########################################################
+
+nSubSize = SubsetGetSize (pDim, sSub) ;
+x = 1 ;
+
+While (x <= nSubSize) ;
+  sElement = SubsetGetElementName (pDim, sSub, x) ;
+  If (Elisanc (pDim, sConsol, sElement)=0);
+    DimensionElementComponentAdd (pDim, sConsol, sElement, 1) ;
+  EndIf ;
+  x = x + 1 ;
+End ;
+EndIf ;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#ExecuteProcess (sHierarchyProcess, 'pDimName', pDim, 'pHierarchy', '') ;
+#endregion

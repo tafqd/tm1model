@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Driver Amount",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Driver Amount')"
+		}
+	]
+}

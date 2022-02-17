@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.No Currency",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('No Currency')"
+		}
+	]
+}

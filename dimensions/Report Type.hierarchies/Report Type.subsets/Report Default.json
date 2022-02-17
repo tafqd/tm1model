@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Report Default",
+	"Expression":"{ EXCEPT( {TM1FILTERBYLEVEL( {TM1SUBSETALL( [Report Type] )}, 0)}, { [Report Type].[Converted] }) }"
+}

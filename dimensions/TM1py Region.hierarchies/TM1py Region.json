@@ -1,0 +1,42 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py Region",
+	"Elements":
+	[
+		{
+			"Name":"Europe",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"CH",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"UK",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"BE",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Europe",
+			"ComponentName":"CH",
+			"Weight":1
+		},
+		{
+			"ParentName":"Europe",
+			"ComponentName":"UK",
+			"Weight":1
+		},
+		{
+			"ParentName":"Europe",
+			"ComponentName":"BE",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

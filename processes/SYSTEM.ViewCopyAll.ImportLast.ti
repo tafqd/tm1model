@@ -1,0 +1,108 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#GENERALCOMMENT This process calls }CTK_ViewCopyAll.ImportLast
+#GeneralComment Use this when copying to a dynamic version where downstream cubes can impact other cubes.
+#GeneralComment vCube = ALL for all cubes or vCube=Valid Subset name for subset of cubes
+
+#LastChange W Gilling, Mindfull, 19 May 2015 Toolkit 4.2  Parameter validation added
+
+###Error Check
+IF(DIMIX(pDim1,pDim1ElementFrom)=0 & pDim1@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim1,pDim1ElementTo)=0 & pDim1@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim2,pDim2ElementFrom)=0 & pDim2@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim2,pDim2ElementTo)=0 & pDim2@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim3,pDim3ElementFrom)=0 & pDim3@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim3,pDim3ElementTo)=0 & pDim3@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim4,pDim4ElementFrom)=0 & pDim4@<>'' );
+    	PROCESSBREAK;
+ELSEIF(DIMIX(pDim4,pDim4ElementTo)=0 & pDim4@<>'' );
+    	PROCESSBREAK;
+ENDIF;
+
+#Check to see that user input
+IF(pDim4 @<> '' & pDim4ElementFrom @<>'' & pDim4ElementTo @<>'');
+    	nNoOfParams = 4;
+ELSEIF(pDim3 @<> '' & pDim3ElementFrom @<>'' & pDim3ElementTo @<>'');
+    	nNoOfParams = 3;
+ELSEIF(pDim2 @<> '' & pDim2ElementFrom @<>'' & pDim2ElementTo @<>'');
+    	nNoOfParams = 2;
+ELSEIF(pDim1 @<> '' & pDim1ElementFrom @<>'' & pDim1ElementTo @<>'');
+    	nNoOfParams = 1;
+ELSE;
+	nNoOfParams = 0;
+    	PROCESSBREAK;
+ENDIF;
+
+
+#############
+#Run Copy Procedure for a specific cube (with valid dimensionality). EXPORT ONLY
+#############
+        		sProcessName = '}CTK_ViewCopyAll.ImportLast';
+        		EXECUTEPROCESS(
+          		sProcessName,
+          		'vCube',vCube,
+          		'pDim1',pDim1,
+          		'pDim1ElementFrom',pDim1ElementFrom,
+          		'pDim1ElementTo',pDim1ElementTo,
+          		'pDim2',pDim2,
+          		'pDim2ElementFrom',pDim2ElementFrom,
+          		'pDim2ElementTo',pDim2ElementTo,
+          		'pDim3',pDim3,
+          		'pDim3ElementFrom',pDim3ElementFrom,
+          		'pDim3Elementto',pDim3ElementTo,
+          		'pDim4',pDim4,
+          		'pDim4ElementFrom',pDim4ElementFrom,
+          		'pDim4ElementTo',pDim4ElementTo,
+          		'pBatchUpdates',pBatchUpdates,
+          		'pSkipRules',pSkipRules,
+		'pLoggingOff',pLoggingOff
+        		);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+###Error Check
+IF(DIMIX(pDim1,pDim1ElementFrom)=0 & pDim1@<>'' );
+   	ITEMREJECT(pDim1ElementFrom | ' is not valid in ' | pDim1);
+ELSEIF(DIMIX(pDim1,pDim1ElementTo)=0 & pDim1@<>'' );
+    	ITEMREJECT(pDim1ElementTo | ' is not valid in ' | pDim1);
+ELSEIF(DIMIX(pDim2,pDim2ElementFrom)=0 & pDim2@<>'' );
+    	ITEMREJECT(pDim2ElementFrom | ' is not valid in ' | pDim2);
+ELSEIF(DIMIX(pDim2,pDim2ElementTo)=0 & pDim2@<>'' );
+    	ITEMREJECT(pDim2ElementTo | ' is not valid in ' | pDim2);
+ELSEIF(DIMIX(pDim3,pDim3ElementFrom)=0 & pDim3@<>'' );
+    	ITEMREJECT(pDim3ElementFrom | ' is not valid in ' | pDim3);
+ELSEIF(DIMIX(pDim3,pDim3ElementTo)=0 & pDim3@<>'' );
+    	ITEMREJECT(pDim3ElementFrom | ' is not valid in ' | pDim3);
+ELSEIF(DIMIX(pDim4,pDim4ElementFrom)=0 & pDim4@<>'' );
+    	ITEMREJECT(pDim4ElementFrom | ' is not valid in ' | pDim4);
+ELSEIF(DIMIX(pDim4,pDim4ElementTo)=0 & pDim4@<>'' );
+    	ITEMREJECT(pDim4ElementTo | ' is not valid in ' | pDim4);
+ENDIF;
+
+IF(nNoOfParams=0);
+	ITEMREJECT('There were no user input parameters specified');
+ENDIF;
+
+#endregion

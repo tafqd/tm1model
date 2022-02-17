@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('Value')"
+		},
+		{
+			"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('%')"
+		},
+		{
+			"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('String')"
+		}
+	]
+}

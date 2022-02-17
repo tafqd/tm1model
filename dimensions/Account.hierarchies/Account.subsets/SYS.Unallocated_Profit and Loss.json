@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Unallocated_Profit and Loss",
+	"Expression":"{FILTER( {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Account].[Unallocated_Profit and Loss]}, ALL, RECURSIVE )}, 0)}, [Account].[AccountFlag] = \"PL\")}"
+}

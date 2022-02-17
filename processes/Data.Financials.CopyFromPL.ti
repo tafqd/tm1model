@@ -1,0 +1,143 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE 26/05/2015	Louise Davenport, Fix to ensure process works properly
+#LASTCHANGE 30/05/2014	Inel Botha, added 'Version To' parameter after QA feedback
+#LASTCHANGE 29/04/2014	Louise Davenport	Consultant	Initial Build of Process
+#GENERALCOMMENT Process to populate the Financials cube with data from the PL Cube
+#GENERALCOMMENT This should only need to be used for Dynamic Versions
+#PROLOGCOMMENT Define variables, Clears Target and Creates Source View
+#METADATACOMMENT N/A
+#DATACOMMENT Defines variables and loads data
+#EPILOGCOMMENT Destroy views and turns logging back on
+
+
+#########################################################
+## Define Objects managed by this TI Process                                                       ##
+#########################################################
+s_SourceCube = 'PL';
+s_TargetCube = 'Financials';
+s_SourceViewName = '}CTK_Viewbuild ' | s_SourceCube;
+s_Process = '}CTK_ViewCall';
+s_ImportProcess = '}CTK_ViewCopyIn';
+s_FileName = 'PLExport.txt';
+
+s_AccountConsol = 'Profit and Loss';
+s_SourceMeasure = 'Total Amount-NElements';
+s_TargetMeasure = 'Amount';
+s_ReportType = 'Local';
+
+
+
+s_Accounts = s_AccountConsol | '-NElements';
+
+
+s_VersionDim = TabDim(s_TargetCube, 1);
+s_PeriodDim = TabDim(s_TargetCube, 2);
+s_SourceMeasureDim = TabDim(s_SourceCube, 9);
+s_TargetMeasureDim = TabDim(s_TargetCube, 9);
+s_SourceAccountDim = TabDim(s_SourceCube, 8);
+s_TargetAccountDim = TabDim(s_TargetCube, 8);
+
+# Make sure Op Bal excluded so that doen't get cleared out
+if(pYear @<> '');
+ s_Period = pYear|'.13.YTD-NElements';
+ s_PeriodString = s_PeriodDim|','|s_Period;
+Else;
+ s_PeriodString = '';
+Endif;
+
+##########################################################
+## Turn off Logging                                                                                                   ##
+##########################################################
+CubeSetLogChanges(s_TargetCube,0);
+
+
+##########################################################
+## Call Target View to Zero Out                                                                                ##
+##########################################################
+pOpt = 'Zero';
+pStr = s_TargetCube|','|s_VersionDim|','|pVersionTo|','| sPeriodString |','|s_TargetAccountDim|','|s_Accounts|','|s_TargetMeasureDim|','|s_TargetMeasure;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+
+##########################################################
+## Call Source View to Build                                                                                      ##
+##########################################################
+pOpt = 'BuildL0';
+pStr = s_SourceCube|','|s_VersionDim|','|pVersion|','|s_PeriodDim|','|s_Period|','|s_SourceAccountDim|','|s_Accounts|','|s_SourceMeasureDim|','|s_SourceMeasure;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+#####################################################################
+## Set Attributes of the Source Cube View                                                                                          ##
+#####################################################################
+## Suppress Zeroes
+ViewSuppressZeroesSet(s_SourceCube, s_SourceViewName, 1);
+## Include consolidated values
+ViewExtractSkipCalcsSet(s_SourceCube, s_SourceViewName, 0);
+## Include rule calculated values
+ViewExtractSkipRuleValuesSet(s_SourceCube, s_SourceViewName, 0);
+## Exclude Zero values
+ViewExtractSkipZeroesSet(s_SourceCube, s_SourceViewName, 1);
+
+
+#####################################################################
+## Reset Process Data Source                                                                                                           ##
+#####################################################################
+DataSourceType = 'VIEW';
+DataSourceNameForServer = s_SourceCube;
+DataSourceCubeView = s_SourceViewName;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# Skip Allocation Amount measure
+# Load accumulated total of all other measures against 'Amount' in the Financials cube
+If (vMeasure@='Allocation Amount') ;
+  ItemSkip;
+EndIf ;
+
+#If(CellIsUpdateable(s_TargetCube, pVersionTo, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure) = 1);
+#  CellIncrementN(nValue, s_TargetCube, pVersionTo, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+#EndIf;
+
+# Change to export data to a file and then will import in in the Epilog
+ASCIIOutput(s_FileName, 'N', sValue, s_TargetCube, pVersionTo, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, vAccount, s_TargetMeasure);
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+##########################################################
+## Destroy View                                                                                                       ##
+##########################################################
+pOpt = 'Destroy';
+pStr = s_SourceCube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+pStr = s_TargetCube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+##########################################################
+## Execute Process to import data                                                                            ##
+##########################################################
+ExecuteProcess(s_ImportProcess, 'vFilename', s_FileName);
+
+
+##########################################################
+## Turn on Logging                                                                                                   ##
+##########################################################
+CubeSetLogChanges(s_TargetCube,1);
+#endregion

@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Forecast Tasks",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Menu Items')/Hierarchies('Menu Items')/Elements('Profit and Loss Entry')"
+		},
+		{
+			"@id":"Dimensions('Menu Items')/Hierarchies('Menu Items')/Elements('Profit and Loss Variance')"
+		}
+	]
+}

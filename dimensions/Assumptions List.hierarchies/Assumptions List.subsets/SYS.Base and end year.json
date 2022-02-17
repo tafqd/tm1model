@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Base and end year",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Base Year')"
+		},
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('End Year')"
+		}
+	]
+}

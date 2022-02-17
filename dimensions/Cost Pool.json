@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Cost Pool",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Cost Pool')/Hierarchies('Cost Pool')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Cost Pool.hierarchies/Cost Pool.json"
+	]
+}

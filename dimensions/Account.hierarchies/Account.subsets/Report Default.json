@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"Report Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Balance Sheet')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Cash Flow')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Profit and Loss')"
+		}
+	]
+}

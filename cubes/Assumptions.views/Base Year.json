@@ -1,0 +1,100 @@
+{
+	"@type":"NativeView",
+	"Name":"Base Year",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('No Period')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Base Year')"
+					},
+					{
+						"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('End Year')"
+					},
+					{
+						"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Last Monthly Year')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Version')/Hierarchies('Version')"
+				},
+				"Expression":"TM1SubsetAll([Version])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('No Version')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('String')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Entity')/Hierarchies('Entity')"
+				},
+				"Expression":"TM1SubsetAll([Entity])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('No Entity')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('No Currency')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

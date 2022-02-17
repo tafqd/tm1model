@@ -1,0 +1,339 @@
+{
+	"@type":"NativeView",
+	"Name":"Input template",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Input')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Q1')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.01')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.02')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.03')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Q2')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Q3')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Q4')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Name')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('FTE')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base Salary')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Start Date')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('End Date')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary % 1')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary % 2')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary % 3')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 1')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 2')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 3')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit Fixed 1')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit Fixed 2')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Flag – Benefit 3')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Flag – Benefit 4')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit 3')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit 4')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary increase override')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base increase')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Bonus provision')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Bonus override')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Allocation %')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Benefit')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Remuneration')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('System End Date')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('System Start Date')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Notes')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Base Salary')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base Salary')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base increase')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Bonus')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Position')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary increase %')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('ACC Amount')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Version')/Hierarchies('Version')"
+				},
+				"Expression":"TM1SubsetAll([Version])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E100')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Unspec Project')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Personnel List')/Hierarchies('Personnel List')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Personnel List')/Hierarchies('Personnel List')/Elements('100')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Personnel List')/Hierarchies('Personnel List')/Elements('100')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Reporting')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C100')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C200')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C300')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C110')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C120')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C130')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C210')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C220')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C230')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C310')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C320')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C330')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C111')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C112')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C113')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C121')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C122')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C123')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C131')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C212')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Consolidated')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Unspec Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('No Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Capex Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Personnel Cost Centre')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C121')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

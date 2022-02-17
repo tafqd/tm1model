@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Working Budget Years",
+	"Expression":"{ EXCEPT( { DRILLDOWNMEMBER( {[Period].[Working Budget Years]}, {[Period].[Working Budget Years]} ) }, { [Period].[Working Budget Years] }) }"
+}

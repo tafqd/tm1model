@@ -1,0 +1,42 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+##################################
+## Set Constants and Variables                         ##
+##################################
+
+s_DimName = 'Allocation Asm Measure';
+s_Consol = 'All Drivers';
+
+# Determine Consol to add the Drivers to
+If(ElCompN(s_DimName, s_Consol) > 0);
+  n_Existing = ElCompN(s_DimName, s_Consol);
+Else;
+  # Quit the process for the moment
+  ProcessQuit;
+EndIf;
+
+# Add the Element
+DimensionElementInsert(s_DimName, '', pDriver, 'N');
+# Add the Element to the Consol
+DimensionElementComponentAdd(s_DimName, s_Consol, pDriver, 1);
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#endregion

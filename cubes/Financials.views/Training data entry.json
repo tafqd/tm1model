@@ -1,0 +1,170 @@
+{
+	"@type":"NativeView",
+	"Name":"Training data entry",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Total Amount')"
+					},
+					{
+						"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Amount')"
+					},
+					{
+						"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Adjustment')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Account')/Hierarchies('Account')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Balance Sheet')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Assets')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Current Assets')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1001')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1003')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1004')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1005')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1006')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1007')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1008')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1009')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1010')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1011')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('1002')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Non-Current Assets')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Liabilities')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Equity')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Reporting default version')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 1')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('P111')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.02')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.#########"
+}

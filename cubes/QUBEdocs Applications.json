@@ -1,0 +1,24 @@
+{
+	"@type":"Cube",
+	"Name":"QUBEdocs Applications",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('QubeDocs Application')"
+		},
+		{
+			"@id":"Dimensions('QUBEdocs Application Group')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Item')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"QUBEdocs Applications.views/A4. Update Application Definitions.json",
+		"QUBEdocs Applications.views/A5. Update Application Details.json"
+	]
+}

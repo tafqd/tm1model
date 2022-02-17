@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"Planning default version",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Forecast')"
+		}
+	]
+}

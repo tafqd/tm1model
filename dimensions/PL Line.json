@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"PL Line",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('PL Line')/Hierarchies('PL Line')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"PL Line.hierarchies/PL Line.json"
+	]
+}

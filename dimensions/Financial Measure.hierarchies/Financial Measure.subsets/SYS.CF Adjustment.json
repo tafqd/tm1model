@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.CF Adjustment",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Total Amount')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('CF Adjustment')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('CF')"
+		}
+	]
+}

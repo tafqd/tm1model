@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Financials_Data.PL.Load",
+	"Expression":"TM1SubsetAll([Period])"
+}

@@ -1,0 +1,20 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py Country",
+	"Elements":
+	[
+		{
+			"Name":"USA",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"AUS",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"DEU",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

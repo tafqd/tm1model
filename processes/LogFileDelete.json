@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"LogFileDelete",
+	"Code@Code.link":"LogFileDelete.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"ps_SearchStr",
+			"Prompt":"",
+			"Value":"TM1ProcessError_",
+			"Type":"String"
+		},
+		{
+			"Name":"pi_Days",
+			"Prompt":"",
+			"Value":5,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

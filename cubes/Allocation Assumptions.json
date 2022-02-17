@@ -1,0 +1,37 @@
+{
+	"@type":"Cube",
+	"Name":"Allocation Assumptions",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Project')"
+		},
+		{
+			"@id":"Dimensions('Allocation Pool')"
+		},
+		{
+			"@id":"Dimensions('Allocation Asm Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Allocation Assumptions.views/All.json",
+		"Allocation Assumptions.views/Allocation Drivers.json",
+		"Allocation Assumptions.views/Allocation Pools.json",
+		"Allocation Assumptions.views/SYS.Allocation Drivers.json",
+		"Allocation Assumptions.views/SYS.Allocation Mapping.json",
+		"Allocation Assumptions.views/SYS.Allocation Pools.json"
+	]
+}

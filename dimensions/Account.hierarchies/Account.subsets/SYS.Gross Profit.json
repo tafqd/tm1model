@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Gross Profit",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Revenue')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Cost of Sales')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Gross Profit')"
+		}
+	]
+}

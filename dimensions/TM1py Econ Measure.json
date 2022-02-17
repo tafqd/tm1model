@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"TM1py Econ Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('TM1py Econ Measure')/Hierarchies('TM1py Econ Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"TM1py Econ Measure.hierarchies/TM1py Econ Measure.json"
+	]
+}

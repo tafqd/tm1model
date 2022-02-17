@@ -1,0 +1,999 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#LASTCHANGE Louise Davenport 7-Nov-2014 Added Period 13
+#LASTCHANGE Louise Davenport 02-Oct-2014 Removed Quarters from FY Consolidation
+#LASTCHANGE Louise Davenport 05-Jun-2014 Removed Unspec Period
+#LASTCHANGE Louise Davenport 27-May-2014 Moved adding attributes to Epilog
+#LASTCHANGE Peter Currie Initial Draft of process
+#GENERALCOMMENT Update Period Dimension
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Update Period Dimension
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+
+#################################
+## Define Constants and Variables                  ##
+#################################
+cDimName = 'Period';
+
+sTopConsol = cDimName | ' Consolidations';
+sRepConsol = 'Reporting';
+sSysConsol = 'System';
+
+sFYConsol = 'All FYs';
+sQTRConsol = 'All QTRs';
+sYTDConsol = 'All YTDs';
+sYTGConsol = 'All YTGs';
+sLTDConsol = 'All LTDs';
+sDriverConsol = 'All Driver';
+sInputConsol = 'All Input';
+sNo = 'No ' | cDimName;
+
+sCaptionAttr = 'Caption';
+sNextPeriodAttr = 'Next Period';
+sPrevPeriodAttr = 'Previous Period';
+sNextYearAttr = 'Next Year';
+sPrevYearAttr = 'Previous Year';
+sLastPeriodAttr = 'Last Period';
+sFirstPeriodAttr = 'First Period';
+sMonthActualsAttr = 'Month contains actuals' ;
+sLongNameAttr = 'Long Name';
+sYearNameAttr = 'Year Name' ;
+
+
+#DimensionDeleteAllElements(cDimName);
+If(DimensionExists(cDimName) = 0);
+  DimensionCreate(cDimName);
+EndIf;
+
+
+#################################
+## Parameters                                                 ##
+#################################
+# pStartYear = A financial period start point e.g. 2014
+# pEndYear = A financial period end point e.g. 2016
+# pStartMonth = A financial period which indicates the start of the Financial Year e.g. Apr
+# Whith the above parameters Elements for the 2014, 2015, 2016 Fiscal years will be created
+# Period 01 - 12 will be inserted under each Fiscal year. Period 01 will have the Alias of Apr
+sStartYear = pStartYear;
+sEndYear = pEndYear;
+sStartMonth = pStartMonth;
+nStartYear = StringToNumber(sStartYear); 
+nEndYear = StringToNumber(sEndYear);
+
+## Validate Parameter Inputs
+# Errorout with warning if incorrect parameter is specified
+# TBC
+
+sStartYearCheck = Long(sStartYear);
+If(sStartYearCheck <> 4);
+  nBreakFlag =1;
+  ItemReject('Please Enter a Year in YYYY format. e.g. 2014');
+EndIf;
+
+sEndYearCheck = Long(sEndYear);
+If(sEndYearCheck <> 4);
+  nBreakFlag =1;
+  ItemReject('Please Enter a Year in YYYY format. e.g. 2015');
+EndIf;
+
+sStartMonthCheck = Long(sStartMonth);
+If(sStartMonthCheck <> 3);
+  nBreakFlag =1;
+  ItemReject('Please Enter a Month in mmm format. e.g. Apr');
+EndIf;
+
+sOrderCheck1 = nStartYear; 
+sOrderCheck2 = nEndYear;
+If(sOrderCheck1>= sOrderCheck2);
+  nBreakFlag =1;
+  ItemReject('Please Enter a StartYear which is less than an EndYear');
+EndIf;
+# Validate Parameter Inputs
+If(nBreakFlag = 1);
+  ProcessError;
+EndIf;
+
+############################################
+## Unravel the dimension (call external process)                      ##
+############################################
+sProcessName = '}CTK_DisconnectConsolidations';
+If(DimIx(cDimName, sFYConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sFYConsol);
+EndIf;
+If(DimIx(cDimName, sQTRConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sQTRConsol);
+EndIf;
+If(DimIx(cDimName, sYTDConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sYTDConsol);
+EndIf;
+If(DimIx(cDimName, sYTGConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sYTGConsol);
+EndIf;
+If(DimIx(cDimName, sLTDConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sLTDConsol);
+EndIf;
+If(DimIx(cDimName, sDriverConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sDriverConsol);
+EndIf;
+If(DimIx(cDimName, sInputConsol) > 0);
+  ExecuteProcess(sProcessName,'pDimName',cDimName,'pConsolidation',sInputConsol);
+EndIf;
+
+############################################
+## Insert Attributes                                                                    ##
+############################################
+# Insert Generic Attributes
+#sProcessName = '}CTK_CreateAttributes';
+#ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+#Insert Period Specific Attributes
+AttrInsert(cDimName,'', sCaptionAttr,'A');
+AttrInsert(cDimName,'', sLongNameAttr,'A');
+AttrInsert(cDimName,'', sNextPeriodAttr,'S');
+AttrInsert(cDimName,'', sPrevPeriodAttr,'S');
+AttrInsert(cDimName,'', sNextYearAttr,'S');
+AttrInsert(cDimName,'', sPrevYearAttr,'S');
+AttrInsert(cDimName,'', sLastPeriodAttr,'S');
+AttrInsert(cDimName,'', sFirstPeriodAttr,'S');
+AttrInsert(cDimName,'', sMonthActualsAttr,'N');
+AttrInsert(cDimName,'', sYearNameAttr,'S');
+
+
+######################################################
+## Disable cube logging for bulk data loads - performance improvements       ##
+######################################################
+cCube = '}ElementAttributes_'| cDimName;
+cCubeLogging = CubeGetLogChanges(cCube);
+CubeSetLogChanges(cCube, 0);  
+
+
+################################################
+## Clear Existing Attributes Values                                                     ##
+################################################
+sProcess = '}CTK_ViewCall';
+sAttributeCube = '}ElementAttributes_'| cDimName;
+sStr = sAttributeCube;
+# Execution of the zero out process
+ExecuteProcess(sProcess,'pOpt','Zero_Data.Period.Update','pStr',sStr);
+
+
+#################################################
+## Insert System / Top level Elements                                                 ##
+#################################################
+
+DimensionElementInsert(cDimName,'',sTopConsol,'C');
+
+DimensionElementInsert(cDimName,'',sRepConsol,'C');
+DimensionElementComponentAdd(cDimName,sTopConsol,sRepConsol,0);
+
+DimensionElementInsert(cDimName,'',sSysConsol,'C');
+DimensionElementComponentAdd(cDimName,sTopConsol,sSysConsol,0);
+
+DimensionElementInsert(cDimName,'',sFYConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sFYConsol,1);
+
+DimensionElementInsert(cDimName,'',sQTRConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sQTRConsol,1);
+
+DimensionElementInsert(cDimName,'',sYTDConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sYTDConsol,1);
+
+DimensionElementInsert(cDimName,'',sYTGConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sYTGConsol,1);
+
+DimensionElementInsert(cDimName,'',sLTDConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sLTDConsol,1);
+
+DimensionElementInsert(cDimName,'',sDriverConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sDriverConsol,1);
+
+DimensionElementInsert(cDimName,'',sInputConsol,'C');
+DimensionElementComponentAdd(cDimName,sRepConsol,sInputConsol,1);
+
+DimensionElementInsert(cDimName,'',sNo,'N');
+DimensionElementComponentAdd(cDimName,sSysConsol,sNo,1);
+
+
+################################################
+## Create Tempoary Dimension To Lookup Next / Previous Month  ##
+################################################
+sControlDimension = '}' | cDimName | '_Control' ;
+
+If(DimensionExists(sControlDimension)=1);
+  DimensionDestroy(sControlDimension);
+EndIf;
+
+# Create Dimension
+DimensionCreate(sControlDimension);
+
+# Insert Attributes
+AttrInsert(sControlDimension,'',sNextPeriodAttr,'S');
+AttrInsert(sControlDimension,'',sPrevPeriodAttr,'S');
+AttrInsert(sControlDimension,'', sLongNameAttr,'S');
+
+# Insert Elements
+DimensionElementInsertDirect(sControlDimension,'','Jan','N');
+DimensionElementInsertDirect(sControlDimension,'','Feb','N');
+DimensionElementInsertDirect(sControlDimension,'','Mar','N');
+DimensionElementInsertDirect(sControlDimension,'','Apr','N');
+DimensionElementInsertDirect(sControlDimension,'','May','N');
+DimensionElementInsertDirect(sControlDimension,'','Jun','N');
+DimensionElementInsertDirect(sControlDimension,'','Jul','N');
+DimensionElementInsertDirect(sControlDimension,'','Aug','N');
+DimensionElementInsertDirect(sControlDimension,'','Sep','N');
+DimensionElementInsertDirect(sControlDimension,'','Oct','N');
+DimensionElementInsertDirect(sControlDimension,'','Nov','N');
+DimensionElementInsertDirect(sControlDimension,'','Dec','N');
+DimensionElementInsertDirect(sControlDimension,'','Jan1','N');
+DimensionElementInsertDirect(sControlDimension,'','Feb1','N');
+DimensionElementInsertDirect(sControlDimension,'','Mar1','N');
+DimensionElementInsertDirect(sControlDimension,'','Apr1','N');
+DimensionElementInsertDirect(sControlDimension,'','May1','N');
+DimensionElementInsertDirect(sControlDimension,'','Jun1','N');
+DimensionElementInsertDirect(sControlDimension,'','Jul1','N');
+DimensionElementInsertDirect(sControlDimension,'','Aug1','N');
+DimensionElementInsertDirect(sControlDimension,'','Sep1','N');
+DimensionElementInsertDirect(sControlDimension,'','Oct1','N');
+DimensionElementInsertDirect(sControlDimension,'','Nov1','N');
+DimensionElementInsertDirect(sControlDimension,'','Dec1','N');
+
+# Insert Attributes
+
+AttrPutS('Feb',sControlDimension,'Jan',sNextPeriodAttr);
+AttrPutS('Dec',sControlDimension,'Jan',sPrevPeriodAttr);
+AttrPutS('January',sControlDimension,'Jan',sLongNameAttr);
+
+AttrPutS('Mar',sControlDimension,'Feb',sNextPeriodAttr);
+AttrPutS('Jan',sControlDimension,'Feb',sPrevPeriodAttr);
+AttrPutS('February',sControlDimension,'Feb',sLongNameAttr);
+
+AttrPutS('Apr',sControlDimension,'Mar',sNextPeriodAttr);
+AttrPutS('Feb',sControlDimension,'Mar',sPrevPeriodAttr);
+AttrPutS('March',sControlDimension,'Mar',sLongNameAttr);
+
+AttrPutS('May',sControlDimension,'Apr',sNextPeriodAttr);
+AttrPutS('Mar',sControlDimension,'Apr',sPrevPeriodAttr);
+AttrPutS('April',sControlDimension,'Apr',sLongNameAttr);
+
+AttrPutS('Jun',sControlDimension,'May',sNextPeriodAttr);
+AttrPutS('Apr',sControlDimension,'May',sPrevPeriodAttr);
+AttrPutS('May',sControlDimension,'May',sLongNameAttr);
+
+AttrPutS('Jul',sControlDimension,'Jun',sNextPeriodAttr);
+AttrPutS('May',sControlDimension,'Jun',sPrevPeriodAttr);
+AttrPutS('June',sControlDimension,'Jun',sLongNameAttr);
+
+AttrPutS('Aug',sControlDimension,'Jul',sNextPeriodAttr);
+AttrPutS('Jun',sControlDimension,'Jul',sPrevPeriodAttr);
+AttrPutS('July',sControlDimension,'Jul',sLongNameAttr);
+
+AttrPutS('Sep',sControlDimension,'Aug',sNextPeriodAttr);
+AttrPutS('Jul',sControlDimension,'Aug',sPrevPeriodAttr);
+AttrPutS('August',sControlDimension,'Aug',sLongNameAttr);
+
+AttrPutS('Oct',sControlDimension,'Sep',sNextPeriodAttr);
+AttrPutS('Aug',sControlDimension,'Sep',sPrevPeriodAttr);
+AttrPutS('September',sControlDimension,'Sep',sLongNameAttr);
+
+AttrPutS('Nov',sControlDimension,'Oct',sNextPeriodAttr);
+AttrPutS('Sep',sControlDimension,'Oct',sPrevPeriodAttr);
+AttrPutS('October',sControlDimension,'Oct',sLongNameAttr);
+
+AttrPutS('Dec',sControlDimension,'Nov',sNextPeriodAttr);
+AttrPutS('Oct',sControlDimension,'Nov',sPrevPeriodAttr);
+AttrPutS('November',sControlDimension,'Nov',sLongNameAttr);
+
+AttrPutS('Jan',sControlDimension,'Dec',sNextPeriodAttr);
+AttrPutS('Nov',sControlDimension,'Dec',sPrevPeriodAttr);
+AttrPutS('December',sControlDimension,'Dec',sLongNameAttr);
+
+AttrPutS('Feb',sControlDimension,'Jan1',sNextPeriodAttr);
+AttrPutS('Dec',sControlDimension,'Jan1','Previous Period');
+AttrPutS('January',sControlDimension,'Jan1',sLongNameAttr);
+
+AttrPutS('Mar',sControlDimension,'Feb1','Next Period');
+AttrPutS('Jan',sControlDimension,'Feb1','Previous Period');
+AttrPutS('February',sControlDimension,'Feb1',sLongNameAttr);
+
+AttrPutS('Apr',sControlDimension,'Mar1','Next Period');
+AttrPutS('Feb',sControlDimension,'Mar1','Previous Period');
+AttrPutS('March',sControlDimension,'Mar1',sLongNameAttr);
+
+AttrPutS('May',sControlDimension,'Apr1','Next Period');
+AttrPutS('Mar',sControlDimension,'Apr1','Previous Period');
+AttrPutS('April',sControlDimension,'Apr1',sLongNameAttr);
+
+AttrPutS('Jun',sControlDimension,'May1','Next Period');
+AttrPutS('Apr',sControlDimension,'May1','Previous Period');
+AttrPutS('May',sControlDimension,'May1',sLongNameAttr);
+
+AttrPutS('Jul',sControlDimension,'Jun1','Next Period');
+AttrPutS('May',sControlDimension,'Jun1','Previous Period');
+AttrPutS('June',sControlDimension,'Jun1',sLongNameAttr);
+
+AttrPutS('Aug',sControlDimension,'Jul1','Next Period');
+AttrPutS('Jun',sControlDimension,'Jul1','Previous Period');
+AttrPutS('July',sControlDimension,'Jul1',sLongNameAttr);
+
+AttrPutS('Sepo',sControlDimension,'Aug1','Next Period');
+AttrPutS('Jul',sControlDimension,'Aug1','Previous Period');
+AttrPutS('August',sControlDimension,'Aug1',sLongNameAttr);
+
+AttrPutS('Oct',sControlDimension,'Sep1','Next Period');
+AttrPutS('Aug',sControlDimension,'Sep1','Previous Period');
+AttrPutS('September',sControlDimension,'Sep1',sLongNameAttr);
+
+AttrPutS('Nov',sControlDimension,'Oct1','Next Period');
+AttrPutS('Sep',sControlDimension,'Oct1','Previous Period');
+AttrPutS('October',sControlDimension,'Oct1',sLongNameAttr);
+
+AttrPutS('Dec',sControlDimension,'Nov1','Next Period');
+AttrPutS('Oct',sControlDimension,'Nov1','Previous Period');
+AttrPutS('November',sControlDimension,'Nov1',sLongNameAttr);
+
+AttrPutS('Jan',sControlDimension,'Dec1','Next Period');
+AttrPutS('Nov',sControlDimension,'Dec1','Previous Period');
+AttrPutS('December',sControlDimension,'Dec1',sLongNameAttr);
+
+##############################################
+## Insert Elements NB: Does not matter if elements already exist  ##
+##############################################
+#Outer While Loop
+
+nMinYear = nStartYear;
+nMaxYear = nEndYear;
+
+
+
+# Loop through number of Years
+While(nMinYear <= nMaxYear);
+  sMinYear = NumberToString(nMinYear);
+  # Number of Months - include op bal (0) and P13
+  nMinMonth = 0;
+  nMaxMonth = 13;
+
+  # Add FY Consolidations for each year
+  sYearFY = sMinYear |'.FY';
+  DimensionElementInsert(cDimName,'',sYearFY,'C');
+  DimensionElementComponentAdd(cDimName,sFYConsol,sYearFY,1);
+
+  # Add Quarter Consolidations for each year
+  sYearQtr = sMinYear |'.QTR';
+  DimensionElementInsert(cDimName,'',sYearQTR,'C');
+  DimensionElementComponentAdd(cDimName,sQTRConsol,sYearQTR,1);
+
+  # Add YTD Consolidations for each year
+  sYearYTD = sMinYear |'.YTD';
+  DimensionElementInsert(cDimName,'',sYearYTD,'C');
+  DimensionElementComponentAdd(cDimName,sYTDConsol,sYearYTD,1);
+
+  # Add YTG Consolidations for each year
+  sYearYTG = sMinYear |'.YTG';
+  DimensionElementInsert(cDimName,'',sYearYTG,'C');
+  DimensionElementComponentAdd(cDimName,sYTGConsol, sYearYTG,1);
+
+  # Add LTD Consolidations for each Year
+  sYearLTD = sMinYear |'.LTD';
+  DimensionElementInsert(cDimName,'',sYearLTD,'C');
+  DimensionElementComponentAdd(cDimName,sLTDConsol,sYearLTD,1);
+
+  # Add a Driver element for each Year
+  sYearDriver = sMinYear |'.Driver';
+  DimensionElementInsert(cDimName,'',sYearDriver,'N');
+  DimensionElementComponentAdd(cDimName,sDriverConsol,sYearDriver,1);
+
+  # Add an Input Element for each year
+  sYearInput = sMinYear |'.Input';
+  DimensionElementInsert(cDimName,'',sYearInput,'N');
+  DimensionElementComponentAdd(cDimName,sInputConsol,sYearInput,1);
+
+  #QTR Consolidations# - don't bother with P13
+  # Loop through 4 times to add each Quarter Consolidation within each year
+  nQTRMin = 1;
+  nQTRMax = 4;
+  While(nQTRMin <= nQTRMax);
+    sQElement = sMinYear | '.Q' | NumberToString(nQTRMin);
+    DimensionElementInsert(cDimName,'',sQElement,'C');
+    DimensionElementComponentAdd(cDimName,sYearQTR,sQElement,1);
+    nQTRMin = nQTRMin +1;
+  End;
+
+
+  #YTD Consolidations# - Include a P13 one
+  # Loop through 13 times to add each YTD Consolidation within each year
+  nYTDMin = 1;
+  nYTDMax = 13;
+  While(nYTDMin <= nYTDMax);
+    If(nYTDMin <10);
+      sYTDElement = sMinYear | '.0' | NumberToString(nYTDMin) | '.YTD';
+    Else;
+      sYTDElement = sMinYear | '.' | NumberToString(nYTDMin) | '.YTD';
+    EndIf;
+    DimensionElementInsert(cDimName,'',sYTDElement,'C');
+    DimensionElementComponentAdd(cDimName,sYearYTD,sYTDElement,1);
+    nYTDMin = nYTDMin +1;
+  End;
+
+  #YTG Consolidations# - don't bother with P13
+  # Loop through 11 times to add each YTG Consolidation within each year
+  nYTGMin = 1;
+  nYTGMax = 11;
+  While(nYTGMin <= nYTGMax);
+    If(nYTGMin <10);
+      sYTGElement = sMinYear | '.0' | NumberToString(nYTGMin) | '.YTG';
+    Else;
+      sYTGElement = sMinYear | '.' | NumberToString(nYTGMin) | '.YTG';
+    EndIf;
+    DimensionElementInsert(cDimName,'',sYTGElement,'C');
+    DimensionElementComponentAdd(cDimName,sYearYTG,sYTGElement,1);
+    nYTGMin = nYTGMin +1;
+  End;
+
+  #LTD Consolidations# - Include a P13 one
+  # Loop through 13 times to add each LTD Consolidation within each year
+  nLTDMin = 1;
+  nLTDMax = 13;
+  While(nLTDMin <= nLTDMax);
+    If(nLTDMin <10);
+      sLTDElement = sMinYear | '.0' | NumberToString(nLTDMin) | '.LTD';
+    Else;
+      sLTDElement = sMinYear | '.' | NumberToString(nLTDMin) | '.LTD';
+    EndIf;
+    DimensionElementInsert(cDimName,'',sLTDElement,'C');
+    DimensionElementComponentAdd(cDimName,sYearLTD,sLTDElement,1);
+    nLTDMin = nLTDMin +1;
+  End;
+
+  # Add the N level Month elements 00 - 13
+  #N Level Element Insert and Assign to Consolidation
+  While(nMinMonth <= nMaxMonth);
+    sMinMonth = NumberToString(nMinMonth);
+    If(nMinMonth <10);
+      sElement = sMinYear | '.0' | sMinMonth;	
+    Else;
+      sElement = sMinYear | '.' | sMinMonth;	
+    EndIf;
+    DimensionElementInsert(cDimName,'',sElement,'N');
+
+    #FY Consolidations# - don't bother with P13
+    # Add the n level elements 1 - 12 into the Year's FY consol
+    If((nMinMonth >=1) & (nMinMonth <=12));
+      DimensionElementComponentAdd(cDimName,sMinYear | '.FY',sElement,1);
+    EndIf;
+
+    #QTR Consolidations# - don't bother with P13
+    # Add the n level elements 1 - 12 in the Qtr consols Exclude 0 and 13
+    If((nMinMonth >=1) & (nMinMonth <=3));
+      DimensionElementComponentAdd(cDimName,sMinYear | '.Q1',sElement,1);
+    ElseIf((nMinMonth >=4) & (nMinMonth <=6));
+      DimensionElementComponentAdd(cDimName,sMinYear | '.Q2',sElement,1);
+    ElseIf((nMinMonth >=7) & (nMinMonth <=9));
+      DimensionElementComponentAdd(cDimName,sMinYear | '.Q3',sElement,1);
+    ElseIf((nMinMonth >=10) & (nMinMonth <=12));
+      DimensionElementComponentAdd(cDimName,sMinYear | '.Q4',sElement,1);			
+    EndIf;
+
+    #YTD Consolidations# - include P13 one
+    # Still Looping through the 13 monthly periods now need to loop through the 13 YTD consols
+    nYTDMin = 1;
+    nYTDMax = 13;
+    While(nYTDMin <= nYTDMax);		
+      If(nMinMonth <= nYTDMin);
+        If(nMinMonth >= 1);
+          If(nYTDMin < 10);
+            sParent = sMinYear | '.0' | NumberToString(nYTDMin) | '.YTD';
+          Else;
+            sParent = sMinYear | '.' | NumberToString(nYTDMin) | '.YTD';
+          EndIf;
+          DimensionElementComponentAdd(cDimName,sParent,sElement,1);
+        EndIf;
+      EndIf;
+      nYTDMin = nYTDMin + 1; 
+    End;
+
+    #YTG Consolidations# - don't bother with P13
+    nYTGMin = 1;
+    nYTGMax = 11;
+    While(nYTGMin <= nYTGMax);
+    #  If(nMinMonth = 0 % nMinMonth = 13);
+        # Nothing		
+      If(nMinMonth > nYTGMin);
+        If(nYTGMin < 10);
+          sParent = sMinYear | '.0' | NumberToString(nYTGMin) | '.YTG';
+        Else;
+          sParent = sMinYear | '.' | NumberToString(nYTGMin) | '.YTG';
+        EndIf;
+        DimensionElementComponentAdd(cDimName,sParent,sElement,1);
+      EndIf;
+      nYTGMin = nYTGMin+1; 
+    End;
+
+    #LTD Consolidations# - Include P13 one
+    nLTDMin = 1;
+    nLTDMax = 13;
+    While(nLTDMin <= nLTDMax);		
+      If(nMinMonth <= nLTDMin);
+        If(nLTDMin < 10);
+          sParent = sMinYear | '.0' | NumberToString(nLTDMin) | '.LTD';
+        Else;
+          sParent = sMinYear | '.' | NumberToString(nLTDMin) | '.LTD';
+        EndIf;
+        DimensionElementComponentAdd(cDimName,sParent,sElement,1);
+      EndIf;
+      nLTDMin = nLTDMin+1; 
+    End;
+
+  nMinMonth = nMinMonth +1;
+  End;
+
+  nMinYear = nMinYear+1;
+End;
+
+DimensionSortOrder(cDimName, 'ByInput', 'Ascending', 'ByHierarchy' , 'Ascending');
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#######################################
+## Add Attributes against Elements                               ##
+#######################################
+nMinYear = nStartYear;
+nMaxYear = nEndYear;
+
+## Loop Through the Years
+While(nMinYear <= nMaxYear);
+  nMinMonth = 0;
+  nMaxMonth = 13;
+  sMinYear = NumberToString(nMinYear);
+ 
+  ## Insert lastperiod / firstperiod attributes
+  # Fiscal Year (FY) Attributes
+  sYearFY = sMinYear |'.FY';
+  sAttrValue =  sMinYear | '.01';
+  AttrPutS(sAttrValue, cDimName, sYearFY,sFirstPeriodAttr);
+  sAttrValue =  sMinYear | '.12';
+  AttrPutS(sAttrValue, cDimName, sYearFY,sLastPeriodAttr);
+  #Insert previousyear / nextyear attributes
+  sAttrValue =  NumberToString(nMinYear -1);
+  AttrPutS(sAttrValue, cDimName, sYearFY,sPrevYearAttr);
+  sAttrValue =  NumberToString(nMinYear +1);
+  AttrPutS(sAttrValue, cDimName, sYearFY,sNextYearAttr);
+  #Insert Caption
+  sAttrValue =  NumberToString(nMinYear);
+  AttrPutS(sAttrValue, cDimName, sYearFY,sCaptionAttr);
+  #Load year name attribute
+  sAttrValue = sMinYear ;
+  AttrPutS(sAttrValue, cDimName, sYearFY, sYearNameAttr) ;
+
+  # YTD
+  sYearYTD = sMinYear |'.YTD';
+  #Insert lastperiod / firstperiod attributes
+  sAttrValue =  sMinYear | '.01';
+  AttrPutS(sAttrValue, cDimName, sYearYTD,sFirstPeriodAttr);
+  sAttrValue =  sMinYear | '.13';
+  AttrPutS(sAttrValue, cDimName, sYearYTD,sLastPeriodAttr);
+  #Insert previousyear / nextyear attributes
+  sAttrValue =  NumberToString(nMinYear -1);
+  AttrPutS(sAttrValue, cDimName, sYearYTD,sPrevYearAttr);
+  sAttrValue =  NumberToString(nMinYear +1);
+  AttrPutS(sAttrValue, cDimName, sYearYTD,sNextYearAttr);
+  #Load year name attribute
+  sAttrValue = sMinYear ;
+  AttrPutS(sAttrValue, cDimName, sYearYTD, sYearNameAttr) ;
+
+  # YTG
+  sYearYTG = sMinYear |'.YTG';
+  #Insert lastperiod / firstperiod attributes
+  sAttrValue =  sMinYear | '.01';
+  AttrPutS(sAttrValue, cDimName, sYearYTG,sFirstPeriodAttr);
+  sAttrValue =  sMinYear | '.13';
+  AttrPutS(sAttrValue, cDimName, sYearYTG,sLastPeriodAttr);
+  #Insert previousyear / nextyear attributes
+  sAttrValue =  NumberToString(nMinYear -1);
+  AttrPutS(sAttrValue, cDimName, sYearYTG,sPrevYearAttr);
+  sAttrValue =  NumberToString(nMinYear +1);
+  AttrPutS(sAttrValue, cDimName, sYearYTG,sNextYearAttr);
+  #Load year name attribute
+  sAttrValue = sMinYear ;
+  AttrPutS(sAttrValue, cDimName, sYearYTG, sYearNameAttr) ;
+
+  # LTD
+  sYearLTD = sMinYear |'.LTD';
+  #Insert lastperiod / firstperiod attributes
+  sAttrValue =  sMinYear | '.00';
+  AttrPutS(sAttrValue, cDimName, sYearLTD,sFirstPeriodAttr);
+  sAttrValue =  sMinYear | '.13';
+  AttrPutS(sAttrValue, cDimName, sYearLTD,sLastPeriodAttr);
+  #Insert previousyear / nextyear attributes
+  sAttrValue =  NumberToString(nMinYear -1);
+  AttrPutS(sAttrValue, cDimName, sYearLTD,sPrevYearAttr);
+  sAttrValue =  NumberToString(nMinYear +1);
+  AttrPutS(sAttrValue, cDimName, sYearLTD,sNextYearAttr);
+  #Load year name attribute
+  sAttrValue = sMinYear ;
+  AttrPutS(sAttrValue, cDimName, sYearLTD, sYearNameAttr) ;
+
+  ##N Level Element 
+  While(nMinMonth <= nMaxMonth);
+    sMinMonth = NumberToString(nMinMonth);
+    If(nMinMonth <10);
+      sElement = sMinYear | '.0' | sMinMonth;	
+    Else;
+      sElement = sMinYear | '.' | sMinMonth;	
+    EndIf;
+
+    #Attributes#
+
+    #NextYear
+    sAttrValue = NumberToString(nMinYear +1);
+    AttrPutS(sAttrValue, cDimName, sElement,sNextYearAttr);
+
+    #PreviousYear
+    sAttrValue = NumberToString(nMinYear -1);
+    AttrPutS(sAttrValue, cDimName, sElement,sPrevYearAttr);
+
+    #NextMonth
+    If(nMinMonth = 0);
+      #
+    ElseIf(nMinMonth = 13);
+      sNextElement = NumberToString(nMinYear+1) | '.01';	
+      AttrPutS(sNextElement, cDimName, sElement,sNextPeriodAttr);
+    Else;
+      nNextElement = nMinMonth+1;
+      If(nNextElement <10);
+        sNextElement = sMinYear | '.0' | NumberToString(nNextElement);	
+      Else;
+        sNextElement = sMinYear | '.' | NumberToString(nNextElement);	
+      EndIf;
+      AttrPutS(sNextElement, cDimName, sElement,sNextPeriodAttr);
+    EndIf;
+		
+    #PreviousMonth
+    If(nMinMonth = 0);
+      #
+    ElseIf(nMinMonth = 1);
+      sPreviousElement = NumberToString(nMinYear-1) | '.13';	
+      AttrPutS(sPreviousElement, cDimName, sElement,sPrevPeriodAttr);
+    Else;
+      nPreviousElement = nMinMonth-1;
+      If(nPreviousElement <10);
+        sPreviousElement = sMinYear | '.0' | NumberToString(nPreviousElement);	
+      Else;
+        sPreviousElement = sMinYear | '.' | NumberToString(nPreviousElement);	
+      EndIf;
+      AttrPutS(sPreviousElement, cDimName, sElement,sPrevPeriodAttr);
+    EndIf;
+
+    ##Alias - Captions and Long Name
+    If(nMinMonth = 0);
+      nOpYear = nMinYear - 1;
+      sLookupMonth = 'OB-' | SubST(NumberToString(nOpYear),3,2);
+      AttrPutS(sLookupMonth, cDimName, sElement,sCaptionAttr);
+      sLongName = 'Opening Balance ' | NumberToString(nOpYear);
+      AttrPutS(sLongName, cDimName, sElement,sLongNameAttr);	
+    #No OO consolidation
+
+    # Period 13 Aliases
+    ElseIf(nMinMonth = 13);
+      sLookupMonth = 'P13-' | SubST(NumberToString(nMinYear),3,2);
+      AttrPutS(sLookupMonth, cDimName, sElement,sCaptionAttr);
+      sLongName = 'Period 13 ' | NumberToString(nMinYear);
+      AttrPutS(sLongName, cDimName, sElement,sLongNameAttr);	
+
+        #Also add alias to parent(s)
+        sSuffix = ' YTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.YTD';
+        sLongNameConsol = sLongName | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongNameConsol, cDimName, sParentAliasElement,sLongNameAttr);	
+
+        sSuffix = ' LTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.LTD';
+        sLongNameConsol = sLongName | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);	
+        AttrPutS(sLongNameConsol, cDimName, sParentAliasElement,sLongNameAttr);	
+
+    ElseIf(nMinMonth=1);
+      If(sStartMonth @<>'Jan');
+        s_LongName = AttrS(sControlDimension, sStartMonth, sLongNameAttr);	
+        s_Year = NumberToString(nMinYear-1);
+        sLookupMonth = sStartMonth | '-' | SubST(s_Year,3,2);
+        AttrPutS(sLookupMonth, cDimName, sElement,sCaptionAttr);
+        sLongNameYear = s_LongName |' '|s_Year;
+        AttrPutS(sLongNameYear, cDimName, sElement,sLongNameAttr);
+
+        #Also add alias to parent(s)
+        sSuffix = ' YTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.YTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);	
+
+        sSuffix = ' YTG';	
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.YTG';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);	
+
+        sSuffix = ' LTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.LTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);	
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);	
+      Else;
+        s_LongName = AttrS(sControlDimension, sStartMonth, sLongNameAttr);	
+        s_Year = NumberToString(nMinYear);
+        sLookupMonth = sStartMonth | ' ' | SubST(s_Year,3,2);
+        AttrPutS(sLookupMonth, cDimName, sElement,sCaptionAttr);
+        sLongNameYear = s_LongName |' '|s_Year;
+        AttrPutS(sLongNameYear, cDimName, sElement,sLongNameAttr);
+
+        #Also add alias to parent(s)
+        sSuffix = ' YTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.YTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);	
+
+        sSuffix = ' YTG';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.YTG';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+
+        sSuffix = ' LTD';
+        sParentAlias = sLookupMonth |  sSuffix;
+        sParentAliasElement =  sElement | '.LTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);		
+      EndIf;
+
+    Else;
+      If(sStartMonth @<>'Jan');
+        sLookupMonth = SubSt(DimNM(sControlDimension,DimIx(sControlDimension,sStartMonth)+nMinMonth-1),1,3);
+        s_LongName = AttrS(sControlDimension, sLookupMonth, sLongNameAttr);	
+        If(DimIx(sControlDimension,sStartMonth)+nMinMonth-1>12);
+          s_Year = NumberToString(nMinYear);
+          sLookupMonthYear = sLookupMonth | '-' | SubST(s_Year ,3,2);
+        Else;
+          s_Year = NumberToString(nMinYear-1);
+          sLookupMonthYear = sLookupMonth | '-' | SubST(s_Year,3,2);
+        EndIf;
+        sLongNameYear = s_LongName |' '|s_Year;
+        AttrPutS(sLookupMonthYear, cDimName, sElement,sCaptionAttr);
+        AttrPutS(sLongNameYear, cDimName, sElement,sLongNameAttr);
+
+        ## Also add alias to parent(s)
+        # YTD Captions
+        sSuffix = ' YTD';
+        sParentAlias = sLookupMonthYear | sSuffix;
+        sParentAliasElement =  sElement | '.YTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+
+        # YTG Caption Attributes
+        #No YTG for month12
+        If(nMinMonth <= 11);	
+          sSuffix = ' YTG';
+          sParentAlias = sLookupMonthYear | sSuffix;
+          sParentAliasElement =  sElement | '.YTG';
+          sLongName = sLongNameYear | sSuffix;
+          AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+          AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+        EndIf;
+        sSuffix = ' LTD';
+        sParentAlias = sLookupMonthYear | sSuffix;
+        sParentAliasElement =  sElement | '.LTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+      Else;
+        s_Year = NumberToString(nMinYear);
+        sLookupMonth = SubSt(DimNM(sControlDimension,DimIx(sControlDimension,sStartMonth)+nMinMonth-1),1,3);		
+        sLookupMonthYear = sLookupMonth | '-' | SubST(s_Year,3,2);
+        s_LongName = AttrS(sControlDimension, sLookupMonth, sLongNameAttr);	
+        sLongNameYear = s_LongName |' '|s_Year;
+        AttrPutS(sLongNameYear, cDimName, sElement,sLongNameAttr);
+        AttrPutS(sLookupMonthYear, cDimName, sElement,sCaptionAttr);
+
+        # Also add alias to parent(s)
+        sSuffix = ' YTD';
+        sParentAlias = sLookupMonthYear | sSuffix;
+        sParentAliasElement =  sElement | '.YTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+
+        sSuffix = ' YTG';
+        sParentAlias = sLookupMonthYear | sSuffix;
+        sParentAliasElement =  sElement | '.YTG';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+	
+        sSuffix = ' LTD';
+        sParentAlias = sLookupMonthYear | sSuffix;
+        sParentAliasElement =  sElement | '.LTD';
+        sLongName = sLongNameYear | sSuffix;
+        AttrPutS(sParentAlias, cDimName, sParentAliasElement,sCaptionAttr);
+        AttrPutS(sLongName, cDimName, sParentAliasElement,sLongNameAttr);
+
+      EndIf;
+
+    EndIf;
+	
+    ## Quarter Attributes
+    n_LoopCtrl = 1;
+    n_LoopMax = 4;
+    While(n_LoopCtrl <= n_LoopMax);
+      sQ = NumberToString(n_LoopCtrl);
+      sLongName = 'Quarter '|sQ|' '|sMinYear;
+      sCaption =  'Q'|sQ|' '|sMinYear;
+      sElement = sMinYear|'.Q'|sQ;
+      sPriorYrValue =  NumberToString(nMinYear -1);
+      sNextYrValue =  NumberToString(nMinYear +1);
+      nComponents = ElCompN(cDimName,sElement);
+      sFirstAttr = ElComp(cDimName, sElement, 1);
+      sLastAttr = ElComp(cDimName, sElement, nComponents);
+
+      ## Insert Attributes
+
+      # Insert First and Last Period Attributes
+      AttrPutS(sFirstAttr, cDimName, sElement,sFirstPeriodAttr);
+      AttrPutS(sLastAttr, cDimName, sElement,sLastPeriodAttr);
+
+      #Insert previousyear / nextyear attributes
+      AttrPutS(sPriorYrValue, cDimName, sElement,sPrevYearAttr);
+      AttrPutS(sNextYrValue, cDimName,sElement,sNextYearAttr);
+
+      # Insert Quarter Captions and Long Name
+      AttrPutS(sLongName, cDimName, sElement,sLongNameAttr);
+      AttrPutS( sCaption, cDimName, sElement,sCaptionAttr);
+
+      n_LoopCtrl = n_LoopCtrl + 1;
+    End;
+    
+
+    #YTD Consolidations#
+    nYTDMin = 1;
+    nYTDMax = 13;
+    While(nYTDMin <= nYTDMax);		
+      If(nMinMonth <= nYTDMin);
+        If(nMinMonth = 0);
+          #
+        Else;
+        If(nYTDMin < 10);
+          sParent = sMinYear | '.0' | NumberToString(nYTDMin) | '.YTD';
+        Else;
+          sParent = sMinYear | '.' | NumberToString(nYTDMin) | '.YTD';
+        EndIf;
+			
+          #Insert firstperiod and lastperiod attribute
+         nComponents = ElCompN(cDimName,sParent);
+         sFirstAttr = ElComp(cDimName, sParent, 1);
+         sLastAttr = ElComp(cDimName, sParent, nComponents);
+          AttrPutS(sFirstAttr, cDimName, sParent,sFirstPeriodAttr);
+          AttrPutS(sLastAttr, cDimName, sParent,sLastPeriodAttr);
+          #Insert previousyear / nextyear attributes
+          sAttrValue =  NumberToString(nMinYear -1);
+          AttrPutS(sAttrValue, cDimName, sParent,sPrevYearAttr);
+          sAttrValue =  NumberToString(nMinYear +1);
+          AttrPutS(sAttrValue, cDimName,sParent,sNextYearAttr);
+
+        EndIf;
+      EndIf;
+      nYTDMin = nYTDMin+1; 
+    End;
+
+    #YTG Consolidations#
+    nYTGMin = 1;
+    nYTGMax = 11;
+    While(nYTGMin <= nYTGMax);		
+
+      If(nMinMonth > nYTGMin);
+        If(nYTGMin < 10);
+          sParent = sMinYear | '.0' | NumberToString(nYTGMin) | '.YTG';
+        Else;
+          sParent = sMinYear | '.' | NumberToString(nYTGMin) | '.YTG';
+        EndIf;
+
+        #Insert firstperiod and lastperiod attribute
+        nComponents = ElCompN(cDimName,sParent);
+         sFirstAttr = ElComp(cDimName, sParent, 1);
+         sLastAttr = ElComp(cDimName, sParent, nComponents);
+          AttrPutS(sFirstAttr, cDimName, sParent,sFirstPeriodAttr);
+          AttrPutS(sLastAttr, cDimName, sParent,sLastPeriodAttr);
+        #Insert previousyear / nextyear attributes
+        sAttrValue =  NumberToString(nMinYear -1);
+        AttrPutS(sAttrValue, cDimName, sParent,sPrevYearAttr);
+        sAttrValue =  NumberToString(nMinYear +1);
+        AttrPutS(sAttrValue, cDimName,sParent,sNextYearAttr);
+      EndIf;
+      nYTGMin = nYTGMin+1; 
+    End;
+
+    #LTD Consolidations#
+    nLTDMin = 1;
+    nLTDMax = 13;
+    While(nLTDMin <= nLTDMax);		
+      If(nMinMonth <= nLTDMin);
+        If(nLTDMin < 10);
+          sParent = sMinYear | '.0' | NumberToString(nLTDMin) | '.LTD';
+        Else;
+          sParent = sMinYear | '.' | NumberToString(nLTDMin) | '.LTD';
+        EndIf;
+        
+        #Insert firstperiod and lastperiod attribute
+        nComponents = ElCompN(cDimName,sParent);
+        sFirstAttr = ElComp(cDimName, sParent, 1);
+        sLastAttr = ElComp(cDimName, sParent, nComponents);
+         AttrPutS(sFirstAttr, cDimName, sParent,sFirstPeriodAttr);
+         AttrPutS(sLastAttr, cDimName, sParent,sLastPeriodAttr);
+        #Insert previousyear / nextyear attributes
+        sAttrValue =  NumberToString(nMinYear -1);
+        AttrPutS(sAttrValue, cDimName, sParent,sPrevYearAttr);
+        sAttrValue =  NumberToString(nMinYear +1);
+        AttrPutS(sAttrValue, cDimName,sParent,sNextYearAttr);
+
+      EndIf;
+      nLTDMin = nLTDMin+1; 
+    End;
+
+    nMinMonth = nMinMonth +1;
+  End;
+
+  # Add FY Long Name
+  sElement = NumberToString(nMinYear);
+  sLongName = sElement | ' FY';
+  AttrPutS(sLongName, cDimName, sElement,sLongNameAttr);
+
+  nMinYear = nMinYear+1;
+End;
+
+
+# Delete any empty consolidations
+sProcessName = '}CTK_EmptyConsolidationsDelete';
+ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+# Check for Orphan elements and add them to a orphan elements consolidation
+sProcessName = '}CTK_CheckOrphanElements';
+ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+#Clean up System Objects
+DimensionDestroy(sControlDimension);
+
+#CleanUp ZeroOutView
+#ExecuteProcess(sProcess,'pOpt','Destroy_Data.Period.Update','pStr',sStr);
+
+# Restore cube logging for bulk data loads - performance improvements
+CubeSetLogChanges(cCube, cCubeLogging);
+#endregion

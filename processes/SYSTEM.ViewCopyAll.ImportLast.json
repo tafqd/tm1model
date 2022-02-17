@@ -1,0 +1,109 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.ViewCopyAll.ImportLast",
+	"Code@Code.link":"SYSTEM.ViewCopyAll.ImportLast.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"vCube",
+			"Prompt":"CUBE NAME",
+			"Value":"ALL",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim1",
+			"Prompt":"DIM NAME 1",
+			"Value":"Version",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim1ElementFrom",
+			"Prompt":"- Element From",
+			"Value":"Actual",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim1ElementTo",
+			"Prompt":"- Element To",
+			"Value":"Budget",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim2",
+			"Prompt":"DIM NAME 2",
+			"Value":"Fin Year",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim2ElementFrom",
+			"Prompt":"- Element From",
+			"Value":"2015",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim2ElementTo",
+			"Prompt":"- Element To",
+			"Value":"2015",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim3",
+			"Prompt":"DIM NAME 3",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim3ElementFrom",
+			"Prompt":"- Element From",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim3ElementTo",
+			"Prompt":"- Element To",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim4",
+			"Prompt":"DIM NAME 4",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim4ElementFrom",
+			"Prompt":"- Element From",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDim4ElementTo",
+			"Prompt":"- Element To",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pBatchUpdates",
+			"Prompt":"BATCH MODE",
+			"Value":"N",
+			"Type":"String"
+		},
+		{
+			"Name":"pSkipRules",
+			"Prompt":"SKIP RULES",
+			"Value":"N",
+			"Type":"String"
+		},
+		{
+			"Name":"pLoggingOff",
+			"Prompt":"cubeLoggingOff",
+			"Value":"Y",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

@@ -1,0 +1,33 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Assumptions Measure",
+	"Elements":
+	[
+		{
+			"Name":"Value",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"%",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"String",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Assumptions Measure.subsets/All Members.json",
+		"Assumptions Measure.subsets/Default.json",
+		"Assumptions Measure.subsets/Level0.json",
+		"Assumptions Measure.subsets/SYS.Dynamic Default.json",
+		"Assumptions Measure.subsets/SYS.Level0.json",
+		"Assumptions Measure.subsets/SYS.String.json",
+		"Assumptions Measure.subsets/SYS.Value.json",
+		"Assumptions Measure.subsets/}CTK_Viewbuild Assumptions.json",
+		"Assumptions Measure.subsets/}CTK_Viewbuild Assumptions_L0.json",
+		"Assumptions Measure.subsets/}CTK_Viewbuild Assumptions Zero.json",
+		"Assumptions Measure.subsets/}CTK_ViewCopy Assumptions.json"
+	]
+}

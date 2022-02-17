@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('All Cost Centres')"
+		}
+	]
+}

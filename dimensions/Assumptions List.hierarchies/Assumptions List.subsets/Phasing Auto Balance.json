@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"Phasing Auto Balance",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Phasing Auto Balance')"
+		}
+	]
+}

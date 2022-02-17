@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Month Contains Actuals",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Month Contains Actuals')"
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Base Year",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.FY')"
+		}
+	]
+}

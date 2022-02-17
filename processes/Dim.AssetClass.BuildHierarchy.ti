@@ -1,0 +1,126 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Peacock, 2015-04-01, Removed ITEMSKIP command to stop errors from occurring
+#LASTCHANGE Inel Botha, 2014-06-16, Initial Draft of process
+#GENERALCOMMENT Builds the account grouping hierarchies in the Asset Class dimension for feeding rule purposes
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Loops through all N-level asset classes, checks if it has a value for the account attribute and if so, adds the asset class to the approrpiate consolidation
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+sCubeName = 'Capex';
+sDim = 'Asset Class';
+sPLDim = 'Account' ;
+sPLAttr = 'Source Cube' ;
+sPLAccountProcess = 'Dim.PLAccount.Update' ;
+sAssetClassSub = 'Level0' ;
+sAttrDim = '}ElementAttributes_Asset Class' ;
+sSysConsol = 'System' ;
+sMapAcctsConsol = 'Mapping Accounts' ;
+sAttrSub = 'SYS.Hierarchies' ;
+sAttrMDX = '{TM1FILTERBYPATTERN( {TM1SUBSETALL( [}ElementAttributes_Asset Class] )}, "*Hierarchy*")}' ;
+sProcess = '}CTK_DisconnectConsolidations';
+
+##########################################################
+## Confirm top consolidation exists                                                                            ##
+##########################################################
+If (DimIx (sDim, sMapAcctsConsol) = 0) ;
+   DimensionElementInsert (sDim, '', sMapAcctsConsol, 'C');
+   DimensionElementComponentAdd (sDim, sSysConsol, sMapAcctsConsol, 1) ;
+EndIf;
+
+If (ElisAnc (sDim, sSysConsol, sMapAcctsConsol) = 0);
+   DimensionElementComponentAdd (sDim, sSysConsol, sMapAcctsConsol, 1) ;
+EndIf; 
+
+##########################################################
+## Create subset of attributes to reference                                                                ##
+##########################################################
+If (SubsetExists (sAttrDim, sAttrSub) = 1);
+   SubsetDestroy (sAttrDim, sAttrSub) ;
+   SubsetCreateByMDX (sAttrSub, sAttrMDX);
+Else;
+   SubsetCreateByMDX (sAttrSub, sAttrMDX);
+EndIf ;
+
+
+############################################################################
+## Loop through attributes and all asset classes to add asset class to appropriate account consolidations        ##
+############################################################################
+
+nAttrSubSize = SubsetGetSize (sAttrDim, sAttrSub) ;
+x = 1 ;
+
+# Add Hierarchy
+While (x <= nAttrSubSize);
+   sAcctType = SubsetGetElementName (sAttrDim, sAttrSub, x) ;
+   sAcctConsol = Subst (sAcctType, Scan ('_', sAcctType) +1, Long (sAcctType)-Scan ('_', sAcctType)+1 ) | 's' ;
+   If(sAcctConsol @<> 'All Assetss');
+     If (Dimix (sDim, sAcctConsol) =0 );
+        DimensionElementInsertDirect(sDim, '', sAcctConsol, 'C') ;
+        DimensionElementComponentAddDirect(sDim, sMapAcctsConsol, sAcctConsol, 1) ;
+     Else;
+        ExecuteProcess (sProcess, 'pDimName', sDim, 'pConsolidation', sAcctConsol);
+     EndIf;
+
+     If (ElisAnc (sDim, sMapAcctsConsol, sAcctConsol) = 0);
+        DimensionElementComponentAddDirect(sDim, sMapAcctsConsol, sAcctConsol, 1) ;
+     EndIf; 
+
+    # Then Loop through each asset class and get the mappings
+     y = 1 ;
+     nAssetClasses = SubsetGetSize (sDim, sAssetClassSub);
+
+     While ( y <= nAssetClasses) ;
+        sAssetClass = SubsetGetElementName (sDim, sAssetClassSub, y) ;
+        sMappedAcct = Attrs (sDim, sAssetClass, sAcctType);
+
+        If(sMappedAcct @<> '');
+
+          If (Dimix (sDim, sMappedAcct) = 0 );
+            DimensionElementInsertDirect(sDim, '', sMappedAcct, 'C' );
+          EndIf;
+
+          DimensionElementComponentAddDirect(sDim, sMappedAcct, sAssetClass,1) ;
+          DimensionElementComponentAddDirect(sDim, sAcctConsol, sMappedAcct, 1);
+
+          #Populate 'Source Cube' attribute on Account dimension with 'Personnel' for these accounts
+          If (Dimix (sPLDim, sMappedAcct)<>0) ;
+            AttrPutS (sCubeName, sPLDim, sMappedAcct, sPLAttr) ;
+            ExecuteProcess (sPLAccountProcess) ;
+          EndIf ;
+
+        EndIf;
+
+        y = y + 1 ;
+     End;
+    EndIf;
+
+   x = x + 1;
+End ;
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+CubeProcessFeeders(sCubeName);
+#endregion

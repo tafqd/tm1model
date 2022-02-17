@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Placeholder",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('Spark NZ')"
+		}
+	]
+}

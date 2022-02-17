@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Parent Consolidations",
+	"Expression":"{ EXCEPT( { DRILLDOWNMEMBER( {[Cost Centre].[Cost Centre Consolidations]}, {[Cost Centre].[Cost Centre Consolidations]} ) }, { [Cost Centre].[Cost Centre Consolidations] }) }"
+}

@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Capex",
+	"Expression":"TM1SubsetAll([Report Type])"
+}

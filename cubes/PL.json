@@ -1,0 +1,53 @@
+{
+	"@type":"Cube",
+	"Name":"PL",
+	"Rules@Code.link":"PL.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Project')"
+		},
+		{
+			"@id":"Dimensions('Currency')"
+		},
+		{
+			"@id":"Dimensions('Report Type')"
+		},
+		{
+			"@id":"Dimensions('PL Account')"
+		},
+		{
+			"@id":"Dimensions('PL Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"PL.views/All.json",
+		"PL.views/budget application - data entry - E100 - C121.json",
+		"PL.views/Default.json",
+		"PL.views/Exercise 5.json",
+		"PL.views/FX.json",
+		"PL.views/Profit and Loss Analysis.json",
+		"PL.views/Profit and Loss Entry.json",
+		"PL.views/Profit and Loss Review.json",
+		"PL.views/SYS.Capex template.json",
+		"PL.views/SYS.PL Template.json",
+		"PL.views/Sys zViewbuild PL.json",
+		"PL.views/Test Data.PL.Load 1.json",
+		"PL.views/Variance Report.json",
+		"PL.views/ViewFriday.json",
+		"PL.views/YTD Variance.json"
+	]
+}

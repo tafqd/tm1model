@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Category Report Default",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Customer].[All Inputs]}, ALL, RECURSIVE )}"
+}

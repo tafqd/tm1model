@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild PL Workings_All Cost Centres-NElements",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [ COST CENTRE] )}, \"All Cost Centres\")}, ALL, RECURSIVE )}, 0)}"
+}

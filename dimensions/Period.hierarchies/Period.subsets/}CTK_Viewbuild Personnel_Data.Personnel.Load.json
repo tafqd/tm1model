@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Personnel_Data.Personnel.Load",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.Input')"
+		}
+	]
+}

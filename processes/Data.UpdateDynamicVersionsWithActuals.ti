@@ -1,0 +1,122 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, updated process to limit cubes with data copied and add opening balance element for Balance Sheet data
+#LASTCHANGE Inel Botha, updated process to use }CTK_ViewCopyAll process
+#GENERALCOMMENT Updates a dynamic version with Actual data
+#DATASOURCECOMMENT None
+#PROLOGCOMMENT Triggers }CTK_ViewCopyAll process to copy actual data to the dynamic version
+#METADATACOMMENT
+#DATACOMMENT
+#EPILOGCOMMENT
+
+##########################################################
+## Define variables                                                                                                    ##
+##########################################################
+sAssumpCube = 'Assumptions' ;
+sVersionDim = 'Version' ;
+sPeriodDim = 'Period';
+sAssump = 'Month Contains Actuals';
+sProcess = '}CTK_ViewCopy' ;
+sLTDEl = pYear | '.12.LTD' ;
+sOpenBal = pYear | '.00 ' ;
+
+sCubeDim = '}Cubes' ;
+sCubeSub = 'SYS.Cubes to copy actuals' ;
+sCubeSubMDX = '{[}Cubes].[Financials],[}Cubes].[PL],[}Cubes].[PL Workings]}' ;
+
+If (SubsetExists(sCubeDim, sCubeSub)=0);
+   SubsetCreateByMDX (sCubeSub, sCubeSubMDX) ;
+EndIf;
+
+
+##########################################################
+## Validate Parameters                                                                                              ##
+##########################################################
+
+If (DIMIX(sVersionDim,pVersion)=0);
+  ItemReject(pVersion|' is an invalid version.');
+  ProcessError;
+Endif;
+
+If (ELISANC(sVersionDim,'Dynamic Versions',pVersion)=0);
+  ItemReject(pVersion|' is not a dynamic version.');
+  ProcessError;
+Endif;
+
+##########################################################
+## Build subset for all actual months                                                                          ##
+##########################################################
+
+If (SubsetExists(sPeriodDim,sAssump)=1);
+  SubsetDeleteAllElements(sPeriodDim,sAssump);
+Else;
+   SubsetCreate(sPeriodDim,sAssump);
+Endif;
+
+## Add opening balance element to ensure Balance Sheet balances
+SubsetElementInsert(sPeriodDim,sAssump, sOpenBal,1);
+
+nPeriodStart = 1;
+nNoOfComponents = ELCOMPN(sPeriodDim, sLTDEl);
+
+While (nPeriodStart <= nNoOfComponents);
+    sPeriod = DimensionElementPrincipalName(sPeriodDim,ELCOMP(sPeriodDim,sLTDEl, nPeriodStart));
+    vMonthContainsActuals = CellGetN(sAssumpCube, pVersion, sPeriod, 'No Entity','No Currency', sAssump,'Value');
+    IF(vMonthContainsActuals = 1);
+        SubsetElementInsert(sPeriodDim,sAssump, sPeriod,1);
+    ENDIF;
+    nPeriodStart = nPeriodStart +1;
+End;
+
+
+##########################################################
+## Call the copy process                                                                                           ##
+##########################################################
+
+nNoOfCubes = SubsetGetSize (sCubeDim, sCubeSub);
+nStart = 1;
+
+While (nStart <= nNoOfCubes);
+   sCube = SubsetGetElementName (sCubeDim, sCubeSub, nStart);
+   # Copy data in base year
+      ExecuteProcess(
+      sProcess,
+      'vCube',sCube,
+      'pDim1',sVersionDim,
+      'pDim1ElementFrom','Actual',
+      'pDim1ElementTo',pVersion,
+      'pDim2',sPeriodDim,
+      'pDim2ElementFrom',sAssump,
+      'pDim2ElementTo',sAssump,
+      'pDim3','',
+      'pDim3ElementFrom','',
+      'pDim3Elementto','',
+      'pDim4','',
+      'pDim4ElementFrom','',
+      'pDim4ElementTo','',
+      'pBatchUpdates','n',
+      'pSkipRules','n',
+      'pClearOutOnly','n',
+      'pLoggingOff', 'n');
+   nStart = nStart + 1;
+End ; 
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#endregion

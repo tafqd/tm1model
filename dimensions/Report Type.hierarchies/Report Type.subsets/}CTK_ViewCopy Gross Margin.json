@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Gross Margin",
+	"Expression":"TM1SubsetAll([Report Type])"
+}

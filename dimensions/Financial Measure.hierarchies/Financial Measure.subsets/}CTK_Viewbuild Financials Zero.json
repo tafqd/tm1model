@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Financials Zero",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Allocation Amount')"
+		}
+	]
+}

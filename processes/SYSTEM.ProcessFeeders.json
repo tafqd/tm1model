@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.ProcessFeeders",
+	"Code@Code.link":"SYSTEM.ProcessFeeders.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pCube",
+			"Prompt":"Cube?",
+			"Value":"GL",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

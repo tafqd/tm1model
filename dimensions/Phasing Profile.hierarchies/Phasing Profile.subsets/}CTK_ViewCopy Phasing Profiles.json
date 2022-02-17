@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Phasing Profiles",
+	"Expression":"TM1SubsetAll([Phasing Profile])"
+}

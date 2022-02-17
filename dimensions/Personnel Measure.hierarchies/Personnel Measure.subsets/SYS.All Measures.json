@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.All Measures",
+	"Expression":"{ EXCEPT( {TM1SUBSETALL( [Personnel Measure] )}, { [Personnel Measure].[GL Accounts] }) }"
+}

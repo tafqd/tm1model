@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"temp__{ca04916d-daa5-4dd0-8524-137ff7a8e686}",
+	"Expression":"[GM Classification].MEMBERS"
+}

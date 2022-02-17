@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.PlanningCubes",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.PlanningCubes')/Hierarchies('SYS.PlanningCubes')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"SYS.PlanningCubes.hierarchies/SYS.PlanningCubes.json"
+	]
+}

@@ -1,0 +1,31 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.CopyConsolidation",
+	"Code@Code.link":"SYSTEM.CopyConsolidation.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimName",
+			"Prompt":"DimName?",
+			"Value":"BusinessUnit",
+			"Type":"String"
+		},
+		{
+			"Name":"pConsolidation",
+			"Prompt":"Consolidation?",
+			"Value":"All Business Units",
+			"Type":"String"
+		},
+		{
+			"Name":"pAppendName",
+			"Prompt":"Name to append to consolidation?",
+			"Value":"_2015",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

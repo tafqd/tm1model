@@ -1,0 +1,102 @@
+#Region System
+FEEDSTRINGS;
+SKIPCHECK;
+#EndRegion
+
+
+
+#Region STETS
+#Name STETS
+#Desc STET Driver Periods
+#Date April-2014
+#Author Louise Davenport
+#Group STET Rules
+[]=N:
+	IF(ELISANC('Period', 'All Driver',!Period) = 1,
+		STET,
+	CONTINUE);
+#EndRegion
+
+#Region Cumulative Inflation Calculation
+['Cumulative Inflation Rate','%']=N:
+	DB('Assumptions',!Version,ATTRS('Period',!Period,'previousyear')|Subst(!Period,5,LONG(!Period)-4),!Entity,!Currency,!Assumptions List,!Assumptions Measure)+
+	DB('Assumptions',!Version,!Period,!Entity,!Currency,'Inflation Rate',!Assumptions Measure);
+#EndRegion
+
+#Region STETS
+#Name STETS
+#Desc STET Annual Periods
+#Date April-2014
+#Author Louise Davenport
+#Group STET Rules
+[]=N:
+	IF(ELISANC('Period', 'All Input',!Period) = 1,
+		STET,
+	CONTINUE);
+
+#Region Capex, Personnel, Gross Margin Models and Phasing On
+['No Period','No Entity','No Currency',{'Capex Model On','Personnel Model On','Gross Margin Model On','Phasing Model On','Phasing Auto Balance'},'Value']=N:
+	If(DB('Assumptions',!Version,!Period,!Entity,!Currency,!Assumptions List,'String') @= 'Yes',1,Continue);
+#EndRegion
+
+#Region Phased Assumptions
+#Name Phase Annual Entry to Months
+#Desc Allow Entry in either Annual or Months where amounts can change
+#Date April-2014
+#Author Louise Davenport
+#Group Rules
+#Phase Tax and GST Rates
+[{'GST rate','Tax rate','AR - % Collected Current Month', 'AR - % Collected Prior Month','AP - % Settled Current Month','AP - % Settled Prior Month','AR - % Collected Month-2',
+'AR - % Collected Month-3','AP - % Settled Month-2','AP - % Settled Month-3','Inflation Rate','Interest Rate'},'%'] = N:
+	IF(DB('Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Entity,!Currency,!Assumptions List, !Assumptions Measure) = 0,
+		STET,
+	DB('Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Entity,!Currency,!Assumptions List, !Assumptions Measure));
+# Phased AR and AP Days
+[{'AR Days','AP Days','Exchange Rate'},'Value'] = N:
+	IF(DB('Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Entity,!Currency,!Assumptions List, !Assumptions Measure) = 0,
+		STET,
+	DB('Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Entity,!Currency,!Assumptions List, !Assumptions Measure));
+#EndRegion
+
+
+#Region Salary Days Proportion
+['Salary Days','%']=N:
+	IF(ELISANC('Period','All FYs',!Period) = 1,
+		['Value'] \ DB('Assumptions',!Version, SUBST(!Period,1,5)|'FY',!Entity,!Currency,!Assumptions List, 'Value'),
+	CONTINUE);
+
+FEEDERS;
+#Region Feed Phased Assumptions
+#Name Feed Input Entry to Months
+#Desc Allow Entry in either Annual or Months where amounts can change
+#Date April-2014
+#Author Louise Davenport
+#Group Feeders
+#Tax and GST Rates
+['All Input',{'GST rate','Tax rate','AR - % Collected Current Month', 'AR - % Collected Prior Month','AP - % Settled Current Month','AP - % Settled Prior Month',
+	'AR - % Collected Month-2','AR - % Collected Month-3','AP - % Settled Month-2','AP - % Settled Month-3','Inflation Rate','Interest Rate'},'%']=>
+	DB('Assumptions',!Version, SUBST(!Period,1,4)|'.FY',!Entity,!Currency,!Assumptions List, !Assumptions Measure);
+#AR and AP Days
+['All Input',{'AR Days','AP Days','Exchange Rate'},'Value']=>
+	DB('Assumptions',!Version, SUBST(!Period,1,4)|'.FY',!Entity,!Currency,!Assumptions List, !Assumptions Measure);
+#EndRegion
+
+#Region Feed Capex Model Values
+['No Version','No Period','No Entity','No Currency', {'Personnel Model On','Capex Model On'},'String'] => ['Value'];
+#EndRegion
+
+#Region Feed Cumulative Inflation Rate
+[{'All FYs','All Input'},'Cumulative Inflation Rate','%']=>
+	DB('Assumptions',!Version,STR(NUMBR(SUBST(!Period,1,4))+1,4,0)|Subst(!Period,5,LONG(!Period)-4),!Entity,!Currency,!Assumptions List,!Assumptions Measure);
+[{'All FYs','All Input'},'Inflation Rate','%']=>
+	DB('Assumptions',!Version,!Period,!Entity,!Currency,'Cumulative Inflation Rate',!Assumptions Measure);
+#EndRegion
+
+
+#Region Feed Salary Days %
+['No Version','All FYs','Salary Days','Value']=>['%'];
+#EndRegion
+
+#Region Feed Phasing Profiles cube
+['No Version','No Entity','No Currency','Salary Days'] =>
+DB('Phasing Profiles',!Version,!Period,!Assumptions List, !Assumptions Measure) ;

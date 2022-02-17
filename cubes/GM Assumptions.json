@@ -1,0 +1,33 @@
+{
+	"@type":"Cube",
+	"Name":"GM Assumptions",
+	"Rules@Code.link":"GM Assumptions.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Currency')"
+		},
+		{
+			"@id":"Dimensions('GM Classification')"
+		},
+		{
+			"@id":"Dimensions('Customer')"
+		},
+		{
+			"@id":"Dimensions('Product')"
+		},
+		{
+			"@id":"Dimensions('GM Assumption Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"GM Assumptions.views/All.json"
+	]
+}

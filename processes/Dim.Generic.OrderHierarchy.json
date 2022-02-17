@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Generic.OrderHierarchy",
+	"Code@Code.link":"Dim.Generic.OrderHierarchy.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimName",
+			"Prompt":"Dimension Name",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

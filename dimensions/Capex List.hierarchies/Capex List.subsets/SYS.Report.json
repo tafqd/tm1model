@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Report",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Capex List')/Hierarchies('Capex List')/Elements('Total Capex')"
+		}
+	]
+}

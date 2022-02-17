@@ -1,0 +1,63 @@
+#Region System
+FEEDSTRINGS;
+SKIPCHECK;
+#EndRegion
+
+#Region Even Phasing
+#Name Even Phasing
+#Desc Calculate the Even phasing profile as 1/12 months.
+#Date 06/08/2014
+#Author Michael Mackie
+['%'] = N:
+		['Value'] \ DB('Phasing Profiles', !Version, Subst(!Period,1,4)|'.FY', !Phasing Profile, 'Value');
+#EndRegion
+
+
+#Region Even Phasing
+#Name Even Phasing
+#Desc Calculate the Even phasing profile as 1/12 months.
+#Date 06/08/2014
+#Author Michael Mackie
+['Equal Spread','No Version','Value'] = N:
+	1;
+#EndRegion
+
+#Region Assumptions cube data
+#Name Pull values from Assumptions cube
+#Desc Pull Salary Days data from the Assumptions cube to elimnate entering data twice in two different locations
+#Date 08/04/2014
+#Author Inel Peacock
+['Salary Days', 'Value'] = N:
+DB ('Assumptions','No Version',!Period,'No Entity','No Currency',!Phasing Profile,!Phasing Profiles Measure) ;
+#EndRegion
+
+#Region Rephased Values
+#Name Rephase based on month contains actuals
+#Desc Determine phasing for remainder of year when some months contain actuals
+#Date 29/06/2015
+#Author Louise Davenport
+['Rephased Value'] = N:
+  # If no phasing in this version then take from No version
+  IF (DB('Assumptions',!Version,!Period,'No Entity','No Currency','Month Contains Actuals','Value') =1,
+    STET,
+    If(DB('Phasing Profiles', !Version, Subst(!Period,1,4)|'.FY', !Phasing Profile, 'Value') > 0,
+	 ['Value'] , ['No Version', 'Value']));
+
+['Rephased %'] = N:
+		['Rephased Value'] \ DB('Phasing Profiles', !Version, Subst(!Period,1,4)|'.FY', !Phasing Profile, 'Rephased Value');
+
+
+#EndRegion
+
+
+
+
+FEEDERS;
+['Working Days']=>['Equal Spread'];
+['All FYs','Value'] =>
+	['Rephased Value'],
+	['Rephased %'],
+	 ['%'];
+['No Version', 'All FYs','Value'] =>
+['Working Versions', 'Rephased %'],
+['Working Versions', 'Rephased Value'];

@@ -1,0 +1,42 @@
+{
+	"@type":"Cube",
+	"Name":"Personnel",
+	"Rules@Code.link":"Personnel.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Project')"
+		},
+		{
+			"@id":"Dimensions('Currency')"
+		},
+		{
+			"@id":"Dimensions('Report Type')"
+		},
+		{
+			"@id":"Dimensions('Personnel List')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Personnel.views/All.json",
+		"Personnel.views/Entry.json",
+		"Personnel.views/Input template.json",
+		"Personnel.views/Personnel.json"
+	]
+}

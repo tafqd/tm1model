@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"Data.AllocationDefinitions.CopyRules",
+	"Code@Code.link":"Data.AllocationDefinitions.CopyRules.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pVersionFrom",
+			"Prompt":"Version From?",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionTo",
+			"Prompt":"Version To?",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pYearFrom",
+			"Prompt":"Year From?",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pYearTo",
+			"Prompt":"Year To?",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

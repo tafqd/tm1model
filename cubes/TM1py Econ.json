@@ -1,0 +1,20 @@
+{
+	"@type":"Cube",
+	"Name":"TM1py Econ",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('TM1py Country')"
+		},
+		{
+			"@id":"Dimensions('TM1py Year')"
+		},
+		{
+			"@id":"Dimensions('TM1py Quarter')"
+		},
+		{
+			"@id":"Dimensions('TM1py Econ Measure')"
+		}
+	],
+	"Views@Code.links":[]
+}

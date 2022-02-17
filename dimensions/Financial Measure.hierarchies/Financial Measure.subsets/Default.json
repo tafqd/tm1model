@@ -1,0 +1,25 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('CF')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Total Amount')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Amount')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Adjustment')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('CF Adjustment')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Notes')"
+		}
+	]
+}

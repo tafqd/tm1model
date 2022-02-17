@@ -1,0 +1,70 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Amornwan Silapadech 14-Apt-2016 Initial Build of Process
+#GENERALCOMMENT Add additional Working LineTBA elements to Working Line Dimensions
+#DATASOURCECOMMENT None
+#PROLOGCOMMENT Update Entity Dimension
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+##################################
+## Set Constants and Variables                         ##
+##################################
+# List Dimension name is Cube Name with List after it
+s_Cube = '}ElementAttributes_Workings Line';
+s_DimName = 'Workings Line';
+s_LinePrefix = 'Line ';
+s_Attr = 'Caption';
+#s_OrderAttr = 'Order Override';
+#s_CapexHierAttr = 'Hierarchy_All Capex Lists';
+s_Consol = 'All Lines';
+
+# Determine Number of Existing Lines
+n_Existing = ElCompN(s_DimName, s_Consol);
+n_LoopCtrl = n_Existing + 1;
+n_LoopMax = n_Existing + pNoToAdd;
+
+While(n_LoopCtrl <= n_LoopMax);
+  s_Element = s_LinePrefix | NumberToString(n_LoopCtrl);
+  # Add the Element
+  DimensionElementInsert(s_DimName, '', s_Element, 'N');
+  # Add the Element to the Consol
+  DimensionElementComponentAdd(s_DimName, s_Consol, s_Element, 1);
+
+  n_LoopCtrl = n_LoopCtrl + 1;
+End;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# Add Caption Attribute to Workings Line
+  n_LoopCtrl = n_Existing + 1;
+  n_LoopMax = n_Existing + pNoToAdd;
+
+  While(n_LoopCtrl <= n_LoopMax);
+    s_Number = NumberToString(n_LoopCtrl);
+    s_Element = s_LinePrefix | s_Number;
+
+    # Add the Attribute
+    AttrPutS(s_Number,  s_DimName, s_Element, s_Attr);
+
+
+    n_LoopCtrl = n_LoopCtrl + 1;
+  End;
+#endregion

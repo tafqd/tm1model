@@ -1,0 +1,64 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Phasing Profile",
+	"Elements":
+	[
+		{
+			"Name":"Equal Spread",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Last Year",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Working Days",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quarterly",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary days",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Seasonality",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Auto Balance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Standard Retail",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"international receipts",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Standard Contract Profile",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contract Payment Profile",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Phasing Profile.subsets/All Members.json",
+		"Phasing Profile.subsets/Default.json",
+		"Phasing Profile.subsets/Level0.json",
+		"Phasing Profile.subsets/SYS.Configuration.json",
+		"Phasing Profile.subsets/SYS.Level0.json",
+		"Phasing Profile.subsets/SYS.Picklist.json",
+		"Phasing Profile.subsets/}CTK_Viewbuild Phasing Profiles.json",
+		"Phasing Profile.subsets/}CTK_Viewbuild Phasing Profiles_L0.json",
+		"Phasing Profile.subsets/}CTK_Viewbuild Phasing Profiles Zero.json",
+		"Phasing Profile.subsets/}CTK_ViewCopy Phasing Profiles.json"
+	]
+}

@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM_MonitorProcesses",
+	"Code@Code.link":"SYSTEM_MonitorProcesses.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pProcessFullLog",
+			"Prompt":"Process full log or today only ( 1 / 0 )",
+			"Value":1,
+			"Type":"Numeric"
+		},
+		{
+			"Name":"pSourceFile",
+			"Prompt":"Logfile to processLogfile to processLogfile to processLogfile to process",
+			"Value":"tm1server.log",
+			"Type":"String"
+		},
+		{
+			"Name":"pFileOut",
+			"Prompt":"Output file of the analysis in the Log directory",
+			"Value":"tm1server_log-analysis.csv",
+			"Type":"String"
+		},
+		{
+			"Name":"pLoadToTM1",
+			"Prompt":"Load straight to TM1 ( 1 / 0 )",
+			"Value":1,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"Bedrock.Cube.View.Delete",
+	"Code@Code.link":"Bedrock.Cube.View.Delete.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pCubes",
+			"Prompt":"List of Cubes Separated by Delimiter (Blank = All Cubes)",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pViews",
+			"Prompt":"List of Views Separated by Delimiter. Wildcards Permitted on View Names.",
+			"Value":"}Bedrock*",
+			"Type":"String"
+		},
+		{
+			"Name":"pDelimiter",
+			"Prompt":"Delimiter Character",
+			"Value":"&",
+			"Type":"String"
+		},
+		{
+			"Name":"pDebug",
+			"Prompt":"Debug Mode",
+			"Value":0,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

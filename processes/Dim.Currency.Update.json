@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Currency.Update",
+	"Code@Code.link":"Dim.Currency.Update.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pCurrency",
+			"Prompt":"Currency name",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

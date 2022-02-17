@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"EXEC.Data.Financial.CopyFromPLAllYears",
+	"Code@Code.link":"EXEC.Data.Financial.CopyFromPLAllYears.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pVersion",
+			"Prompt":"Version to copy",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionTo",
+			"Prompt":"Version to copy to",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

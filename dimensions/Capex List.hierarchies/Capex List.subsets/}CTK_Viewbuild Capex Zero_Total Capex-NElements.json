@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Capex Zero_Total Capex-NElements",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [CAPEX LIST] )}, \"Total Capex\")}, ALL, RECURSIVE )}, 0)}"
+}

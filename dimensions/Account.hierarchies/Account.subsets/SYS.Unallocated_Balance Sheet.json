@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Unallocated_Balance Sheet",
+	"Expression":"{FILTER( {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Account].[Unallocated_Balance Sheet]}, ALL, RECURSIVE )}, 0)}, [Account].[AccountFlag] = \"BS\")}"
+}

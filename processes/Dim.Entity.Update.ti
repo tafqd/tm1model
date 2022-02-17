@@ -1,0 +1,185 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Louise Davenport 9-Sep-2014 Changed the ElementComponentAdd to Direct commands 
+#LASTCHANGE Louise Davenport 27-May-2014 Clean up
+#LASTCHANGE Peter Currie Initial Draft of process
+#GENERALCOMMENT Update Entity Dimension
+#DATASOURCECOMMENT CSV
+#PROLOGCOMMENT Update Entity Dimension
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+
+##################################
+## Set Constants and Variables                         ##
+##################################
+cDimName = 'Entity';
+
+sCodeDescAttr = 'Code and Description';
+sDescCodeAttr = 'Description and Code';
+sDescAttr = 'Description';
+
+sBIPromptAttr = 'PromptValue' ;
+
+sAllConsol = cDimName | ' Consolidations';
+sRepConsol = 'Reporting';
+sSysConsol = 'System';
+sTopConsol =  'All Entities';
+sUnspecCC = 'Unspec Entity';
+sNoCC = 'No Entity';
+sToAllocate = 'All ' | cDimName |' Codes';
+
+
+# Hierarchy Attibutes required
+s_WeightPrefix = 'Weight_';
+s_HierarchyPrefix = 'Hierarchy_';
+
+s_TopHierarchyAttr = s_HierarchyPrefix | sTopConsol;
+s_TopWeightAttr = s_WeightPrefix | sTopConsol;
+
+
+#########################################################
+## Disable cube logging for bulk data loads - performance improvements              ##
+#########################################################
+cCube = '}ElementAttributes_Entity';
+cCubeLogging = CubeGetLogChanges(cCube);
+CubeSetLogChanges(cCube, 0);
+
+
+##################################
+## Unwind to be allocated Consolidation          ##
+##################################
+If(DimIx(cDimName, sToAllocate) > 0);
+  sProcessName = '}CTK_DisconnectConsolidations';
+  ExecuteProcess(sProcessName, 'pDimName', cDimName, 'pConsolidation', sToAllocate);
+EndIf;
+
+#ProcessQuit;
+
+##########################################
+## Insert Attributes                                                               ##
+##########################################
+sProcessName = '}CTK_CreateAttributes';
+ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+# Insert Hierarchy Attributes Required
+AttrInsert(cDimName,'', s_TopHierarchyAttr,'S');
+AttrInsert(cDimName,'', s_TopWeightAttr,'N');
+
+# Insert attribute to filter BI prompt values
+AttrInsert (cDimName, '', sBIPromptAttr, 'N');
+
+
+###########################################
+## Insert System / Top level Elements                                   ##
+###########################################
+DimensionElementInsertDirect(cDimName,'',sAllConsol,'C');
+DimensionElementInsertDirect(cDimName,'',sRepConsol,'C');
+DimensionElementInsertDirect(cDimName,'',sSysConsol,'C');
+
+
+
+# Add Reporting and System Consolidations to the Root Consolidation
+DimensionElementComponentAddDirect(cDimName, sAllConsol,sRepConsol,0);
+DimensionElementComponentAddDirect(cDimName, sAllConsol,sSysConsol,0);
+
+# Add All Consolidation to Reporting Consolidation
+DimensionElementInsertDirect(cDimName,'',sTopConsol,'C');
+DimensionElementComponentAddDirect(cDimName, sRepConsol,sTopConsol,0);
+
+# Add All Entity Codes consolidation to System Consolidation
+DimensionElementInsertDirect(cDimName,'',sToAllocate,'C');
+DimensionElementComponentAddDirect(cDimName,sSysConsol,sToAllocate,1);
+
+
+# Add Unspec Element to All Codes Consol
+DimensionElementInsertDirect(cDimName,'',sUnspecCC,'N');
+DimensionElementComponentAddDirect(cDimName,sToAllocate,sUnspecCC,1);
+
+# Add No Element to System Consol
+DimensionElementInsertDirect(cDimName,'',sNoCC,'N');
+DimensionElementComponentAddDirect(cDimName,sSysConsol,sNoCC,1);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+###############################
+## Set variables                                          ##
+###############################
+sEntity = vEntity;
+
+
+######################################
+## Insert Element and connnect to parent                  ##
+######################################
+If(DimIx(cDimName, sEntity) = 0);
+  DimensionElementInsert(cDimName,'',sEntity,'N');
+EndIf;
+DimensionElementComponentAdd(cDimName,sToAllocate,sEntity,1);
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+################################
+## Set variables                                            ##
+################################
+sEntity = vEntity;
+sEntity_Alias = vEntityAlias;
+
+sCodeDesc = sEntity | ' - ' | sEntity_Alias;
+sDescCode = sEntity_Alias | ' - ' | sEntity;
+sDesc = sEntity_Alias;
+
+
+#################################
+## Insert Attributes                                          ##
+#################################
+# Generic Aliases etc
+AttrPutS(sCodeDesc, cDimName, sEntity, sCodeDescAttr);
+AttrPutS(sDescCode, cDimName, sEntity, sDescCodeAttr);
+AttrPutS(sDesc, cDimName, sEntity, sDescAttr);
+
+# Hierarchy Attributes
+AttrPutS(sRepConsol , cDimName, sTopConsol, s_TopHierarchyAttr);
+AttrPutN(0, cDimName, sTopConsol, s_TopWeightAttr);
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+################################
+## Rebuild Hierarchy                                    ##
+################################
+sProcessName = 'Dim.Generic.Hierarchy';
+ExecuteProcess(sProcessName,'pDimName',cDimName, 'pHierarchy', s_TopHierarchyAttr);
+
+
+################################
+## Delete any empty consolidations             ##
+################################
+sProcessName = '}CTK_EmptyConsolidationsDelete';
+ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+
+###########################################################
+## Check for Orphan elements and add them to a orphan elements consolidation      ##
+###########################################################
+sProcessName = '}CTK_CheckOrphanElements';
+ExecuteProcess(sProcessName,'pDimName',cDimName);
+
+
+################################
+## Set cube logging to original value            ##
+################################
+CubeSetLogChanges(cCube, cCubeLogging);
+#endregion

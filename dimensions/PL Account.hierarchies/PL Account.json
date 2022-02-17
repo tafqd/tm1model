@@ -1,0 +1,487 @@
+{
+	"@type":"Hierarchy",
+	"Name":"PL Account",
+	"Elements":
+	[
+		{
+			"Name":"PL Account Consolidations",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Reporting",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Profit and Loss",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Profit Before Tax",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Gross Profit",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Revenue",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Sales Revenue",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"6001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"6002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Discounts on Sales",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"6003",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cost of Sales",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"7001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Other Expenses",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Personnel Costs",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8888",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Distribution Expenses",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8003",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8007",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8012",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8013",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Administration Expenses",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8004",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8011",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8014",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8015",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Occupancy Costs",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8017",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8018",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8019",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8023",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Depreciation Expense",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8008",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8009",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8010",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Finance Costs",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8005",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8006",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8016",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8022",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Tax Expense",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8020",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"8021",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"9000",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"System",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"No PL Account",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"All PL Account Codes",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Unspec PL Account",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Orphan Elements",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"PL Account Consolidations",
+			"ComponentName":"Reporting",
+			"Weight":1
+		},
+		{
+			"ParentName":"PL Account Consolidations",
+			"ComponentName":"System",
+			"Weight":1
+		},
+		{
+			"ParentName":"Reporting",
+			"ComponentName":"Profit and Loss",
+			"Weight":1
+		},
+		{
+			"ParentName":"Profit and Loss",
+			"ComponentName":"Profit Before Tax",
+			"Weight":1
+		},
+		{
+			"ParentName":"Profit and Loss",
+			"ComponentName":"Tax Expense",
+			"Weight":-1
+		},
+		{
+			"ParentName":"Profit Before Tax",
+			"ComponentName":"Gross Profit",
+			"Weight":1
+		},
+		{
+			"ParentName":"Profit Before Tax",
+			"ComponentName":"Other Expenses",
+			"Weight":-1
+		},
+		{
+			"ParentName":"Gross Profit",
+			"ComponentName":"Revenue",
+			"Weight":1
+		},
+		{
+			"ParentName":"Gross Profit",
+			"ComponentName":"Cost of Sales",
+			"Weight":-1
+		},
+		{
+			"ParentName":"Revenue",
+			"ComponentName":"Sales Revenue",
+			"Weight":1
+		},
+		{
+			"ParentName":"Revenue",
+			"ComponentName":"Discounts on Sales",
+			"Weight":1
+		},
+		{
+			"ParentName":"Sales Revenue",
+			"ComponentName":"6001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Sales Revenue",
+			"ComponentName":"6002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Discounts on Sales",
+			"ComponentName":"6003",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cost of Sales",
+			"ComponentName":"7001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Personnel Costs",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Distribution Expenses",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Administration Expenses",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Occupancy Costs",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Depreciation Expense",
+			"Weight":1
+		},
+		{
+			"ParentName":"Other Expenses",
+			"ComponentName":"Finance Costs",
+			"Weight":1
+		},
+		{
+			"ParentName":"Personnel Costs",
+			"ComponentName":"8002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Personnel Costs",
+			"ComponentName":"8888",
+			"Weight":1
+		},
+		{
+			"ParentName":"Distribution Expenses",
+			"ComponentName":"8001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Distribution Expenses",
+			"ComponentName":"8003",
+			"Weight":1
+		},
+		{
+			"ParentName":"Distribution Expenses",
+			"ComponentName":"8007",
+			"Weight":1
+		},
+		{
+			"ParentName":"Distribution Expenses",
+			"ComponentName":"8012",
+			"Weight":1
+		},
+		{
+			"ParentName":"Distribution Expenses",
+			"ComponentName":"8013",
+			"Weight":1
+		},
+		{
+			"ParentName":"Administration Expenses",
+			"ComponentName":"8004",
+			"Weight":1
+		},
+		{
+			"ParentName":"Administration Expenses",
+			"ComponentName":"8011",
+			"Weight":1
+		},
+		{
+			"ParentName":"Administration Expenses",
+			"ComponentName":"8014",
+			"Weight":1
+		},
+		{
+			"ParentName":"Administration Expenses",
+			"ComponentName":"8015",
+			"Weight":1
+		},
+		{
+			"ParentName":"Occupancy Costs",
+			"ComponentName":"8017",
+			"Weight":1
+		},
+		{
+			"ParentName":"Occupancy Costs",
+			"ComponentName":"8018",
+			"Weight":1
+		},
+		{
+			"ParentName":"Occupancy Costs",
+			"ComponentName":"8019",
+			"Weight":1
+		},
+		{
+			"ParentName":"Occupancy Costs",
+			"ComponentName":"8023",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Expense",
+			"ComponentName":"8008",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Expense",
+			"ComponentName":"8009",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Expense",
+			"ComponentName":"8010",
+			"Weight":1
+		},
+		{
+			"ParentName":"Finance Costs",
+			"ComponentName":"8005",
+			"Weight":1
+		},
+		{
+			"ParentName":"Finance Costs",
+			"ComponentName":"8006",
+			"Weight":1
+		},
+		{
+			"ParentName":"Finance Costs",
+			"ComponentName":"8016",
+			"Weight":1
+		},
+		{
+			"ParentName":"Finance Costs",
+			"ComponentName":"8022",
+			"Weight":1
+		},
+		{
+			"ParentName":"Tax Expense",
+			"ComponentName":"8020",
+			"Weight":1
+		},
+		{
+			"ParentName":"Tax Expense",
+			"ComponentName":"8021",
+			"Weight":1
+		},
+		{
+			"ParentName":"Tax Expense",
+			"ComponentName":"9000",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"No PL Account",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"All PL Account Codes",
+			"Weight":1
+		},
+		{
+			"ParentName":"All PL Account Codes",
+			"ComponentName":"Unspec PL Account",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"PL Account.subsets/All Members.json",
+		"PL Account.subsets/Default.json",
+		"PL Account.subsets/Level0.json",
+		"PL Account.subsets/SYS.Capex accounts.json",
+		"PL Account.subsets/SYS.Control dim.json",
+		"PL Account.subsets/SYS.Level0.json",
+		"PL Account.subsets/SYS.PLAccountEntry.json",
+		"PL Account.subsets/SYS.Report.json",
+		"PL Account.subsets/SYS.Summary.json",
+		"PL Account.subsets/}CTK_Viewbuild PL.json",
+		"PL Account.subsets/}CTK_Viewbuild PL_Data.PL.Load.json",
+		"PL Account.subsets/}CTK_Viewbuild PL_Gross Profit-NElements.json",
+		"PL Account.subsets/}CTK_Viewbuild PL_L0.json",
+		"PL Account.subsets/}CTK_Viewbuild PL_Profit and Loss-NElements.json",
+		"PL Account.subsets/}CTK_Viewbuild PL_Revenue-NElements.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Workings.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Workings_Gross Profit-NElements.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Workings_L0.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Workings_Profit and Loss-NElements.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Workings Zero.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Zero.json",
+		"PL Account.subsets/}CTK_Viewbuild PL Zero_Profit and Loss-NElements.json",
+		"PL Account.subsets/}CTK_ViewCopy PL.json",
+		"PL Account.subsets/}CTK_ViewCopy PL Workings.json",
+		"PL Account.subsets/}CTK_ViewCopy Project.json"
+	]
+}

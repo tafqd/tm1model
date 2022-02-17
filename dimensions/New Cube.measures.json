@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"New Cube.measures",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('New Cube.measures')/Hierarchies('New Cube.measures')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"New Cube.measures.hierarchies/New Cube.measures.json"
+	]
+}

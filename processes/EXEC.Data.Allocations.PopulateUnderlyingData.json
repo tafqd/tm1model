@@ -1,0 +1,104 @@
+{
+	"@type":"Process",
+	"Name":"EXEC.Data.Allocations.PopulateUnderlyingData",
+	"Code@Code.link":"EXEC.Data.Allocations.PopulateUnderlyingData.ti",
+	"DataSource":
+	{
+		"Type":"TM1CubeView",
+		"dataSourceNameForClient":"Allocation Assumptions",
+		"dataSourceNameForServer":"Allocation Assumptions",
+		"view":"}CTK_Viewbuild Allocation Assumptions"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pAllocationPoolVersion",
+			"Prompt":"Cost Pool Version",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionFrom",
+			"Prompt":"Version From",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionTo",
+			"Prompt":"Version To",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pYear",
+			"Prompt":"Year",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pRebuildDims",
+			"Prompt":"Rebuild Dims?",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":
+	[
+		{
+			"Name":"vVersion",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vPeriod",
+			"Type":"String",
+			"Position":2,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vEntity",
+			"Type":"String",
+			"Position":3,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vCostCentre",
+			"Type":"String",
+			"Position":4,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vProject",
+			"Type":"String",
+			"Position":5,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vCostPool",
+			"Type":"String",
+			"Position":6,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vMeasure",
+			"Type":"String",
+			"Position":7,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vValue",
+			"Type":"String",
+			"Position":8,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}

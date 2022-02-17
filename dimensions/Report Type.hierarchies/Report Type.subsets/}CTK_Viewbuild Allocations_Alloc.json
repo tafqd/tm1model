@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocations_Alloc",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+		}
+	]
+}

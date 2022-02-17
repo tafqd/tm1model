@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild }ElementAttributes_Cost Centre",
+	"Expression":"TM1SubsetAll([Cost Centre])"
+}

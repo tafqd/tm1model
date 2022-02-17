@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"QUBEdocs Setup Item",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('QUBEdocs Setup Item')/Hierarchies('QUBEdocs Setup Item')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"QUBEdocs Setup Item.hierarchies/QUBEdocs Setup Item.json"
+	]
+}

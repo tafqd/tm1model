@@ -1,0 +1,107 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Michael Mackie, Documented the process
+#GENERALCOMMENT This process copys Financials data to the allocations cube
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT  Creates a view that is used as the datasource based on the specific cost pool details
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+# Declare Global Variables to determine whether applying to sandbox or base
+NumericGlobalVariable('SandBoxValue');
+SetUseActiveSandBoxProperty(SandBoxValue);
+
+#Look up alloction pool and Driver and include in view
+sAllocationPool = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Allocation Pool');
+sAllocationDriver = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Allocation Driver');
+nAllocationPercent = CellGetN('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Allocation %');
+sPostingAccountFrom = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Posting Account From');
+sPostingAccountTo = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Posting Account To');
+nAllocationStep = CellGetN('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,'Allocation Step');
+nAllocationStep = IF(nAllocationStep=0,CellGetN('Allocation Definitions',pAllocVersion,pYear | '.Input','Defaults','Allocation Step'),nAllocationStep);
+nAllocationStep = IF(nAllocationStep=0,1,nAllocationStep);
+sAllocationMeasure = 'Allocation Amount ' | NumberToString(nAllocationStep);
+sSourceMeasure = IF(nAllocationStep = 1,'Source Amount', 'Allocation After Step ' | NumberToString(nAllocationStep-1));
+
+#Source Account & Cost Centre
+sElement = 'Source Entity';
+sSourceValue = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,sElement);
+sSourceValue = IF(sSourceValue @<> '',sSourceValue,CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input','Defaults',sElement));
+sSourceEntity = sSourceValue;
+
+sElement = 'Source Account';
+sSourceValue = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,sElement);
+sSourceValue = IF(sSourceValue @<> '',sSourceValue,CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input','Defaults',sElement));
+sSourceAccount = sSourceValue;
+
+sElement = 'Source CostCentre';
+sSourceValue = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,sElement);
+sSourceValue = IF(sSourceValue @<> '',sSourceValue,CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input','Defaults',sElement));
+sSourceCostCentre = sSourceValue;
+
+sElement = 'Source Project';
+sSourceValue = CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input',pID,sElement);
+sSourceValue = IF(sSourceValue @<> '',sSourceValue,CellGetS('Allocation Definitions',pAllocVersion,pYear | '.Input','Defaults',sElement));
+sSourceProject = sSourceValue;
+
+#Build copy view
+sCube = 'Allocations';
+sView = '}CTK_Viewbuild Allocations';
+ExecuteProcess ('}CTK_Viewcall ','pOpt','Build', 'pStr',sCube | ',Version,' | pVersionFrom | ',Period,' | pYear | '-NElements'
+| ',Allocation Pool,' | sAllocationPool
+| ',Allocation Driver,' | sAllocationDriver
+| ',Allocation Measure,Driver Amount'
+);
+
+#ViewExtractSkipCalcsSet (sCube, sView, 0);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#Fetch Driver data from the appropriate project based on whether finanical or non financial drivers are used.
+sDriverProject = 'All Projects';
+sDriverCurrency =vCurrency;
+
+IF(ELISANC('Allocation Driver','All Account Drivers',sAllocationDriver)=0);
+ sDriverProject = 'No Project';
+ sDriverCurrency = 'No Currency';
+#Look up reporting currency so that data can be stroed against this (note that for a multi-currency model this would change)
+ vCurrency =CELLGETS('Assumptions','No Version','No Period','No Entity','No Currency','Reporting Currency','String');
+ IF(vProject @= 'No Project');
+    vProject = 'All Projects';
+ ENDIF;
+ENDIF;
+
+#Get the Amount to be allocated and work out the allocation ratio
+sCube = 'Allocations';
+nAllocationAmount = CellGetN(sCube,pVersionFrom,vPeriod,sSourceEntity,sSourceCostCentre,sSourceCostCentre,sSourceProject,vCurrency,vReportType,'All Allocation Pools','All Drivers',sSourceAccount,'Balance',sSourceMeasure);
+nAllocationAmount = nAllocationAmount * ( nAllocationPercent \ 100);
+
+
+#Get Total Driver Amount
+sCube = 'Allocations';
+nTotalDriverAmount = CELLGETN(sCube,vVersion,vPeriod,'All Entities','All Cost Centres','All Cost Centres',sDriverProject,sDriverCurrency,vReportType,vAllocationPool,vAllocationDriver,'No Allocation Account',vID,'Driver Amount');
+
+
+sProject = IF(ELISANC('Allocation Driver','All Account Drivers',sAllocationDriver)=0,'Unspec Project',vProject);
+CELLPUTN(vValue \ nTotalDriverAmount * nAllocationAmount,sCube,pVersionTo,vPeriod,vEntity,sSourceCostCentre,vCostCentre,sProject,vCurrency,vReportType,vAllocationPool,sAllocationDriver,sPostingAccountTo,pID,sAllocationMeasure );
+CELLINCREMENTN(vValue \ nTotalDriverAmount * nAllocationAmount*-1,sCube,pVersionTo,vPeriod,vEntity,sSourceCostCentre,sSourceCostCentre,sProject,vCurrency,vReportType,vAllocationPool,sAllocationDriver,sPostingAccountFrom,pID,sAllocationMeasure );
+
+
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

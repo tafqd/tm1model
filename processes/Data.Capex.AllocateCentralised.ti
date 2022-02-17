@@ -1,0 +1,156 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#LASTCHANGE 13/06/2014	Louise Davenport	Consultant	Initial Build of Process
+#GENERALCOMMENT Process to allocated centralised Capex in Capex Cost Centre to appropriate CostCentres
+#GENERALCOMMENT This should only need to be used for Dynamic Versions
+#PROLOGCOMMENT Define variables, Clears Target and Creates Source View
+#METADATACOMMENT N/A
+#DATACOMMENT Defines variables and loads data
+#EPILOGCOMMENT Destroy views and turns logging back on
+
+
+#########################################################
+## Define Objects managed by this TI Process                                                       ##
+#########################################################
+s_Cube = 'Capex';
+s_SourceViewName = '}CTK_Viewbuild ' | s_Cube;
+s_Process = '}CTK_ViewCall';
+sFileName = s_Cube | 'ExportedData' | '.txt';
+
+s_SourceCostCentre = 'Capex Cost Centre';
+s_TargetCostCentre = 'All Cost Centre Codes-NElements';
+s_TargetCapexList = 'Total Capex-NElements';
+s_SourceAssetClass = 'No Asset Class';
+s_CCMeasure = 'Cost Centre';
+s_ACMeasure = 'Asset Class';
+s_NoPeriod = 'No Period';
+s_UnspecCC = 'Unspec Cost Centre'; 
+s_UnspecAC = 'Unspec Asset Class';
+
+s_VersionDim = TabDim(s_Cube, 1);
+s_PeriodDim = TabDim(s_Cube, 2);
+s_CostCentreDim = TabDim(s_Cube, 4);
+s_AssetClassDim = TabDim(s_Cube, 8);
+s_CapexListDim = TabDim(s_Cube, 9);
+s_MeasureDim = TabDim(s_Cube, 10);
+
+s_CentralCheck = CellGetS('Assumptions', 'No Version', 'No Period', 'No Entity', 'No Currency', 'Capex – centrally planned', 'String');
+
+If(s_CentralCheck @= 'Yes');
+
+
+##########################################################
+## Turn off Logging                                                                                                   ##
+##########################################################
+  CubeSetLogChanges(s_Cube,0);
+
+
+##########################################################
+## Call Target View to Zero Out                                                                                ##
+##########################################################
+  pOpt = 'Zero';
+  pStr = s_Cube|','|s_VersionDim|','|pVersion|','|s_CostCentreDim|','|s_TargetCostCentre|','|s_CapexListDim|','|s_TargetCapexList;
+  ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+##########################################################
+## Call Source View to Build                                                                                      ##
+##########################################################
+  pOpt = 'BuildL0';
+  pStr = s_Cube|','|s_VersionDim|','|pVersion|','|s_CostCentreDim|','|s_SourceCostCentre;
+  ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+
+#####################################################################
+## Set Attributes of the Source Cube View                                                                                          ##
+#####################################################################
+## Suppress Zeroes
+  ViewSuppressZeroesSet(s_Cube, s_SourceViewName, 1);
+## Exclude consolidated values
+  ViewExtractSkipCalcsSet(s_Cube, s_SourceViewName, 1);
+## Include rule calculated values
+  ViewExtractSkipRuleValuesSet(s_Cube, s_SourceViewName, 0);
+## Exclude Zero values
+  ViewExtractSkipZeroesSet(s_Cube, s_SourceViewName, 1);
+
+
+#####################################################################
+## Reset Process Data Source                                                                                                           ##
+#####################################################################
+  DataSourceType = 'VIEW';
+  DataSourceNameForServer = s_Cube;
+  DataSourceCubeView = s_SourceViewName;
+
+EndIf;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#######################################
+## Define Variables                                                       ##
+#######################################
+If(s_CentralCheck @= 'No');
+  ItemSkip;
+EndIf;
+
+s_CostCentre = CellGetS(s_Cube, vVersion, s_NoPeriod, vEntity, s_SourceCostCentre, vProject, vCurrency, vReportType, s_SourceAssetClass, vCapexList, s_CCMeasure);
+s_AssetClass = CellGetS(s_Cube, vVersion, s_NoPeriod, vEntity, s_SourceCostCentre, vProject, vCurrency, vReportType, s_SourceAssetClass, vCapexList, s_ACMeasure);
+
+If(s_CostCentre @= '' % DimIx(s_CostCentreDim, s_CostCentre) = 0);
+  s_CostCentre = s_UnspecCC;
+EndIf;
+
+If(s_AssetClass @= '' % DimIx(s_AssetClassDim, s_AssetClass) = 0);
+  s_AssetClass = s_UnspecAC;
+EndIf;
+
+#######################################
+## Load Data                                                                ##
+#######################################
+
+#If(DType(s_MeasureDim, vMeasure) @= 'N');
+#  If(CellIsUpdateable(s_Cube, vVersion, vPeriod, vEntity, s_CostCentre, vProject, vCurrency, vReportType, s_AssetClass, vCapexList, vMeasure) = 1);
+#    CellPutN(nValue, s_Cube, vVersion, vPeriod, vEntity, s_CostCentre, vProject, vCurrency, vReportType, s_AssetClass, vCapexList, vMeasure);
+#  EndIf;
+#Else;
+#  CellPutS(sValue, s_Cube, vVersion, vPeriod, vEntity, s_CostCentre, vProject, vCurrency, vReportType, s_AssetClass, vCapexList, vMeasure);
+#EndIf;
+
+# Changed to export and then import the data as a lot quicker - otherwise getting itself tied up notes
+If(DType(s_MeasureDim, vMeasure) @= 'N');
+  ASCIIOUTPUT(sFilename,'N', NumberToString(nValue), s_Cube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, s_AssetClass, vCapexList, vMeasure);
+Else;
+  ASCIIOUTPUT(sFilename,'S', sValue, s_Cube, vVersion, vPeriod, vEntity, vCostCentre, vProject, vCurrency, vReportType, s_AssetClass, vMeasure);
+EndIf;
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+##########################################################
+## Destroy View                                                                                                       ##
+##########################################################
+pOpt = 'Destroy';
+pStr = s_Cube;
+ExecuteProcess(s_Process, 'pOpt', pOpt, 'pStr', pStr);
+
+
+##########################################################
+## Turn on Logging                                                                                                   ##
+##########################################################
+CubeSetLogChanges(s_Cube,1);
+#endregion

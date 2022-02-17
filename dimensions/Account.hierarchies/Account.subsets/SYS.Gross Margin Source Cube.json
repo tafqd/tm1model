@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Gross Margin Source Cube",
+	"Expression":"{FILTER( {TM1SUBSETALL( [Account] )}, [Account].[Source cube] = \"Gross Margin\")}"
+}

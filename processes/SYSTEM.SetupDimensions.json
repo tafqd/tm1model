@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.SetupDimensions",
+	"Code@Code.link":"SYSTEM.SetupDimensions.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

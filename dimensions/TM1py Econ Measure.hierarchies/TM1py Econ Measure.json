@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py Econ Measure",
+	"Elements":
+	[
+		{
+			"Name":"GDP",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

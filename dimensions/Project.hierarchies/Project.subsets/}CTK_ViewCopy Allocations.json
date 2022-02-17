@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Allocations",
+	"Expression":"TM1SubsetAll([Project])"
+}

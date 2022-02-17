@@ -1,0 +1,20 @@
+{
+	"@type":"Cube",
+	"Name":"TM1py FX Rates",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('TM1py Currency From')"
+		},
+		{
+			"@id":"Dimensions('TM1py Currency To')"
+		},
+		{
+			"@id":"Dimensions('TM1py Date')"
+		},
+		{
+			"@id":"Dimensions('TM1py FX Rates Measure')"
+		}
+	],
+	"Views@Code.links":[]
+}

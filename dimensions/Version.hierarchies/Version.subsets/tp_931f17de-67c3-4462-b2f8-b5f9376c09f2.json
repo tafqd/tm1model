@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"tp_931f17de-67c3-4462-b2f8-b5f9376c09f2",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+		},
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+		}
+	]
+}

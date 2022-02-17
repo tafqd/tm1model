@@ -1,0 +1,157 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#GeneralComment TEMPLATE process to use }CTK_ViewCall to construct a source view to manipulate data in a cube
+#GeneralComment Option to clear only and increments values in source dim
+#GeneralComment Dimensionality must be set in data tab, and correct dim parameters in Prolog
+#LastChange W Gilling 25 Aug 2014 For toolkit v4.1
+#LastChange W Gilling 14 April 2015 Finalised error trapping and validation v4.2
+
+#LastChange W Gilling, Mindfull, 19 May 2015 Toolkit 4.2  Parameter validation added
+
+#########
+#Check to see that user input is valid
+IF (DIMIX('}Cubes',pCube)=0);
+	PROCESSBREAK;
+ENDIF;
+
+#########
+
+#Filename to be used to store data, in data Directory
+sTime = TIMST(Now,'\y\m\d\H\i\s');
+sFilename=pCube | 'ExportedData' |  sTime | '.txt';
+
+####Copy will increment by this 
+nIncrement = 1.05;
+
+#########
+##
+##  Declare Implicit Global variables used in this process and ViewBuild
+##  These global variables are declared IF you want to report errors encountered in CTK_ViewCall/ViewBuild 
+##  They will be reported in log dir under CTK_ViewCall/ViewBuild as well 
+##
+#########
+
+NumericGlobalVariable('ProcessReturnCode');
+StringGlobalVariable('g_sFatalErrorString');
+StringGlobalVariable('g_sMemoErrorString');
+
+sDim1='Version';
+sElementFrom1='Actual';
+sElementTo1='Budget';
+
+sDim2='Period';
+sElementFrom2='Jul';
+sElementTo2='Jul';
+
+sDim3='Fin Year';
+sElementFrom3='2015';
+sElementTo3='2015';
+
+####  No Logging of these transactions
+CUBESETLOGCHANGES(pCube,0);
+
+###IF DATASOURCE SET CORRECTLY THEN ZERO OUT DESTINATION
+####Zero out Destination before load
+sOption='Zero';
+sString=pCube  | ',' | sDim1 | ',' | sElementTo1 | ',' | sDim2 | ',' | sElementTo2  | ',' | sDim3 | ',' | sElementTo3 ; 
+EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+
+sOption='Destroy_Zero';
+EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+
+######
+# If only clearing then break to epilog
+######
+IF(pClearOnly@='Y');  PROCESSBREAK;  ENDIF;
+
+##Setup Source View
+sOption='BuildL0';
+sString=pCube  | ',' | sDim1 | ',' | sElementFrom1 | ',' | sDim2 | ',' | sElementFrom2  | ',' | sDim3 | ',' | sElementFrom3 ;
+EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+
+IF(ProcessReturnCode <> ProcessExitNormal() );
+	PROCESSBREAK;
+ENDIF;
+
+sViewName = '}CTK_Viewbuild ' | pCube;
+
+####  Skips Consolidated and Zeroes
+VIEWEXTRACTSKIPCALCSSET(pCube, sViewName,1);
+VIEWEXTRACTSKIPRULEVALUESSET(pCube,sViewName,0);
+VIEWEXTRACTSKIPZEROESSET(pCube,sViewName,1);
+
+DATASOURCETYPE = 'VIEW';
+DATASOURCENAMEFORSERVER = pCube;
+DATASOURCECUBEVIEW = sViewName;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#DataComment Assign data source variables and determine meas type.  Can manipulate data if required.
+sMeasDimName='GLMeasure';
+sVersion=V5;
+sPeriod=V4;
+sFinYear=V3;
+sAccount=V2;
+sBU=V1;
+sMeas=V6;
+
+IF(DTYPE(sMeasDimName,sMeas)@='N');
+     	#sValue=SValue;
+	nIncrValue=NValue*nIncrement;
+	sValue=NUMBERTOSTRING(nIncrValue);
+     	sType='N';
+ELSE;
+     	#sValue=NUMBERTOSTRING(NValue);
+	sValue=SValue;
+    	sType='S';
+asciioutput('comment.txt',v1,v2,v3,v4,v5,v6);
+
+ENDIF;
+
+ASCIIOUTPUT(sFilename,sType, sValue, pCube,sBU,sAccount,sElementTo3,sElementTo2,sElementTo1,sMeas);
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#########
+#Check to see that user input is valid
+IF (DIMIX('}Cubes',pCube)=0);
+	ITEMREJECT(pCube | ' is an invalid cube name');
+ENDIF;
+
+#########
+
+####  Restore Logging of this cube
+CUBESETLOGCHANGES(pCube,1);
+
+IF(ProcessReturnCode <> ProcessExitNormal() );
+	ITEMREJECT('Process break encountered in CTK_ViewCall - ' | g_sFatalErrorString);
+ENDIF;
+
+IF(pClearOnly@='Y');  
+	## No datasource
+ELSE;
+	IF (FILEEXISTS(sFilename)=1);
+		EXECUTEPROCESS('}CTK_ViewCopyIn','vFilename',sFilename);
+		ASCIIDELETE(sFilename);
+	ENDIF;
+
+	sOption='Destroy';
+	EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+ENDIF;
+
+
+#endregion

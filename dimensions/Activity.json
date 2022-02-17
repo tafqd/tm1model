@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Activity",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Activity')/Hierarchies('Activity')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Activity.hierarchies/Activity.json"
+	]
+}

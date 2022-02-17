@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Inputs",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Metric].[Inputs]}, ALL, RECURSIVE )}"
+}
