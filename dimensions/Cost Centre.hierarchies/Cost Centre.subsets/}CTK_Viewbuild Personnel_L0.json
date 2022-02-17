@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Personnel_L0",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [COST CENTRE] )}, 0)}"
-}

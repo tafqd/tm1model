@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.MDXList",
-	"Expression":"{FILTER({Except({TM1DRILLDOWNMEMBER( {[Cost Centre].[All Cost Centres]}, ALL, RECURSIVE )}, {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Cost Centre].[All Cost Centres]}, ALL, RECURSIVE )}, 0)})},                      [Cost Centre].[Hierarchy_All Cost Centres] <> \"\")}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Working Forecast Years",
-	"Expression":"{ EXCEPT( { DRILLDOWNMEMBER( {[Period].[Working Forecast Years]}, {[Period].[Working Forecast Years]} ) }, { [Period].[Working Forecast Years] }) }"
-}

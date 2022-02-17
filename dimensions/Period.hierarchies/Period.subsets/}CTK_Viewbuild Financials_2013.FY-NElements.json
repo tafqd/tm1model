@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Financials_2013.FY-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PERIOD] )}, \"2013.FY\")}, ALL, RECURSIVE )}, 0)}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Approval",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[Cost Centre].[All Cost Centres]}, ALL, RECURSIVE)}"
-}

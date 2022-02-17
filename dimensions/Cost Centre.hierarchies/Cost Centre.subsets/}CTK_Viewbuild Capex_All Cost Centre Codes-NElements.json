@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Capex_All Cost Centre Codes-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [COST CENTRE] )}, \"All Cost Centre Codes\")}, ALL, RECURSIVE )}, 0)}"
-}

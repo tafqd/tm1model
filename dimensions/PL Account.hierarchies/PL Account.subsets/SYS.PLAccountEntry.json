@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.PLAccountEntry",
-	"Expression":"{TM1DRILLDOWNMEMBER( {TM1SubsetBasis()}, ALL, RECURSIVE )}"
-}

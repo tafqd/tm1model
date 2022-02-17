@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"QUBEdocs.Item Groups",
-	"Expression":"{ EXCEPT( {TM1SUBSETALL( [QUBEdocs Application Group] )}, { [QUBEdocs Application Group].[Header] }) }"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild PL Workings_All Lines-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PL LINE] )}, \"All Lines\")}, ALL, RECURSIVE )}, 0)}"
-}

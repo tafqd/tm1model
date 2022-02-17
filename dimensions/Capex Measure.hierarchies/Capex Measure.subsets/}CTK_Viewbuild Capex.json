@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Capex",
-	"Expression":"TM1SubsetAll([Capex Measure])"
-}

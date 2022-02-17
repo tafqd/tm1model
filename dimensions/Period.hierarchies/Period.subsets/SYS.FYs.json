@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.FYs",
-	"Expression":"{EXCEPT( { DRILLDOWNMEMBER( {[Period].[All FYs]}, {[Period].[All FYs]} ) },{[Period].[All FYs]})}"
-}

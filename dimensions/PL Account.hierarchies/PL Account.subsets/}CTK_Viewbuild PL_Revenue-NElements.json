@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild PL_Revenue-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PL ACCOUNT] )}, \"Revenue\")}, ALL, RECURSIVE )}, 0)}"
-}

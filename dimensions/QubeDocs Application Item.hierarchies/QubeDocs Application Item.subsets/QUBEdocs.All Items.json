@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"QUBEdocs.All Items",
-	"Expression":"{TM1SUBSETALL( [QubeDocs Application Item] )}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Reporting Period",
-	"Expression":"{FILTER( {TM1SUBSETALL( [Period] )}, [Period].[ReportingPeriod] = 1.000000)}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.PL Accounts",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[Account].[Profit and Loss]}, ALL, RECURSIVE )}"
-}

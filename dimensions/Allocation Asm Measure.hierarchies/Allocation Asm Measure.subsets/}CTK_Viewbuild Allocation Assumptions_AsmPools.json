@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Allocation Assumptions_AsmPools",
-	"Expression":"TM1SubsetAll([Allocation Asm Measure])"
-}

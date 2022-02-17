@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Unallocated_Cash Flow",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Account].[Unallocated_Cash Flow]}, ALL, RECURSIVE )}, 0)}"
-}

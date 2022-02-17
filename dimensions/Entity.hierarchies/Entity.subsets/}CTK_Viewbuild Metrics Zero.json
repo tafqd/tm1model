@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Metrics Zero",
-	"Expression":"TM1SubsetAll([Entity])"
-}

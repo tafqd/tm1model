@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Models on or off",
-	"Expression":"{TM1FILTERBYPATTERN( {TM1SUBSETALL( [Assumptions List] )}, \"*model on*\")}"
-}

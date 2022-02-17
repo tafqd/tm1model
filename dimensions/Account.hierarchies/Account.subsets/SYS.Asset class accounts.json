@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Asset class accounts",
-	"Expression":"{TM1SORT( {FILTER( {TM1SUBSETALL( [Account] )}, [Account].[Source cube] = \"Capex\")}, ASC)}"
-}

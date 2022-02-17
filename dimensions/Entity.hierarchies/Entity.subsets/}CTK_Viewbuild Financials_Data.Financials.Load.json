@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Financials_Data.Financials.Load",
-	"Expression":"TM1SubsetAll([Entity])"
-}

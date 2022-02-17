@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Profit and Loss",
-	"Expression":"{[Account].[Profit and Loss]}"
-}

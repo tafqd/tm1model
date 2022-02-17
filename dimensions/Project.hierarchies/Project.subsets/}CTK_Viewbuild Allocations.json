@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Allocations",
-	"Expression":"TM1SubsetAll([Project])"
-}

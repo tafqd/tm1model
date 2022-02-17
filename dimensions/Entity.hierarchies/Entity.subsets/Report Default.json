@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"Report Default",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[Entity].[All Entities]}, ALL, RECURSIVE )}"
-}

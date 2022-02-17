@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy Metrics",
-	"Expression":"TM1SubsetAll([Metric Indicator])"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild }ElementAttributes_Period_All FYs-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PERIOD] )}, \"All FYs\")}, ALL, RECURSIVE )}, 0)}"
-}

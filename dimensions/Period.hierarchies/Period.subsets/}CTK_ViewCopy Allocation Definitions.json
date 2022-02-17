@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy Allocation Definitions",
-	"Expression":"TM1SubsetAll([Period])"
-}

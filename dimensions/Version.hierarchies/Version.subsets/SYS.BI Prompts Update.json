@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.BI Prompts Update",
-	"Expression":"{FILTER( {TM1SUBSETALL( [Version] )}, [Version].[PromptValue] = 1.000000)}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Financials_Alloc",
-	"Expression":"TM1SubsetAll([Currency])"
-}

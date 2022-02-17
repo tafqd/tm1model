@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Dynamcic Default",
-	"Expression":"{ HIERARCHIZE( {TM1SUBSETALL( [PL Measure] )} ) }"
-}

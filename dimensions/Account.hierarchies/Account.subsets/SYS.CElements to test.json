@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.CElements to test",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [Account] )}, 1)}"
-}

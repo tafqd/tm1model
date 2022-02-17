@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Capex accounts",
-	"Expression":"{FILTER( {TM1SUBSETALL( [PL Account] )}, [PL Account].[Source Cube] = \"Capex\")}"
-}

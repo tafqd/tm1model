@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy PL_2014.FY",
-	"Expression":"TM1DRILLDOWNMEMBER( {[Period].[2014.FY]}, ALL, RECURSIVE )}"
-}

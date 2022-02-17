@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.MDXList",
-	"Expression":"{FILTER({Except({TM1DRILLDOWNMEMBER( {[Account].[OpCFReconciliation]}, ALL, RECURSIVE )}, {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Account].[OpCFReconciliation]}, ALL, RECURSIVE )}, 0)})},                      [Account].[Hierarchy_OpCFReconciliation] <> \"\")}"
-}

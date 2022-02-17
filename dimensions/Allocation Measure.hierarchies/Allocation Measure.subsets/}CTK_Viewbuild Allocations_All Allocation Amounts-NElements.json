@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Allocations_All Allocation Amounts-NElements",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [ALLOCATION MEASURE] )}, \"All Allocation Amounts\")}, ALL, RECURSIVE )}, 0)}"
-}

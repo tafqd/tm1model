@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy Financials",
-	"Expression":"TM1SubsetAll([Cost Centre])"
-}

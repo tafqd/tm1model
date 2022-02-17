@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Phasing Profiles_L0",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [PHASING PROFILE] )}, 0)}"
-}

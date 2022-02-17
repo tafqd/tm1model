@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load",
-	"Expression":"TM1SubsetAll([Customer])"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Parent Consolidations",
-	"Expression":"{ EXCEPT( { DRILLDOWNMEMBER( {[Entity].[Entity Consolidations]}, {[Entity].[Entity Consolidations]} ) }, { [Entity].[Entity Consolidations] }) }"
-}

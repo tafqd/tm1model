@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Dynamic Default",
-	"Expression":"{ EXCEPT( {TM1DRILLDOWNMEMBER( {[Project].[Reporting]}, ALL, RECURSIVE )}, { [Project].[Reporting] }) }"
-}

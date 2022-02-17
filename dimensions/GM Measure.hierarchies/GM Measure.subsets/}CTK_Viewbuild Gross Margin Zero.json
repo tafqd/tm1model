@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Gross Margin Zero",
-	"Expression":"TM1SubsetAll([GM Measure])"
-}

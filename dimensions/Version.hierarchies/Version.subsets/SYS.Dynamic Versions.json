@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Dynamic Versions",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[Version].[Dynamic Versions]}, ALL, RECURSIVE )}"
-}

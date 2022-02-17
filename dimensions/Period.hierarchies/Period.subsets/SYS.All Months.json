@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.All Months",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Period].[All FYs]}, ALL, RECURSIVE )}, 0)}"
-}

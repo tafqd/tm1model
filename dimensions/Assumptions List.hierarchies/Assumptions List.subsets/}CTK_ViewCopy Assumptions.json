@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy Assumptions",
-	"Expression":"TM1SubsetAll([Assumptions List])"
-}

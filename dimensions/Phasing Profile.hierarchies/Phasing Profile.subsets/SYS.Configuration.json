@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Configuration",
-	"Expression":"{EXCEPT( {TM1SORT( {TM1FILTERBYLEVEL( {TM1SUBSETALL( [Phasing Profile] )}, 0)}, ASC)},{[Phasing Profile].[Equal Spread],[Phasing Profile].[Last Year],[Phasing Profile].[Auto Balance],[Phasing Profile].[Salary Days]} )}"
-}

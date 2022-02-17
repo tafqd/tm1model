@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"Level0",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [Reporting Item] )}, 0)}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"Report Default",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[CostCentre].[All Cost Centres]}, ALL, RECURSIVE )}"
-}

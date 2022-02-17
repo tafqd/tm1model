@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild PL Workings",
-	"Expression":"TM1SubsetAll([Project])"
-}

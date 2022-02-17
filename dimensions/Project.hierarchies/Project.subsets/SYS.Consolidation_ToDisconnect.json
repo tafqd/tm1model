@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.Consolidation_ToDisconnect",
-	"Expression":"{TM1DRILLDOWNMEMBER( {[Project].[Reporting]}, ALL, RECURSIVE )}"
-}

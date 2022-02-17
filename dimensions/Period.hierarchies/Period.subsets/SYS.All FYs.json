@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.All FYs",
-	"Expression":"{ DRILLDOWNMEMBER( {[Period].[All FYs]}, {[Period].[All FYs]} ) }"
-}

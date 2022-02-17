@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.YearsToCopy",
-	"Expression":"{TM1FILTERBYLEVEL( { DRILLDOWNMEMBER( {[Period].[All FYs]}, {[Period].[All FYs]} ) }, 2)}"
-}

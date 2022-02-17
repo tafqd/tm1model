@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild Allocations_L0",
-	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [ALLOCATION POOL] )}, 0)}"
-}

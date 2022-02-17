@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild PL Zero",
-	"Expression":"TM1SubsetAll([PL Account])"
-}

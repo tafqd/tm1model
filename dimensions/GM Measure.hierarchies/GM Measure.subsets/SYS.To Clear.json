@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"SYS.To Clear",
-	"Expression":"{FILTER( {TM1DRILLDOWNMEMBER( {[GM Measure].[SYS.ToClear]}, ALL, RECURSIVE )}, [GM Measure].[Data entry] = \"Y\")}"
-}

@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"Report Default",
-	"Expression":"{UNION( {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Version].[Working Versions]}, ALL, RECURSIVE )}, 0)},{[Version].[Actual]})}"
-}

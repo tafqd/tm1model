@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_Viewbuild }ElementAttributes_Period_Data.Period.Update",
-	"Expression":"TM1SubsetAll([Period])"
-}

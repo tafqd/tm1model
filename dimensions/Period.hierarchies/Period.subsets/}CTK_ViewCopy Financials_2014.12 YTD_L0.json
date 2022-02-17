@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"}CTK_ViewCopy Financials_2014.12 YTD_L0",
-	"Expression":"{TM1FILTERBYLEVEL({TM1DRILLDOWNMEMBER( {[Period].[2014.12 YTD]}, ALL, RECURSIVE )}, 0)}"
-}

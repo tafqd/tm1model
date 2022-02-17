@@ -1,5 +1,0 @@
-{
-	"@type":"Subset",
-	"Name":"All Elements",
-	"Expression":"{ HIERARCHIZE( {TM1SUBSETALL( [Customer] )} ) }"
-}
