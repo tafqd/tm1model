@@ -1,0 +1,15 @@
+{
+	"@type":"Cube",
+	"Name":"Χριστίνα",
+	"Rules@Code.link":"Χριστίνα.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('a_Idk')"
+		},
+		{
+			"@id":"Dimensions('Account')"
+		}
+	],
+	"Views@Code.links":[]
+}

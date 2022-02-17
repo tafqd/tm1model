@@ -1,0 +1,25 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LastChange W Gilling Mindfull 15-12-2016 Tested for MF toolkit 4.3
+#GENERALCOMMENT Executes the CTK process to monitor TI Processes from TM1Serverlog
+
+ExecuteProcess('}CTK_sys_MonitorExecute', 'pProcessFullLog', pProcessFullLog,'pSourceFile', pSourceFile, 'pFileOut', pFileOut, 'pLoadToTM1', pLoadToTM1);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

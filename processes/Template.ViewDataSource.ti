@@ -1,0 +1,189 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#GeneralComment template to call ViewCall process with validation and error trapping
+#LastChange W Gilling, Mindfull, 19 May 2015 Toolkit 4.2  Parameter validation added
+
+#########
+##
+## Declare Implicit Global variables used in this process and ViewBuild
+##
+#########
+NumericGlobalVariable('ProcessReturnCode');
+StringGlobalVariable('g_sFatalErrorString');
+StringGlobalVariable('g_sMemoErrorString');
+
+g_sFatalErrorString = '';
+g_sMemoErrorString = '';
+ProcessReturnCode=0;
+
+#########
+#Check to see that user input is valid
+IF (DIMIX('}Cubes',pCube)=0);
+	PROCESSBREAK;
+ENDIF;
+
+#########
+
+###SET CONTROL VARIABLES
+IF(UPPER(pSkipRules) @= 'Y');  nSkipRules = 1; ELSE; nSkipRules = 0; ENDIF;
+
+#Filename to be used to store data, in data Directory
+sTime = TIMST(Now,'\y\m\d\H\i\s');
+sFilename=pCube | 'ExportedData' |  sTime | '.txt';
+
+#Check to see that user input
+IF(pDim4 @<> '' & pDim4Element @<>'');
+    	nNoOfParams = 4;
+ELSEIF(pDim3 @<> ''  & pDim3Element @<>'');
+    	nNoOfParams = 3;
+ELSEIF(pDim2 @<> '' & pDim2Element @<>'');
+    	nNoOfParams = 2;
+ELSEIF(pDim1 @<> '' & pDim1ElementFrom @<>'' & pDim1ElementTo @<>'');
+    	nNoOfParams = 1;
+ELSE;
+	nNoOfParams = 0;
+    	PROCESSBREAK;
+ENDIF;
+
+
+
+####Clear Out the destination
+
+	sOption='Zero';
+	IF(nNoOfParams = 4);
+		sString=pCube | ',' | pDim1 | ',' | pDim1ElementTo | ',' | pDim2 | ',' | pDim2Element | ',' | pDim3 | ',' | pDim3Element;
+		sString=sString  | ',' | pDim4 | ',' | pDim4Element;
+	ELSEIF(nNoOfParams = 3);
+		sString=pCube | ',' | pDim1 | ',' | pDim1ElementTo | ',' | pDim2 | ',' | pDim2Element | ',' | pDim3 | ',' | pDim3Element;
+	ELSEIF(nNoOfParams = 2);
+		sString=pCube | ',' | pDim1 | ',' | pDim1ElementTo | ',' | pDim2 | ',' | pDim2Element;
+	ELSE;
+		sString=pCube | ',' | pDim1 | ',' | pDim1ElementTo ;
+	ENDIF;
+
+	EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+asciioutput('option.txt',sOption,sString);
+
+	IF(ProcessReturnCode <> ProcessExitNormal() );
+		PROCESSBREAK;
+	ENDIF;
+
+	sOption='Destroy_Zero';
+	EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+
+
+IF(UPPER(pClearOutOnly) @= 'Y',PROCESSBREAK,0);
+
+###################  IF Copy then proceed - BUILD Datasource using }CTK_ViewCall
+
+sOption='BuildL0';
+IF(nNoOfParams = 4);
+	sString=pCube | ',' | pDim1 | ',' | pDim1ElementFrom | ',' | pDim2 | ',' | pDim2Element | ',' | pDim3 | ',' | pDim3Element;
+	sString=sString  | ',' | pDim4 | ',' | pDim4Element;
+ELSEIF(nNoOfParams = 3);
+	sString=pCube | ',' | pDim1 | ',' | pDim1ElementFrom | ',' | pDim2 | ',' | pDim2Element | ',' | pDim3 | ',' | pDim3Element;
+ELSEIF(nNoOfParams = 2);
+	sString=pCube | ',' | pDim1 | ',' | pDim1ElementFrom | ',' | pDim2 | ',' | pDim2Element;
+ELSE;
+	sString=pCube | ',' | pDim1 | ',' | pDim1ElementFrom ;
+ENDIF;
+EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+#ASCIIOUTPUT('SourceView.txt',sString);
+
+IF(ProcessReturnCode <> ProcessExitNormal() );
+	PROCESSBREAK;
+ENDIF;
+
+sView = '}CTK_Viewbuild ' | pCube;
+
+#SET THE VIEW AS THE DATASOURCE
+DATASOURCETYPE='VIEW';
+DATASOURCENAMEFORSERVER=pCube;
+DATASOURCECUBEVIEW=sView;
+
+VIEWEXTRACTSKIPRULEVALUESSET (pCube, sView, nSkipRules);
+VIEWEXTRACTSKIPCALCSSET (pCube, sView, 1 );
+VIEWEXTRACTSKIPZEROESSET(pCube,sView,1);
+
+
+nLogging=CUBEGETLOGCHANGES(pCube);
+IF(pLoggingOff@='Y');
+    	#***TURN OFF LOGGING***#   
+	CUBESETLOGCHANGES(pCube,0);
+ELSE;
+    	##This setting will not turn logging on if it is set to not log transactions
+ENDIF;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#DataComment Assign data source variables and determine meas type.  Can manipulate data if required.
+sMeasDimName='GLMeasure';
+sVersion=V5;
+sPeriod=V4;
+sFinYear=V3;
+sAccount=V2;
+sBU=V1;
+sMeas=V6;
+
+IF(DTYPE(sMeasDimName,sMeas)@='N');
+	sValue=NUMBERTOSTRING(NValue);
+     	sType='N';
+ELSE;
+     	#sValue=NUMBERTOSTRING(NValue);
+	sValue=SValue;
+    	sType='S';
+
+ENDIF;
+
+ASCIIOUTPUT(sFilename,sType, sValue, pCube,sBU,sAccount,sFinYear,sPeriod,pDim1ElementTo,sMeas);
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#########
+#Check to see that user input is valid
+IF (DIMIX('}Cubes',pCube)=0);
+	ITEMREJECT(pCube | ' is an invalid cube name');
+ENDIF;
+
+#########
+
+IF(nNoOfParams=0);
+	ITEMREJECT('There were no user input parameters specified');
+ENDIF;
+
+#EPILOGCOMMENT If there is a fatal error then report it
+IF( g_sFatalErrorString@<>'');
+	ITEMREJECT(g_sFatalErrorString);
+ENDIF;
+	IF (FILEEXISTS(sFilename)=1);
+       		EXECUTEPROCESS('}CTK_ViewCopyIn','vFilename',sFilename);
+       		ASCIIDELETE(sFilename);
+	ENDIF;
+
+sOption='Destroy';
+EXECUTEPROCESS('}CTK_ViewCall','pOpt',sOption,'pStr',sString);
+
+IF(pLoggingOff@='Y');
+	#***TURN OFF LOGGING***#   
+	CUBESETLOGCHANGES(pCube,nLogging);
+ELSE;
+    	##This setting will not turn logging on if it is set to not log transactions
+ENDIF;
+
+#endregion

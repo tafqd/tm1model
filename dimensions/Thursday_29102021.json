@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Thursday_29102021",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Thursday_29102021')/Hierarchies('Thursday_29102021')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Thursday_29102021.hierarchies/Thursday_29102021.json"
+	]
+}

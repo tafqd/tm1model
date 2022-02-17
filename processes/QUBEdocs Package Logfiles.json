@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"QUBEdocs Package Logfiles",
+	"Code@Code.link":"QUBEdocs Package Logfiles.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pLogFliesFolder",
+			"Prompt":"Logfile Folder?",
+			"Value":"..\\Logs\\",
+			"Type":"String"
+		},
+		{
+			"Name":"pParameters",
+			"Prompt":"Parameters",
+			"Value":"-days 7",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

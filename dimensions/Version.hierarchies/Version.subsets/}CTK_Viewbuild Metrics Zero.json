@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Metrics Zero",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Forecast')"
+		}
+	]
+}

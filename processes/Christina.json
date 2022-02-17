@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"Christina",
+	"Code@Code.link":"Christina.ti",
+	"DataSource":
+	{
+		"Type":"ODBC",
+		"dataSourceNameForClient":"TM1_QUBEdocs",
+		"dataSourceNameForServer":"TM1_QUBEdocs",
+		"password":"p1=AFavtlV`xB[oZa?WVbdhSa`ze5<jPMU89qY:KPJkpvUXkg`tmv9ZDBWT@YpjJ><:KEd^s_khY`wmn?SImDS4w?l3RgkG;fXHJ<Qm4`svsPC4o``D[6JcuMel=_E]ae\\wELAMowv>QU8DMXPLNCCcPZfspxa6;G72`KY]i]<F=93dYrmyep]iB_70IL^qqyjpz=PD3",
+		"query":"select *",
+		"userName":"",
+		"usesUnicode":true
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pTest",
+			"Prompt":"",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"Tuesday",
+			"Prompt":"",
+			"Value":0,
+			"Type":"Numeric"
+		},
+		{
+			"Name":"PFriday",
+			"Prompt":"",
+			"Value":2.25550000000000006,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

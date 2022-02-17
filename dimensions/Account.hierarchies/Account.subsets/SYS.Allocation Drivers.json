@@ -1,0 +1,58 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Allocation Drivers",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Profit and Loss')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Tax Expense')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('8020')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('8021')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('9000')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Profit Before Tax')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Gross Profit')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Revenue')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('6001')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('6002')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('6003')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Cost of Sales')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('7001')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Other Expenses')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('8001')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('8002')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('8003')"
+		}
+	]
+}

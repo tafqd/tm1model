@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"__BACKUP_Report Default",
+	"Expression":"{ HIERARCHIZE( {TM1SUBSETALL( [Entity] )} ) }"
+}

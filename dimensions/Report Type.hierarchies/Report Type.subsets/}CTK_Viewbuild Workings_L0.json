@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Workings_L0",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [REPORT TYPE] )}, 0)}"
+}

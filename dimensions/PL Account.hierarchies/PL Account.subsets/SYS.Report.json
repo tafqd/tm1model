@@ -1,0 +1,19 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Report",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('PL Account')/Hierarchies('PL Account')/Elements('Profit and Loss')"
+		},
+		{
+			"@id":"Dimensions('PL Account')/Hierarchies('PL Account')/Elements('Tax Expense')"
+		},
+		{
+			"@id":"Dimensions('PL Account')/Hierarchies('PL Account')/Elements('Profit Before Tax')"
+		},
+		{
+			"@id":"Dimensions('PL Account')/Hierarchies('PL Account')/Elements('Gross Profit')"
+		}
+	]
+}

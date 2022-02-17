@@ -1,0 +1,381 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Asset Class",
+	"Elements":
+	[
+		{
+			"Name":"Asset Class Consolidations",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Reporting",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"All Asset Classes",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Buildings",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Land",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Motor vehicles",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Unspec Asset Class",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Technology",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"=rngAssetClassName",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"System",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"No Asset Class",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Mapping Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"WIP Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"=rngWIPAcct",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"1006",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Accum Depreciation Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"=rngAccumDeprAcct",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2005",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2007",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2006",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Cost Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"=rngCostAcct",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2002",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2004",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"2003",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Depreciation Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"=rngDeprAcct",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8008",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8010",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8009",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Asset Class Consolidations",
+			"ComponentName":"Reporting",
+			"Weight":1
+		},
+		{
+			"ParentName":"Asset Class Consolidations",
+			"ComponentName":"System",
+			"Weight":1
+		},
+		{
+			"ParentName":"Reporting",
+			"ComponentName":"All Asset Classes",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"Buildings",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"Land",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"Motor vehicles",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"Unspec Asset Class",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"Technology",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Asset Classes",
+			"ComponentName":"=rngAssetClassName",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"No Asset Class",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"Mapping Accounts",
+			"Weight":1
+		},
+		{
+			"ParentName":"Mapping Accounts",
+			"ComponentName":"WIP Accounts",
+			"Weight":1
+		},
+		{
+			"ParentName":"Mapping Accounts",
+			"ComponentName":"Accum Depreciation Accounts",
+			"Weight":1
+		},
+		{
+			"ParentName":"Mapping Accounts",
+			"ComponentName":"Cost Accounts",
+			"Weight":1
+		},
+		{
+			"ParentName":"Mapping Accounts",
+			"ComponentName":"Depreciation Accounts",
+			"Weight":1
+		},
+		{
+			"ParentName":"WIP Accounts",
+			"ComponentName":"=rngWIPAcct",
+			"Weight":1
+		},
+		{
+			"ParentName":"WIP Accounts",
+			"ComponentName":"1006",
+			"Weight":1
+		},
+		{
+			"ParentName":"=rngWIPAcct",
+			"ComponentName":"=rngAssetClassName",
+			"Weight":1
+		},
+		{
+			"ParentName":"1006",
+			"ComponentName":"Buildings",
+			"Weight":1
+		},
+		{
+			"ParentName":"1006",
+			"ComponentName":"Land",
+			"Weight":1
+		},
+		{
+			"ParentName":"1006",
+			"ComponentName":"Motor vehicles",
+			"Weight":1
+		},
+		{
+			"ParentName":"1006",
+			"ComponentName":"Technology",
+			"Weight":1
+		},
+		{
+			"ParentName":"1006",
+			"ComponentName":"Unspec Asset Class",
+			"Weight":1
+		},
+		{
+			"ParentName":"Accum Depreciation Accounts",
+			"ComponentName":"=rngAccumDeprAcct",
+			"Weight":1
+		},
+		{
+			"ParentName":"Accum Depreciation Accounts",
+			"ComponentName":"2005",
+			"Weight":1
+		},
+		{
+			"ParentName":"Accum Depreciation Accounts",
+			"ComponentName":"2007",
+			"Weight":1
+		},
+		{
+			"ParentName":"Accum Depreciation Accounts",
+			"ComponentName":"2006",
+			"Weight":1
+		},
+		{
+			"ParentName":"=rngAccumDeprAcct",
+			"ComponentName":"=rngAssetClassName",
+			"Weight":1
+		},
+		{
+			"ParentName":"2005",
+			"ComponentName":"Buildings",
+			"Weight":1
+		},
+		{
+			"ParentName":"2007",
+			"ComponentName":"Motor vehicles",
+			"Weight":1
+		},
+		{
+			"ParentName":"2006",
+			"ComponentName":"Technology",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cost Accounts",
+			"ComponentName":"=rngCostAcct",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cost Accounts",
+			"ComponentName":"2002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cost Accounts",
+			"ComponentName":"2004",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cost Accounts",
+			"ComponentName":"2003",
+			"Weight":1
+		},
+		{
+			"ParentName":"=rngCostAcct",
+			"ComponentName":"=rngAssetClassName",
+			"Weight":1
+		},
+		{
+			"ParentName":"2002",
+			"ComponentName":"Buildings",
+			"Weight":1
+		},
+		{
+			"ParentName":"2004",
+			"ComponentName":"Motor vehicles",
+			"Weight":1
+		},
+		{
+			"ParentName":"2003",
+			"ComponentName":"Technology",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Accounts",
+			"ComponentName":"=rngDeprAcct",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Accounts",
+			"ComponentName":"8008",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Accounts",
+			"ComponentName":"8010",
+			"Weight":1
+		},
+		{
+			"ParentName":"Depreciation Accounts",
+			"ComponentName":"8009",
+			"Weight":1
+		},
+		{
+			"ParentName":"=rngDeprAcct",
+			"ComponentName":"=rngAssetClassName",
+			"Weight":1
+		},
+		{
+			"ParentName":"8008",
+			"ComponentName":"Buildings",
+			"Weight":1
+		},
+		{
+			"ParentName":"8010",
+			"ComponentName":"Motor vehicles",
+			"Weight":1
+		},
+		{
+			"ParentName":"8009",
+			"ComponentName":"Technology",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Asset Class.subsets/All Members.json",
+		"Asset Class.subsets/Default.json",
+		"Asset Class.subsets/Level0.json",
+		"Asset Class.subsets/Report Default.json",
+		"Asset Class.subsets/Reprot default.json",
+		"Asset Class.subsets/Subset1.json",
+		"Asset Class.subsets/SYS.Dynamic Default.json",
+		"Asset Class.subsets/SYS.Level0.json",
+		"Asset Class.subsets/SYS.Picklist Values.json",
+		"Asset Class.subsets/}CTK_Viewbuild Capex.json",
+		"Asset Class.subsets/}CTK_Viewbuild Capex_L0.json",
+		"Asset Class.subsets/}CTK_Viewbuild Capex Zero.json",
+		"Asset Class.subsets/}CTK_ViewCopy Capex.json"
+	]
+}

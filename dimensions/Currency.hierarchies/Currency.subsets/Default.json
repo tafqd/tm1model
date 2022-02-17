@@ -1,0 +1,22 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('All Currencies')"
+		},
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+		},
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('Unspec Currency')"
+		},
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('USD')"
+		},
+		{
+			"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('AUD')"
+		}
+	]
+}

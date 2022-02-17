@@ -1,0 +1,169 @@
+{
+	"@type":"NativeView",
+	"Name":"Financial Summary",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Source Amount')"
+					},
+					{
+						"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('All Allocation Amounts')"
+					},
+					{
+						"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Allocation After Step 5')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('Default')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('SYS.All Projects')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')/Elements('All Drivers')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Elements('All Allocation Pools')"
+					},
+					{
+						"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Elements('No Allocation Pool')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Elements('All Allocation Pools')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Expression":"{ DRILLDOWNMEMBER( {[Period].[All FYs]}, {[Period].[All FYs]} ) }"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Subsets('SYS.Profit and Loss')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('Profit and Loss')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation List')/Hierarchies('Allocation List')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation List')/Hierarchies('Allocation List')/Elements('Balance')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('All Cost Centres')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":true,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.#########"
+}

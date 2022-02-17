@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Gross Margin Zero",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Test')"
+		}
+	]
+}

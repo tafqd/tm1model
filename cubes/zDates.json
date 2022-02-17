@@ -1,0 +1,21 @@
+{
+	"@type":"Cube",
+	"Name":"zDates",
+	"Rules@Code.link":"zDates.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('zDates')"
+		},
+		{
+			"@id":"Dimensions('zDateValues')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"zDates.views/Callback - Public Holidays.json",
+		"zDates.views/Callback Phase public Holidays.json",
+		"zDates.views/Holiday for Callback.json",
+		"zDates.views/Working Days.json"
+	]
+}

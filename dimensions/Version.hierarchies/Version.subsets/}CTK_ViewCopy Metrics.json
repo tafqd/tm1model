@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Metrics",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+		}
+	]
+}

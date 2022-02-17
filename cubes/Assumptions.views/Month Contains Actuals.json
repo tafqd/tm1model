@@ -1,0 +1,68 @@
+{
+	"@type":"NativeView",
+	"Name":"Month Contains Actuals",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Subsets('SYS.Month Contains Actuals')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Month Contains Actuals')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Level0')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('No Entity')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Level0')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('No Currency')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('Value')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

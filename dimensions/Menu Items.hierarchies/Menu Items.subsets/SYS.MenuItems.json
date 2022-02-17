@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.MenuItems",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[MenuItems].[Reporting]}, ALL, RECURSIVE )}, 0)}"
+}

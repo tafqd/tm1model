@@ -1,0 +1,20 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py",
+	"Elements":
+	[
+		{
+			"Name":"tm1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"is",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"awesome",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

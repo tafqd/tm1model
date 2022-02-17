@@ -1,0 +1,65 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Cost Pool",
+	"Elements":
+	[
+		{
+			"Name":"No Cost Pool",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 5",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 6",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 7",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 8",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 9",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Pool 10",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Cost Pool.subsets/Default.json",
+		"Cost Pool.subsets/Level0.json",
+		"Cost Pool.subsets/SYS.All.json",
+		"Cost Pool.subsets/SYS.Cost Pools.json",
+		"Cost Pool.subsets/SYS.Level0.json",
+		"Cost Pool.subsets/}CTK_Viewbuild Allocation Assumptions.json",
+		"Cost Pool.subsets/}CTK_Viewbuild Allocation Assumptions_L0.json",
+		"Cost Pool.subsets/}CTK_Viewbuild Allocations.json",
+		"Cost Pool.subsets/}CTK_Viewbuild Cost Pools.json",
+		"Cost Pool.subsets/}CTK_ViewCopy Allocations.json",
+		"Cost Pool.subsets/}CTK_ViewCopy Cost Pools.json"
+	]
+}

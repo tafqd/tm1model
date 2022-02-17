@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"Temp",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('3004')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Tax Expense')"
+		}
+	]
+}

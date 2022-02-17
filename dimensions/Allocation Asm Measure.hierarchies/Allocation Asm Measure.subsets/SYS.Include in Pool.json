@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Include in Pool",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Allocation Asm Measure')/Hierarchies('Allocation Asm Measure')/Elements('Include in Pool')"
+		}
+	]
+}

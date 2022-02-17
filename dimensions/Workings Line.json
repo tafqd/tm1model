@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Workings Line",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Workings Line')/Hierarchies('Workings Line')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Workings Line.hierarchies/Workings Line.json"
+	]
+}

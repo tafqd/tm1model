@@ -1,0 +1,82 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, 2014-06-05, Initial set up of process
+#GENERALCOMMENT Updates the 'Working Forecast' or 'Working Budget' years consolidation based on start and end years entered in the Admin screen
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Disconnects the existing years from the consolidation and then adds the years within the span specified in the parameters into the appropriate consolidation
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+#################################
+## Define variables                                         ##
+#################################
+
+sPeriodDim = 'Period' ;
+sPlanningConsol = 'Planning Years' ;
+sWorkingConsol = pWorkingVersion | ' Years' ;
+sStartYear = pStartYear | '.FY' ;
+sEndYear = pEndYear | '.FY' ;
+nNoOfChildren = ElcompN (sPeriodDim, sWorkingConsol );
+nNoOfYears = StringToNumber (pEndYear) - StringToNumber (pStartYear) ;
+
+##################################################
+## Check the needed consolidations exist                                              ##
+##################################################
+
+# Planning years consolidation
+If (Dimix (sPeriodDim, sPlanningConsol) = 0);
+   DimensionElementInsert (sPeriodDim, '', sPlanningConsol, 'C') ;
+   DimensionElementComponentAdd (sPeriodDim, 'System', sPlanningConsol, 1);
+EndIf;
+
+#Working Budget or Working Forecast consolidation
+If (Dimix (sPeriodDim, sWorkingConsol) = 0);
+   DimensionElementInsert (sPeriodDim, '', sWorkingConsol, 'C') ;
+   DimensionElementComponentAdd (sPeriodDim, sPlanningConsol, sWorkingConsol ,1);
+EndIf;
+
+##################################################
+## Remove existing children from the consolidation                                ##
+##################################################
+
+x = 1;
+
+While ( x <= nNoOfChildren) ;
+   sChildToDelete = Elcomp (sPeriodDim, sWorkingConsol, 1);
+   DimensionElementComponentDelete (sPeriodDim, sWorkingConsol, sChildToDelete);
+   x = x+1; 
+End;
+
+##################################################
+## Add the planning years into the consolidation                                    ##
+##################################################
+
+x = 0;
+
+While (x <= nNoOfYears);
+
+   sYearToAdd = NumberToString (StringToNumber (pStartYear) + x) | '.FY' ;
+   DimensionElementComponentAdd (sPeriodDim, sWorkingConsol, sYearToAdd, 1);
+   x = x + 1 ;
+
+End ;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

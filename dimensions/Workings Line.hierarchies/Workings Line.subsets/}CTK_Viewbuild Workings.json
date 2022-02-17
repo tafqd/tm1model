@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Workings",
+	"Expression":"TM1SubsetAll([Workings Line])"
+}

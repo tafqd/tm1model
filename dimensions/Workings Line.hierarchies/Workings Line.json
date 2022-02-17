@@ -1,0 +1,166 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Workings Line",
+	"Elements":
+	[
+		{
+			"Name":"Workings Line Consolidations",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Reporting",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"All Lines",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Line 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 5",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 6",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 7",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 8",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 9",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 10",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Line 11",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"System",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"No Workings Line",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Unspec Workings Line",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Workings Line Consolidations",
+			"ComponentName":"Reporting",
+			"Weight":1
+		},
+		{
+			"ParentName":"Workings Line Consolidations",
+			"ComponentName":"System",
+			"Weight":1
+		},
+		{
+			"ParentName":"Reporting",
+			"ComponentName":"All Lines",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 1",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 2",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 3",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 4",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 5",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 6",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 7",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 8",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 9",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 10",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Lines",
+			"ComponentName":"Line 11",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"No Workings Line",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"Unspec Workings Line",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Workings Line.subsets/}CTK_Viewbuild Workings.json",
+		"Workings Line.subsets/}CTK_Viewbuild Workings_All Lines-NElements.json",
+		"Workings Line.subsets/}CTK_Viewbuild Workings_L0.json",
+		"Workings Line.subsets/}CTK_Viewbuild Workings Zero.json",
+		"Workings Line.subsets/}CTK_Viewbuild Workings Zero_All Lines-NElements.json"
+	]
+}

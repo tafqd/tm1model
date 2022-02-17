@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"QUBEdocs.Desc",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#Desc')"
+		}
+	]
+}

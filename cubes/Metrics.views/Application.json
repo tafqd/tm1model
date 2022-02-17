@@ -1,0 +1,227 @@
+{
+	"@type":"NativeView",
+	"Name":"Application",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Trend')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Actual')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Target')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Tolerance')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Variance')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Variance Percent')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Score')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Score Change')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Actual Change Percent')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_1_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_0_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_-1_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_Incomplete_Count')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Metric')/Hierarchies('Metric')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Acid Test Ratio')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Capital Expenditure')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Cash')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Cash Conversion Cycle')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Cost of Sales')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Creditor Days')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Creditors')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Current Assets')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Current Liabilities')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Current Ratio')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Debt')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Debtor Days')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Debtors')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Debt To Assets')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Debt To Equity')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('EBIT')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Equity')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('FTE')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Gross Margin')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Gross Margin %')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Headcount')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Interest Cover Ratio')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Interest Expense')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Inventory')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Inventory Days')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Inventory Turnover Ratio')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Net Profit')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Net Profit %')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Net Profit Before Tax')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Other Expenses')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Quick Assets')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Return on Assets')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Revenue')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Total Assets')"
+					},
+					{
+						"@id":"Dimensions('Metric')/Hierarchies('Metric')/Elements('Total Expenses')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.01')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":true,
+	"SuppressEmptyRows":true,
+	"FormatString":"d mmmm yyyy"
+}

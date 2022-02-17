@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Thursday",
+	"Elements":
+	[
+		{
+			"Name":"Tacos",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Max",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

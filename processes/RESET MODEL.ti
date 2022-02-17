@@ -1,0 +1,79 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Michael Mackie, made it so the OpCF* account consolidation does not get deleted
+#LASTCHANGE Inel Botha, Initial Draft of process
+#GENERALCOMMENT Clear out existing structures in dimensions for client deployment
+#DATASOURCECOMMENT 
+#PROLOGCOMMENT 
+#METADATACOMMENT 
+#DATACOMMENT 
+#EPILOGCOMMENT 
+
+#########################################################
+## Define Objects managed by this TI Process                                                       ##
+#########################################################
+
+sControlDim = '}Dimensions' ;
+sControlSub = 'SYS.Base dimensions' ;
+sControlMDX = '{ [}Dimensions].[Account],[}Dimensions].[Cost Centre],[}Dimensions].[Currency],[}Dimensions].[Entity],[}Dimensions].[Period],[}Dimensions].[PL Account],[}Dimensions].[Project] }' ;
+
+If (SubsetExists(sControlDim, sControlSub)=0);
+   SubsetCreateByMDX (sControlSub, sControlMDX);
+EndIf;
+
+#############################################################
+## Loop through base dimensions to delete all elements except core consolidations       ##
+#############################################################
+If (pConfirm@='Y');
+
+x = 1;
+nControl = SubsetGetSize (sControlDim, sControlSub);
+
+While ( x <= nControl);
+
+   sDim = SubsetGetElementName (sControlDim, sControlSub, x);
+   sSub = 'SYS.Elements to clear' ;
+   sMDX = '{TM1SUBSETALL( [' | sDim | '] )}' ;
+   If (SubsetExists (sDim, sSub) = 0);
+      SubsetCreateByMDX (sSub, sMDX);
+   EndIf;
+
+   y = 1 ;
+   nSubControl = SubsetGetSize (sDim, sSub);
+
+   While (y <= nSubControl);
+      sElement = SubsetGetElementName (sDim, sSub, y);
+      If (sElement @<> sDim | ' Consolidations' & sElement @<> 'Reporting' & sElement @<> 'SYSTEM' & Subst (sElement,1,6) @<> 'Profit' & sElement @<> 'Balance Sheet' & sElement @<> 'Cash Flow' & SubSt (sElement, 1, 3)@<>'All' 
+          & sElement @<> 'No ' | sDim & sElement @<> 'Unspec ' | sDim & sElement @<> 'Planning Years' & sElement @<> 'Month Contains Actuals' & sElement @<> 'Opening Cash' & sElement @<> 'Closing Cash' & Subst (sElement, 1, 4) @<> 'SYS.'
+          & sElement@<> 'Cash Movement' & sElement@<> 'OpCFReconciliation');
+         DimensionElementDelete (sDim, sElement) ;
+      EndIf;
+      y = y + 1;
+   End;
+
+   
+   SubsetDestroy (sDim, sSub);
+   x = x + 1;
+End ;
+
+EndIf;
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

@@ -1,0 +1,280 @@
+{
+	"@type":"NativeView",
+	"Name":"SYS.Existing assets depn",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Asset Class')/Hierarchies('Asset Class')/Subsets('SYS.Picklist Values')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Version')/Hierarchies('Version')"
+				},
+				"Expression":"TM1SubsetAll([Version])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Forecast')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')"
+				},
+				"Expression":"TM1SubsetAll([Capex Measure])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Depreciation')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Entity')/Hierarchies('Entity')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Entity Consolidations')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Reporting')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Unspec Entity')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 1')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 2')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 3')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('System')"
+					},
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('No Entity')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 1')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Cost Centre Consolidations')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Reporting')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C100')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C200')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C300')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C110')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C120')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C130')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C210')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C220')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C230')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C310')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C320')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C330')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C111')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C112')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C113')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C121')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C122')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C123')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C131')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C212')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Consolidated')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Unspec Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Administration')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('System')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('No Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Capex Cost Centre')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C100')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Project')/Hierarchies('Project')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Project Consolidations')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Reporting')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Unspec Project')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('P111')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('System')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('No Project')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Unallocated_All Projects')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Unspec Project')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Currency')/Hierarchies('Currency')"
+				},
+				"Expression":"TM1SubsetAll([Currency])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Capex List')/Hierarchies('Capex List')"
+				},
+				"Expression":"TM1SubsetAll([Capex List])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Capex List')/Hierarchies('Capex List')/Elements('Existing Assets')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.#########"
+}

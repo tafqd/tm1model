@@ -1,0 +1,42 @@
+{
+	"@type":"Chore",
+	"Name":"ChristinaTestChore",
+	"StartTime":"2021-09-07T00:22:13Z",
+	"ExecutionMode":"MultipleCommit",
+	"Frequency":"P365DT00H00M00S",
+	"Tasks":
+	[
+		{
+			"Step":0,
+			"Parameters":
+			[
+				{
+					"Name":"pDestFolder",
+					"Value":"8rMtm/VT+M+U6i9YIzxhGa+NoynvmP3yVm9G6ILKaoz8zoTouGHKHaypzzGLS3O4Ahhcx2iZPoFKdlGJyWJE+g=="
+				},
+				{
+					"Name":"pUNCPath",
+					"Value":""
+				}
+			],
+			"Process":
+			{
+				"@id":"Processes('QUBEdocs Create Package')"
+			}
+		},
+		{
+			"Step":1,
+			"Parameters":
+			[
+				{
+					"Name":"pConfirm",
+					"Value":"N"
+				}
+			],
+			"Process":
+			{
+				"@id":"Processes('RESET MODEL')"
+			}
+		}
+	]
+}

@@ -1,0 +1,74 @@
+{
+	"@type":"NativeView",
+	"Name":"SYS.Allocation Drivers",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Asm Measure')/Hierarchies('Allocation Asm Measure')/Subsets('SYS.Allocation Drivers')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('SYS.Level0')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E100')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('SYS.No Project')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('No Project')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Subsets('SYS.No Allocation Pool')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Elements('No Allocation Pool')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.#########"
+}

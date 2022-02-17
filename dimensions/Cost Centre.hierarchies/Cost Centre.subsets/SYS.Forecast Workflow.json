@@ -1,0 +1,115 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Forecast Workflow",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Unspec Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Administration')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Capex Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Personnel Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Consolidated')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C999')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Corporate')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C110')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C111')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('GM Finance')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C100')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C300')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('GM HR')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C200')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('GM Property')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C112')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('GM Risk and Comms')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C330')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C212')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Warehouse and Distribution')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C220')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C230')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Warehouse Network')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C120')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C130')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C210')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('GM Sales')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C310')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C113')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C121')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C122')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C123')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C131')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Sales and Marketing')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C320')"
+		}
+	]
+}

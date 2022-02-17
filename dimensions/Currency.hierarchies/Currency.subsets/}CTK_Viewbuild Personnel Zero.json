@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Personnel Zero",
+	"Expression":"TM1SubsetAll([Currency])"
+}

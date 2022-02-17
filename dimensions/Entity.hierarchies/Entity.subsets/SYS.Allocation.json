@@ -1,0 +1,28 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Allocation",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E100')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E200')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E300')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 1')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 2')"
+		},
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('Co 3')"
+		}
+	]
+}

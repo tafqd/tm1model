@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.No Period",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('No Period')"
+		}
+	]
+}

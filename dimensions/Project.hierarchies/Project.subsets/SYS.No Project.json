@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.No Project",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('No Project')"
+		}
+	]
+}

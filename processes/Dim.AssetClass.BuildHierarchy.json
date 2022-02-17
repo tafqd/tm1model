@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"Dim.AssetClass.BuildHierarchy",
+	"Code@Code.link":"Dim.AssetClass.BuildHierarchy.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

@@ -1,0 +1,150 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Currency",
+	"Elements":
+	[
+		{
+			"Name":"Currency Consolidations",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Reporting",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"All Currencies",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"NZD",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Unspec Currency",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"USD",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"AUD",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"System",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"No Currency",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Currency Consolidations",
+			"ComponentName":"Reporting",
+			"Weight":1
+		},
+		{
+			"ParentName":"Currency Consolidations",
+			"ComponentName":"System",
+			"Weight":1
+		},
+		{
+			"ParentName":"Reporting",
+			"ComponentName":"All Currencies",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Currencies",
+			"ComponentName":"NZD",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Currencies",
+			"ComponentName":"Unspec Currency",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Currencies",
+			"ComponentName":"USD",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Currencies",
+			"ComponentName":"AUD",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"No Currency",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Currency.subsets/All Members.json",
+		"Currency.subsets/Default.json",
+		"Currency.subsets/Level0.json",
+		"Currency.subsets/Report Default.json",
+		"Currency.subsets/SYS.Dynamic Default.json",
+		"Currency.subsets/SYS.Level0.json",
+		"Currency.subsets/SYS.No Currency.json",
+		"Currency.subsets/SYS.Picklist Values.json",
+		"Currency.subsets/}CTK_Viewbuild Allocations.json",
+		"Currency.subsets/}CTK_Viewbuild Allocations_Alloc.json",
+		"Currency.subsets/}CTK_Viewbuild Allocations_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Allocations Alloc Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Allocations Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Assumptions.json",
+		"Currency.subsets/}CTK_Viewbuild Assumptions_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Assumptions Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Capex.json",
+		"Currency.subsets/}CTK_Viewbuild Capex_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Capex Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Financials.json",
+		"Currency.subsets/}CTK_Viewbuild Financials_Alloc.json",
+		"Currency.subsets/}CTK_Viewbuild Financials_Alloc_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Financials_Data.Financials.Load.json",
+		"Currency.subsets/}CTK_Viewbuild Financials_Data.PL.Load.json",
+		"Currency.subsets/}CTK_Viewbuild Financials_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Financials Alloc.json",
+		"Currency.subsets/}CTK_Viewbuild Financials Alloc_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Financials Zero.json",
+		"Currency.subsets/}CTK_Viewbuild GM Assumptions.json",
+		"Currency.subsets/}CTK_Viewbuild GM Assumptions_L0.json",
+		"Currency.subsets/}CTK_Viewbuild GM Assumptions Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Gross Margin.json",
+		"Currency.subsets/}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load.json",
+		"Currency.subsets/}CTK_Viewbuild Gross Margin_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Gross Margin Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Personnel.json",
+		"Currency.subsets/}CTK_Viewbuild Personnel_Data.Personnel.Load.json",
+		"Currency.subsets/}CTK_Viewbuild Personnel_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Personnel Zero.json",
+		"Currency.subsets/}CTK_Viewbuild PL.json",
+		"Currency.subsets/}CTK_Viewbuild PL_All Currencies-NElements.json",
+		"Currency.subsets/}CTK_Viewbuild PL_Data.PL.Load.json",
+		"Currency.subsets/}CTK_Viewbuild PL_L0.json",
+		"Currency.subsets/}CTK_Viewbuild PL Workings.json",
+		"Currency.subsets/}CTK_Viewbuild PL Workings_All Currencies-NElements.json",
+		"Currency.subsets/}CTK_Viewbuild PL Workings_L0.json",
+		"Currency.subsets/}CTK_Viewbuild PL Workings Zero.json",
+		"Currency.subsets/}CTK_Viewbuild PL Zero.json",
+		"Currency.subsets/}CTK_Viewbuild Workings.json",
+		"Currency.subsets/}CTK_Viewbuild Workings_L0.json",
+		"Currency.subsets/}CTK_Viewbuild Workings Zero.json",
+		"Currency.subsets/}CTK_ViewCopy Allocation Definitions.json",
+		"Currency.subsets/}CTK_ViewCopy Allocations.json",
+		"Currency.subsets/}CTK_ViewCopy Assumptions.json",
+		"Currency.subsets/}CTK_ViewCopy Capex.json",
+		"Currency.subsets/}CTK_ViewCopy Financials.json",
+		"Currency.subsets/}CTK_ViewCopy Gross Margin.json",
+		"Currency.subsets/}CTK_ViewCopy Personnel.json",
+		"Currency.subsets/}CTK_ViewCopy PL.json",
+		"Currency.subsets/}CTK_ViewCopy PL Workings.json",
+		"Currency.subsets/}CTK_ViewCopy Project.json"
+	]
+}

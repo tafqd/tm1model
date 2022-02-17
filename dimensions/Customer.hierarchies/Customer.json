@@ -1,0 +1,241 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Customer",
+	"Elements":
+	[
+		{
+			"Name":"Customer Consolidations",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Reporting",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"All Customers",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Telecommunications",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Spark NZ",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Vodafone",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"General retailers",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Harvey Norman",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"The Warehouse",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Electronic goods",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"LV Martin",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Noel Leeming",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Unspec Customer",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"System",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"No Customer",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"All Customer Codes",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"All Inputs",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Telecommunications.Input",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"General retailers.Input",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Electronic goods.Input",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Customer Consolidations",
+			"ComponentName":"Reporting",
+			"Weight":0
+		},
+		{
+			"ParentName":"Customer Consolidations",
+			"ComponentName":"System",
+			"Weight":0
+		},
+		{
+			"ParentName":"Reporting",
+			"ComponentName":"All Customers",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customers",
+			"ComponentName":"Telecommunications",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customers",
+			"ComponentName":"General retailers",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customers",
+			"ComponentName":"Electronic goods",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customers",
+			"ComponentName":"Unspec Customer",
+			"Weight":1
+		},
+		{
+			"ParentName":"Telecommunications",
+			"ComponentName":"Spark NZ",
+			"Weight":1
+		},
+		{
+			"ParentName":"Telecommunications",
+			"ComponentName":"Vodafone",
+			"Weight":1
+		},
+		{
+			"ParentName":"General retailers",
+			"ComponentName":"Harvey Norman",
+			"Weight":1
+		},
+		{
+			"ParentName":"General retailers",
+			"ComponentName":"The Warehouse",
+			"Weight":1
+		},
+		{
+			"ParentName":"Electronic goods",
+			"ComponentName":"LV Martin",
+			"Weight":1
+		},
+		{
+			"ParentName":"Electronic goods",
+			"ComponentName":"Noel Leeming",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"No Customer",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"All Customer Codes",
+			"Weight":1
+		},
+		{
+			"ParentName":"System",
+			"ComponentName":"All Inputs",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"Spark NZ",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"Vodafone",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"Harvey Norman",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"The Warehouse",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"LV Martin",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Customer Codes",
+			"ComponentName":"Noel Leeming",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Inputs",
+			"ComponentName":"Telecommunications.Input",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Inputs",
+			"ComponentName":"General retailers.Input",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Inputs",
+			"ComponentName":"Electronic goods.Input",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Customer.subsets/All Elements.json",
+		"Customer.subsets/All Members.json",
+		"Customer.subsets/Assumption default.json",
+		"Customer.subsets/Category Report Default.json",
+		"Customer.subsets/Default.json",
+		"Customer.subsets/Level0.json",
+		"Customer.subsets/Report Default.json",
+		"Customer.subsets/Report Default GM.json",
+		"Customer.subsets/Report Default PA.json",
+		"Customer.subsets/Report Default SC.json",
+		"Customer.subsets/Report Default SP.json",
+		"Customer.subsets/SYS.Consolidation_ToDisconnect.json",
+		"Customer.subsets/SYS.Level0.json",
+		"Customer.subsets/SYS.Placeholder.json",
+		"Customer.subsets/SYS.Report.json",
+		"Customer.subsets/}CTK_Viewbuild GM Assumptions.json",
+		"Customer.subsets/}CTK_Viewbuild GM Assumptions_L0.json",
+		"Customer.subsets/}CTK_Viewbuild GM Assumptions Zero.json",
+		"Customer.subsets/}CTK_Viewbuild Gross Margin.json",
+		"Customer.subsets/}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load.json",
+		"Customer.subsets/}CTK_Viewbuild Gross Margin_L0.json",
+		"Customer.subsets/}CTK_Viewbuild Gross Margin Zero.json",
+		"Customer.subsets/}CTK_ViewCopy Gross Margin.json"
+	]
+}

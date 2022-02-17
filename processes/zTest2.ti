@@ -1,0 +1,40 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+sProcess = '}Parametrized wrapper TI process';
+ExecuteProcess(sProcess,
+'p_processname','}CTK_ViewCopy',
+'param1_Name','vCube',
+'param1_Value','Financials',
+'param2_Name','pDim1',
+'param2_Value','Version',
+'param3_Name','pDim1ElementFrom',
+'param3_Value','Working Forecast',
+'param4_Name','pDim1ElementTo',
+'param4_Value','Test',
+'param5_Name','pDim2',
+'param5_Value','Period',
+'param6_Name','pDim2ElementFrom',
+'param6_Value','2014.04',
+'param7_Name','pDim2ElementTo',
+'param7_Value','2014.04',
+'param8_Name','pSkipControl',
+'param8_Value','Y');
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

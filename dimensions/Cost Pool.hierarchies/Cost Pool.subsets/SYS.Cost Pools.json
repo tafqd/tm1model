@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Cost Pools",
+	"Expression":"{ EXCEPT( {TM1SUBSETALL( [Cost Pool] )}, { [Cost Pool].[No Cost Pool] }) }"
+}

@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Sales Units')"
+		},
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Unit Price')"
+		}
+	]
+}

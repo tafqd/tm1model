@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild }ElementAttributes_Account_L0",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [ACCOUNT] )}, 0)}"
+}

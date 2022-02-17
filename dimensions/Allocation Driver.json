@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Allocation Driver",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Allocation Driver.hierarchies/Allocation Driver.json"
+	]
+}

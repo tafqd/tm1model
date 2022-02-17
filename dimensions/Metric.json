@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Metric",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Metric')/Hierarchies('Metric')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Metric.hierarchies/Metric.json"
+	]
+}

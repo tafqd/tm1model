@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Account.SystemHierarchy",
+	"Code@Code.link":"Dim.Account.SystemHierarchy.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

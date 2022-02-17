@@ -1,0 +1,113 @@
+{
+	"@type":"NativeView",
+	"Name":"SYS.Input template",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('No Period')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Subsets('SYS.Report measures')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Capex List')/Hierarchies('Capex List')/Subsets('Default')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Report Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('Report Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('Report Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Report Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('All Currencies')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Asset Class')/Hierarchies('Asset Class')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Asset Class')/Hierarchies('Asset Class')/Elements('All Asset Classes')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.#########"
+}

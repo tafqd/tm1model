@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Source versions",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Budget')"
+		},
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Forecast')"
+		},
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Forecast')"
+		}
+	]
+}

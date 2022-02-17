@@ -1,0 +1,69 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Allocation Def Measure",
+	"Elements":
+	[
+		{
+			"Name":"Rule Name",
+			"Type":"String"
+		},
+		{
+			"Name":"Source Entity",
+			"Type":"String"
+		},
+		{
+			"Name":"Source Project",
+			"Type":"String"
+		},
+		{
+			"Name":"Source Cost Centre",
+			"Type":"String"
+		},
+		{
+			"Name":"Source Account",
+			"Type":"String"
+		},
+		{
+			"Name":"Allocation %",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Allocation Amount",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Allocation Driver",
+			"Type":"String"
+		},
+		{
+			"Name":"Allocation Pool",
+			"Type":"String"
+		},
+		{
+			"Name":"Allocation Step",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Driver Data Check",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Posting Account To",
+			"Type":"String"
+		},
+		{
+			"Name":"Posting Account From",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Allocation Def Measure.subsets/Default.json",
+		"Allocation Def Measure.subsets/Level0.json",
+		"Allocation Def Measure.subsets/SYS.Level0.json",
+		"Allocation Def Measure.subsets/}CTK_Viewbuild Allocation Definitions.json",
+		"Allocation Def Measure.subsets/}CTK_Viewbuild Allocation Definitions_L0.json",
+		"Allocation Def Measure.subsets/}CTK_Viewbuild Allocation Definitions Zero.json",
+		"Allocation Def Measure.subsets/}CTK_ViewCopy Allocation Definitions.json"
+	]
+}

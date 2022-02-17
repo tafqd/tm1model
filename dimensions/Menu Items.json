@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Menu Items",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Menu Items')/Hierarchies('Menu Items')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Menu Items.hierarchies/Menu Items.json"
+	]
+}

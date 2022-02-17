@@ -1,0 +1,27 @@
+{
+	"@type":"Cube",
+	"Name":"Allocation Definitions",
+	"Rules@Code.link":"Allocation Definitions.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Allocation List')"
+		},
+		{
+			"@id":"Dimensions('Allocation Def Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Allocation Definitions.views/All.json",
+		"Allocation Definitions.views/Allocation Rules.json",
+		"Allocation Definitions.views/Default.json",
+		"Allocation Definitions.views/SYS.Allocation Rules.json"
+	]
+}

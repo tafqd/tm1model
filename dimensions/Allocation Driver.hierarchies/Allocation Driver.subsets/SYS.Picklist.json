@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Picklist",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [Allocation Driver] )}, 0)}"
+}

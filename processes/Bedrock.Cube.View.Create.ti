@@ -1,0 +1,454 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+# This process automatically creates a view that can be used for exporting, copying and zeroing out numbers.
+
+# Note:
+# - The pFilter parameter contains the dimenson and elements to be used for filtering.
+# - The format of the pFilter parameter is as follows delimiters of :, & and +:
+#     Dim1: Elem1 + Elem2 & Dim2: Elem3 + Elem4
+# - The dimension parameters do not need to be given in the index order of dimensions in the cube.
+# - The dimension name is specified as the first member of the delimited string of elements.
+# - If consols are skipped the N level children of any consolidated filter elements will be used
+# - Spaces are ignored so use them to make your filter more readable
+
+
+### Constants ###
+
+cProcess = 'Bedrock.Cube.View.Create';
+cTimeStamp = TimSt( Now, '\Y\m\d\h\i\s' );
+sRandomInt = NumberToString( INT( RAND( ) * 1000 ));
+cDebugFile = GetProcessErrorFileDirectory | cProcess | '.' | cTimeStamp | '.' | sRandomInt ;
+sSubset = pView;
+sDelimDim = TRIM(pDimensionDelim);
+sElementStartDelim = TRIM(pElementStartDelim);
+sDelimElem = TRIM(pElementDelim);
+nErrors = 0;
+
+
+### Initialise Debug ###
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Prolog.debug';
+
+  # Log start time
+  AsciiOutput( sDebugFile, 'Process Started: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+  # Log parameters
+  AsciiOutput( sDebugFile, 'Parameters: pCube:              ' | pCube );
+  AsciiOutput( sDebugFile, '            pView:              ' | pView );
+  AsciiOutput( sDebugFile, '            pFilter:            ' | pFilter );
+  AsciiOutput( sDebugFile, '            pSuppressZero:      ' | NumberToString( pSuppressZero) );
+  AsciiOutput( sDebugFile, '            pSuppressConsol:    ' | NumberToString( pSuppressConsol) );
+  AsciiOutput( sDebugFile, '            pSuppressRules:     ' | NumberToString( pSuppressRules) );
+  AsciiOutput( sDebugFile, '            pDimensionDelim:    ' | pDimensionDelim );
+  AsciiOutput( sDebugFile, '            pElementStartDelim: ' | pElementStartDelim );
+  AsciiOutput( sDebugFile, '            pElementDelim:      ' | pElementDelim );
+
+EndIf;
+
+# If specified cube does not exist then terminate process
+If( CubeExists(   pCube   ) = 0 );
+  sMessage = 'Cube: ' | pCube | ' does not exist';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  nErrors = nErrors + 1;
+  ProcessQuit;
+EndIf;
+
+## Validate the View parameter
+If( TRIM(pView) @= '' );
+  sMessage = 'A view name must be provided';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  nErrors = nErrors + 1;
+  ProcessQuit;
+EndIf;
+
+# Check the delimiters
+If( sDelimDim @= '' );
+  sMessage = 'The dimension delimiter is blank';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;
+EndIf;
+
+If( sElementStartDelim @= '' );
+  sMessage = 'The dimension name delimiter is blank';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;
+EndIf;
+
+If( sDelimElem @= '' );
+  sMessage = 'The element delimiter is blank';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;
+EndIf;
+
+If( sDelimDim @= sElementStartDelim % sDelimDim @= sDelimElem % sElementStartDelim @= sDelimElem );
+  sMessage = 'The delimiters cannot me the same';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;  
+EndIf;
+
+### Create View ###
+If ( pDebug >= 1 );
+     AsciiOutput( sDebugFile, 'Creating view ' | pView | ' on cube ' | pCube );
+EndIf;
+If( pDebug <= 1 );
+    If( ViewExists( pCube, pView ) = 1 );
+        # Clear all of the subsets that may be attached to the view
+        nCount = 1;
+        While( TabDim( pCube, nCount ) @<> '' );
+          sCubeDimName = TabDim( pCube, nCount );
+          # Subset is the same name as the view
+          If( SubsetExists( sCubeDimName, pView ) = 1 );
+            # Clear the elements
+            SubsetDeleteAllElements( sCubeDimName, pView );
+            # Add all elements
+            If( SubsetIsAllSet(sCubeDimName, pView, 1) <> 1 );
+              If( pDebug >= 1 );
+                AsciiOutput( sDebugFile, 'Unable to add all elements on subset ' | pView | ' on dimension ' | sCubeDimName );
+              EndIf;
+              ProcessQuit;
+            EndIf;
+          ENDIF;
+          nCount = nCount + 1;
+        End;
+    Else;
+        ViewCreate( pCube, pView );
+    EndIf;
+
+    ViewExtractSkipCalcsSet( pCube, pView, pSuppressConsol );
+    ViewExtractSkipZeroesSet( pCube, pView, pSuppressZero );
+    ViewExtractSkipRuleValuesSet( pCube, pView, pSuppressRules );
+EndIf;
+
+### Split filter and create subsets ###
+sFilter = TRIM( pFilter );
+nChar = 1;
+nCharCount = LONG( sFilter );
+sWord = '';
+sLastDelim = '';
+nIndex = 1;
+# Add a trailing element delimiter so that the last element is picked up
+If( nCharCount > 0 );
+  sFilter = sFilter | sDelimElem;
+  nCharCount = nCharCount + LONG(sDelimElem);
+EndIf;
+WHILE (nChar <= nCharCount);
+
+    sChar = SUBST( sFilter, nChar, 1);
+    If( pDebug >= 1 );
+      sMessage = 'Next character is: ' | sChar | ' at ' | NumberToString(nChar);
+      AsciiOutput( sDebugFile, sMessage );
+    EndIf;
+
+    # Used for delimiters, required for multiple character dilimiters
+    sDelim = '';
+    nAddExtra = 0;
+
+    # Ignore spaces
+    IF (TRIM(sChar) @<> '' );
+
+
+      ### Dimension Name ###
+
+      # If the delimiter is more than 1 character peek ahead the same amount
+      # Ignore the first character
+      sDelim = sChar;
+      nCount = LONG(sElementStartDelim) - 1;
+      If( nCount > 0 & nChar + nCount <= nCharCount );
+        # Add the extra characters
+        sDelim = sDelim | SUBST( sFilter, nChar + 1, nCount);
+        # Move to the end of the delimter
+        nAddExtra = nCount;
+      EndIf;
+
+      If( sDelim @= sElementStartDelim );
+
+        sChar = sDelim;
+
+        If( sLastDelim @<> '' & sLastDelim @<> sDelimDim );
+            sMessage = 'The name of a dimension must follow a dimension delimiter (' | sDelimDim | ')';
+            If( pDebug >= 1 );
+              AsciiOutput( sDebugFile, sMessage );
+            EndIf;
+            ProcessQuit;
+        EndIf;
+
+        sDimension = sWord;
+
+        If( pDebug >= 1 );
+          sMessage = 'Found dimension name: ' | sDimension | ' at ' | NumberToString(nChar);
+          AsciiOutput( sDebugFile, sMessage );
+        EndIf;
+
+        If( DimensionExists( sDimension ) = 0 );
+            # The dimension does not exist in the model. Cancel process
+            sMessage = 'Dimension: ' | sDimension | ' does not exist';
+            If( pDebug >= 1 );
+              AsciiOutput( sDebugFile, sMessage );
+            EndIf;
+            nErrors = nErrors + 1;
+            ProcessQuit;
+        EndIf;
+
+        ### Determine the dimension is a member of the cube ###
+        nCount = 1;
+        nDimensionIndex = 0;
+        While( TabDim( pCube, nCount ) @<> '' );
+          sCubeDimName = TabDim( pCube, nCount );
+          IF(
+          sDimension @= sCubeDimName);
+            nDimensionIndex = nCount;
+          ENDIF;
+          nCount = nCount + 1;
+        End;
+
+        If( nDimensionIndex = 0 );
+            # The dimension does not exist in the cube. Cancel process
+            sMessage = 'Dimension: ' | sDimension | ' is not a member of: '| pCube | 'cube.';
+            If( pDebug >= 1 );
+              AsciiOutput( sDebugFile, sMessage );
+            EndIf;
+            nErrors = nErrors + 1;
+            ProcessQuit;
+        EndIf;
+
+        # Create the subset
+        If( SubsetExists( sDimension, sSubset ) = 1 );
+            If ( pDebug >= 1 );
+                 AsciiOutput( sDebugFile, 'Subset ' | sSubset | ' exists on dimension ' | sDimension | '. Deleting all elements' );
+            EndIf;
+            If( pDebug <= 1 );
+                SubsetDeleteAllElements( sDimension, sSubset );
+            EndIf;
+        Else;
+            If ( pDebug >= 1 );
+                 AsciiOutput( sDebugFile, 'Creating subset ' | sSubset | ' on dimension ' | sDimension );
+            EndIf;
+            If( pDebug <= 1 );
+                SubsetCreate( sDimension, sSubset );
+            EndIf;
+        EndIf;
+
+        # Attach to the view
+        If ( pDebug >= 1 );
+             AsciiOutput( sDebugFile, 'Assigning subset ' | sSubset | ' to view ' | pView );
+        EndIf;
+        If( pDebug <= 1 );
+            ViewSubsetAssign(pCube, pView, sDimension, sSubset);
+        EndIf;
+
+        nIndex = 1;
+
+        sLastDelim = sChar;
+        # Clear the word
+        sWord = '';
+      Else;
+
+        # Reset extra chars
+        nAddExtra = 0;
+
+        ### Check both both dim delimiter and element delimiter ###
+        nIsDelimiter = 0;
+
+        ## Check dimension delimiter first
+        # If the delimiter is more than 1 character peek ahead the same amount
+        # Ignore the first character
+        sDelim = sChar;
+        nCount = LONG(sDelimDim) - 1;
+        If( nCount > 0 & nChar + nCount <= nCharCount );
+          # Add the extra characters
+          sDelim = sDelim | SUBST( sFilter, nChar + 1, nCount);
+          # Move to the end of the delimter
+          nAddExtra = nCount;
+        EndIf;
+
+        If( sDelim @= sDelimDim );
+          nIsDelimiter = 1;
+          sChar = sDelim;
+        Else;
+          # Reset extra chars
+          nAddExtra = 0;
+
+          ## Check element delimiter
+
+          # If the delimiter is more than 1 character peek ahead the same amount
+          # Ignore the first character
+          sDelim = sChar;
+          nCount = LONG(sDelimElem) - 1;
+          If( nCount > 0 & nChar + nCount <= nCharCount );
+            # Add the extra characters
+            sDelim = sDelim | SUBST( sFilter, nChar + 1, nCount);
+            # Move to the end of the delimter
+            nAddExtra = nCount;
+          EndIf;
+
+          If( sDelim @= sDelimElem );
+            nIsDelimiter = 1;
+            sChar = sDelim;
+          Else;
+            # Reset extra chars
+            nAddExtra = 0;
+          EndIf;
+
+        EndIf;
+
+        If ( nIsDelimiter = 1 );
+
+          If( sLastDelim @= '' % sLastDelim @= sDelimDim );
+            sMessage = 'An element delimiter must follow a dimension name: ' |  sChar | ' (' | NumberToString(nChar) | ')';
+            If( pDebug >= 1 );
+              AsciiOutput( sDebugFile, sMessage );
+            EndIf;
+            ProcessQuit;
+          EndIf;
+
+          sElement = sWord;
+
+          If( pDebug >= 1 );
+            sMessage = 'Inserting element: ' | sElement | ' at ' | NumberToString(nChar);
+            AsciiOutput( sDebugFile, sMessage );
+          EndIf;
+
+          If( DIMIX( sDimension, sElement ) = 0 );
+              # The element does not exist in the dimension. Cancel process
+              sMessage = 'Element: ' | sElement | ' in dimension ' | sDimension | ' does not exist';
+              If( pDebug >= 1 );
+                AsciiOutput( sDebugFile, sMessage );
+              EndIf;
+              nErrors = nErrors + 1;
+              ProcessQuit;
+          EndIf;
+
+
+          If ( pSuppressConsol = 1 & DTYPE( sDimension, sElement) @= 'C'  );
+              # Add all N level elements to the subset
+              # Loop through all elements and check if it is an ancestor
+              If ( pDebug >= 1 );
+                  AsciiOutput( sDebugFile, 'Element ' | sElement | ' is consolidated' );
+              EndIf;
+              nElCount = DIMSIZ ( sDimension );
+              n = 1;
+              WHILE ( n <= nElCount );
+                  sEl = DIMNM( sDimension, n );
+                  IF( DTYPE( sDimension, sEl) @<> 'C' & ELISANC( sDimension, sElement, sEl ) = 1 );
+
+                      If ( pDebug >= 1 );
+                          AsciiOutput( sDebugFile, 'Inserting element ' | sEl | ' into subset ' | sSubset | ' on dimension ' | sDimension);
+                      EndIf;
+                      If( pDebug <= 1 );
+                          SubsetElementInsert( sDimension, sSubset, sEl, nIndex );
+                      EndIf;
+                  EndIf;
+                  n = n + 1;
+              END;
+
+          Else;
+              # Add the element to the subset
+              If ( pDebug >= 1 );
+                  AsciiOutput( sDebugFile, 'Inserting element ' | sElement | ' into subset ' | sSubset | ' on dimension ' | sDimension);
+              EndIf;
+              If( pDebug <= 1 );
+                  SubsetElementInsert( sDimension, sSubset, sElement, nIndex );
+              EndIf;
+          EndIf;
+
+          nIndex = nIndex + 1;
+
+          sLastDelim = sChar;
+
+          # Clear the word
+          sWord = '';
+        Else;
+          sWord = sWord | sChar;
+        EndIf;
+
+      EndIf;
+
+    EndIf;
+
+    nChar = nChar + nAddExtra + 1;
+
+    If( pDebug >= 1 );
+      sMessage = 'Current word is: ' | sWord | ' at ' | NumberToString(nChar - 1);
+      AsciiOutput( sDebugFile, sMessage );
+    EndIf;
+
+
+END;
+
+
+
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+
+### Initialise Debug ###
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Epilog.debug';
+
+  # Log errors
+  If( nErrors <> 0 );
+    AsciiOutput( sDebugFile, 'Errors Occurred' );
+  EndIf;
+
+  # Log finish time
+  AsciiOutput( sDebugFile, 'Process Finished: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+EndIf;
+
+
+### If errors occurred terminate process with a major error status ###
+
+If( nErrors <> 0 );
+  ProcessQuit;
+EndIf;
+
+
+### End Epilog ###
+
+
+
+
+#endregion

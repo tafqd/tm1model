@@ -1,0 +1,166 @@
+{
+	"@type":"NativeView",
+	"Name":"Report",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.05')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.05.YTD')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Sales Units')"
+					},
+					{
+						"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Unit Price')"
+					},
+					{
+						"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Gross Revenue')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Entity')/Hierarchies('Entity')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Customer')/Hierarchies('Customer')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('All Customers')"
+					},
+					{
+						"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('Telecommunications')"
+					},
+					{
+						"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('General retailers')"
+					},
+					{
+						"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('Electronic goods')"
+					},
+					{
+						"@id":"Dimensions('Customer')/Hierarchies('Customer')/Elements('Unspec Customer')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Product')/Hierarchies('Product')/Subsets('Report Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Product')/Hierarchies('Product')/Elements('All Products')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('GM Classification')/Hierarchies('GM Classification')"
+				},
+				"Expression":"[GM Classification].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('GM Classification')/Hierarchies('GM Classification')/Elements('Unspec Classification')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":true,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.00"
+}

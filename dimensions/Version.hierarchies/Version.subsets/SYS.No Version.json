@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.No Version",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('No Version')"
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"QUBEdocs.Header",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('QubeDocs Application Item')/Hierarchies('QubeDocs Application Item')/Elements('HEADER')"
+		}
+	]
+}

@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Capex",
+	"Expression":"TM1SubsetAll([Cost Centre])"
+}

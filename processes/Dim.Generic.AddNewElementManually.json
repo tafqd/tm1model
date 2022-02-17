@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Generic.AddNewElementManually",
+	"Code@Code.link":"Dim.Generic.AddNewElementManually.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimension",
+			"Prompt":"Dimesnion to add Element to",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pElement",
+			"Prompt":"Element to add",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDescription",
+			"Prompt":"Element Description",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pParent",
+			"Prompt":"Element Parent",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

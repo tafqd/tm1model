@@ -1,0 +1,132 @@
+{
+	"@type":"NativeView",
+	"Name":"All",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Expression":"[Period].MEMBERS"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Version')/Hierarchies('Version')"
+				},
+				"Expression":"[Version].MEMBERS"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')"
+				},
+				"Expression":"[Cost Centre].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('NZD')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('PL Account')/Hierarchies('PL Account')"
+				},
+				"Expression":"[PL Account].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('PL Account')/Hierarchies('PL Account')/Elements('Profit and Loss')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('PL Line')/Hierarchies('PL Line')"
+				},
+				"Expression":"[PL Line].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Unspec PL Line')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('PL Workings Measure')/Hierarchies('PL Workings Measure')"
+				},
+				"Expression":"[PL Workings Measure].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('PL Workings Measure')/Hierarchies('PL Workings Measure')/Elements('Amount')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

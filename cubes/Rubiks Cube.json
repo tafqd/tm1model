@@ -1,0 +1,21 @@
+{
+	"@type":"Cube",
+	"Name":"Rubiks Cube",
+	"Rules@Code.link":"Rubiks Cube.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Account')"
+		},
+		{
+			"@id":"Dimensions('PL Measure')"
+		}
+	],
+	"Views@Code.links":[]
+}

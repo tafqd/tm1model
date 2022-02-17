@@ -1,0 +1,116 @@
+{
+	"@type":"NativeView",
+	"Name":"Default",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Trend')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Actual')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Target')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Tolerance')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Variance')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Variance Percent')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Score')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Score Change')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Actual Change Percent')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_1_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_0_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_-1_Count')"
+					},
+					{
+						"@id":"Dimensions('Metric Indicator')/Hierarchies('Metric Indicator')/Elements('Status_Incomplete_Count')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Metric')/Hierarchies('Metric')/Subsets('Ratios')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.01')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

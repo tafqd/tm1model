@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Allocation Asm Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Allocation Asm Measure')/Hierarchies('Allocation Asm Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Allocation Asm Measure.hierarchies/Allocation Asm Measure.json"
+	]
+}

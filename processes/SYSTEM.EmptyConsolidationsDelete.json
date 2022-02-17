@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.EmptyConsolidationsDelete",
+	"Code@Code.link":"SYSTEM.EmptyConsolidationsDelete.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimName",
+			"Prompt":"DimName?",
+			"Value":"BusinessUnit",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

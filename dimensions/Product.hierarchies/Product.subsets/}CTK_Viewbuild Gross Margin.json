@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Gross Margin",
+	"Expression":"TM1SubsetAll([Product])"
+}

@@ -1,0 +1,17 @@
+{
+	"@type":"Cube",
+	"Name":"Reserve Mapping",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ReserveMappingAccount')"
+		},
+		{
+			"@id":"Dimensions('ReserveMappingMeasure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Reserve Mapping.views/All.json"
+	]
+}

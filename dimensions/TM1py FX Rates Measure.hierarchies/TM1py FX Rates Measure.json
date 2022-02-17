@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py FX Rates Measure",
+	"Elements":
+	[
+		{
+			"Name":"Spot",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"EOP",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"AVG",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Month Close",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

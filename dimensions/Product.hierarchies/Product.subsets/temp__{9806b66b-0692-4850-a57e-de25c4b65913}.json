@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"temp__{9806b66b-0692-4850-a57e-de25c4b65913}",
+	"Expression":"[Product].MEMBERS"
+}

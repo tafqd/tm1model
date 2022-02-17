@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"Dim.GMMeasure.BuildHierarchy",
+	"Code@Code.link":"Dim.GMMeasure.BuildHierarchy.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

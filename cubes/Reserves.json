@@ -1,0 +1,26 @@
+{
+	"@type":"Cube",
+	"Name":"Reserves",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Reserve Movement')"
+		},
+		{
+			"@id":"Dimensions('Reserve Account')"
+		},
+		{
+			"@id":"Dimensions('Reserve Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Reserves.views/All.json"
+	]
+}

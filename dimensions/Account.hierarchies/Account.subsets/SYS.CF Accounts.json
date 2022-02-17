@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.CF Accounts",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Account].[Cash Flow]}, ALL, RECURSIVE )}"
+}

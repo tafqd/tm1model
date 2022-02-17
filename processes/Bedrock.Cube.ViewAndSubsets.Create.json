@@ -1,0 +1,67 @@
+{
+	"@type":"Process",
+	"Name":"Bedrock.Cube.ViewAndSubsets.Create",
+	"Code@Code.link":"Bedrock.Cube.ViewAndSubsets.Create.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pCube",
+			"Prompt":"Cube",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pSuppressZero",
+			"Prompt":"Suppress Zeros (Boolean Yes = 1)",
+			"Value":1,
+			"Type":"Numeric"
+		},
+		{
+			"Name":"pSuppressConsol",
+			"Prompt":"Suppress Calcs (Boolean Yes = 1)",
+			"Value":1,
+			"Type":"Numeric"
+		},
+		{
+			"Name":"pSuppressRules",
+			"Prompt":"Suppress Rules (Boolean Yes = 1)",
+			"Value":1,
+			"Type":"Numeric"
+		},
+		{
+			"Name":"pDimensions",
+			"Prompt":"Dimension(s) to create empty processing subsets for",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDelimiter",
+			"Prompt":"Delimiter",
+			"Value":"&",
+			"Type":"String"
+		},
+		{
+			"Name":"pView",
+			"Prompt":"View",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pSubset",
+			"Prompt":"Subset",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDebug",
+			"Prompt":"Debug Mode",
+			"Value":0,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

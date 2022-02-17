@@ -1,0 +1,113 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Feb-2015 Michael Mackie	Consultant	Initial Build of Process
+#GENERALCOMMENT Exec Process to Load data from Financials cube to Allocations and build dimensions etc
+#PROLOGCOMMENT Define variables, Clears Target and Creates Source View
+#METADATACOMMENT N/A
+#DATACOMMENT Defines variables and loads data
+#EPILOGCOMMENT Destroy views and turns logging back on
+
+# Declare Global Variables to get current process name
+NumericGlobalVariable('SandBoxValue');
+# Ensure this process runs on base data
+SandBoxValue = 0;
+
+
+#Clear out Allocations cube
+sCube = 'Allocations';
+ExecuteProcess ('}CTK_Viewcall ','pOpt','Zero', 'pStr',sCube | ',Version,' | pVersionTo | ',Period,' | pYear | '-NElements,Allocation Measure,Driver Amount');
+
+#Build up copy view
+sCube = 'Allocation Assumptions';
+sView = '}CTK_Viewbuild Allocation Assumptions';
+ExecuteProcess ('}CTK_Viewcall ','pOpt','Build', 'pStr',sCube | ',Version,' | pAllocationPoolVersion | ',Period,' | pYear | '.Input,Allocation Asm Measure,Include in Pool');
+
+ViewExtractSkipCalcsSet (sCube, sView, 0);
+
+#Load finanical data against source ammount
+ExecuteProcess('Data.Allocations.LoadFinancials',
+  'pVersionFrom',pVersionFrom,
+  'pVersionTo',pVersionTo,
+  'pYear',pYear,
+  'pReportType','local');
+
+
+IF(UPPER(pRebuildDims) @='Y');
+
+ #Replicate Account structure into Allocation Account dimension
+ sProcess = '}CTK_ReplicateConsolidationsGeneric';
+ sConsolidation = 'Account Consolidations';
+ sSourceDim = 'Account';
+ sDestinationDim = 'Allocation Account';
+ ExecuteProcess(sProcess,'pConsolidation',sConsolidation,'pSourceDim',sSourceDim,'pDestinationDim',sDestinationDim);
+
+  # Ensure Attributes exist in Destination Dimension
+  AttrInsert(sDestinationDim,'','Description and Code','A');
+  AttrInsert(sDestinationDim,'','Code and Description','A');
+  AttrInsert(sDestinationDim,'','Description','S');
+
+ # Replicate the Attributes
+  sProcessName = '}CTK_ReplicateAttributes';
+  ExecuteProcess(sProcessName, 'pSourceDim', sSourceDim, 'pDestinationDim',sDestinationDim);
+
+
+ #Replicate Cost Centre structure into Allocation Account dimension
+ sProcess = '}CTK_ReplicateConsolidationsGeneric';
+ sConsolidation = 'Cost Centre Consolidations';
+ sSourceDim = 'Cost Centre';
+ sDestinationDim = 'Cost Centre From';
+ ExecuteProcess(sProcess,'pConsolidation',sConsolidation,'pSourceDim',sSourceDim,'pDestinationDim',sDestinationDim);
+
+  # Ensure Attributes exist in Destination Dimension
+  AttrInsert(sDestinationDim,'','Description and Code','A');
+  AttrInsert(sDestinationDim,'','Code and Description','A');
+  AttrInsert(sDestinationDim,'','Description','S');
+
+ # Replicate the Attributes
+  sProcessName = '}CTK_ReplicateAttributes';
+  ExecuteProcess(sProcessName, 'pSourceDim', sSourceDim, 'pDestinationDim',sDestinationDim);
+
+ENDIF;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#Populate financial driver data from the Financials cube
+ExecuteProcess('Data.Allocations.PopulatePoolsFromFinancials',
+  'pAllocationPoolVersion',pAllocationPoolVersion,
+  'pVersionFrom',pVersionFrom,
+  'pVersionTo',pVersionTo,
+  'pYear',pYear,
+  'pEntity',vEntity,
+  'pCostCentre',vCostCentre,
+  'pProject',vProject,
+  'pAllocationPool',vCostPool);
+
+#Populate non finanical driver data from the Allocations Assumptions cube
+ExecuteProcess('Data.Allocations.PopulatePoolsFromAssumptions',
+  'pAllocationPoolVersion',pAllocationPoolVersion,
+  'pVersionFrom',pVersionFrom,
+  'pVersionTo',pVersionTo,
+  'pYear',pYear,
+  'pEntity',vEntity,
+  'pCostCentre',vCostCentre,
+  'pProject','No Project',
+  'pAllocationPool',vCostPool);
+
+
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

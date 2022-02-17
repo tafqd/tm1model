@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"GM Assumption Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('GM Assumption Measure')/Hierarchies('GM Assumption Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"GM Assumption Measure.hierarchies/GM Assumption Measure.json"
+	]
+}

@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Personnel_Data.Personnel.Load",
+	"Expression":"TM1SubsetAll([Entity])"
+}

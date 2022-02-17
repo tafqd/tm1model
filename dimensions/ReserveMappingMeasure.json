@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"ReserveMappingMeasure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ReserveMappingMeasure')/Hierarchies('ReserveMappingMeasure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"ReserveMappingMeasure.hierarchies/ReserveMappingMeasure.json"
+	]
+}

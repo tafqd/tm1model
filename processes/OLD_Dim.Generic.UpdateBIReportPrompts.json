@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"OLD_Dim.Generic.UpdateBIReportPrompts",
+	"Code@Code.link":"OLD_Dim.Generic.UpdateBIReportPrompts.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDim",
+			"Prompt":"Dimension",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

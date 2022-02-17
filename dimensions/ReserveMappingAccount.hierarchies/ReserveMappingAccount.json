@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ReserveMappingAccount",
+	"Elements":
+	[
+		{
+			"Name":"No ReserveMappingAccount",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

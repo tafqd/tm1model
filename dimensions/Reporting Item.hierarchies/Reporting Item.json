@@ -1,0 +1,17 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Reporting Item",
+	"Elements":
+	[
+		{
+			"Name":"Unspec Reporting Item",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Reporting Item.subsets/Default.json",
+		"Reporting Item.subsets/Level0.json",
+		"Reporting Item.subsets/SYS.Level0.json"
+	]
+}

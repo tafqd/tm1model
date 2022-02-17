@@ -1,0 +1,71 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Report Type",
+	"Elements":
+	[
+		{
+			"Name":"Local",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Group",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Converted",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Report Type.subsets/All Members.json",
+		"Report Type.subsets/Default.json",
+		"Report Type.subsets/Level0.json",
+		"Report Type.subsets/Report Default.json",
+		"Report Type.subsets/SYS.Level0.json",
+		"Report Type.subsets/}CTK_Viewbuild Allocations.json",
+		"Report Type.subsets/}CTK_Viewbuild Allocations_Alloc.json",
+		"Report Type.subsets/}CTK_Viewbuild Allocations_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Allocations Alloc Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Allocations Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Capex.json",
+		"Report Type.subsets/}CTK_Viewbuild Capex_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Capex Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials_Alloc.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials_Alloc_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials_Data.Financials.Load.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials_Data.PL.Load.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials Alloc.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials Alloc_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Financials Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Gross Margin.json",
+		"Report Type.subsets/}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load.json",
+		"Report Type.subsets/}CTK_Viewbuild Gross Margin_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Gross Margin Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Personnel.json",
+		"Report Type.subsets/}CTK_Viewbuild Personnel_Data.Personnel.Load.json",
+		"Report Type.subsets/}CTK_Viewbuild Personnel_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Personnel Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild PL.json",
+		"Report Type.subsets/}CTK_Viewbuild PL_Data.PL.Load.json",
+		"Report Type.subsets/}CTK_Viewbuild PL_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild PL Workings.json",
+		"Report Type.subsets/}CTK_Viewbuild PL Workings_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild PL Workings Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild PL Zero.json",
+		"Report Type.subsets/}CTK_Viewbuild Workings.json",
+		"Report Type.subsets/}CTK_Viewbuild Workings_L0.json",
+		"Report Type.subsets/}CTK_Viewbuild Workings Zero.json",
+		"Report Type.subsets/}CTK_ViewCopy Allocation Definitions.json",
+		"Report Type.subsets/}CTK_ViewCopy Allocations.json",
+		"Report Type.subsets/}CTK_ViewCopy Capex.json",
+		"Report Type.subsets/}CTK_ViewCopy Financials.json",
+		"Report Type.subsets/}CTK_ViewCopy Gross Margin.json",
+		"Report Type.subsets/}CTK_ViewCopy Personnel.json",
+		"Report Type.subsets/}CTK_ViewCopy PL.json",
+		"Report Type.subsets/}CTK_ViewCopy PL Workings.json",
+		"Report Type.subsets/}CTK_ViewCopy Project.json"
+	]
+}

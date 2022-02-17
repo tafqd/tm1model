@@ -1,0 +1,91 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Peacock, added code to ensure Hierarchy Elements subset is created by default if doesn't exist, 11 June, 2015
+#LASTCHANGE Louise Davenport Clean up of Process 27-May-2014
+#LASTCHANGE Peter Currie Initial Draft of process
+#GENERALCOMMENT Insert String Attribute used to build Hierarchy
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT N/A
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+##############################
+## Define Variables                                  ##
+##############################
+# Parameters
+cDimName = pDimName;
+cHierarchyName = pHierarchyName;
+cHierarchyParent = pHierarchyParent;
+
+sHierarchyNameAppend = 'Hierarchy_' | cHierarchyName;
+sHierarchyNameAppendWeight = 'Weight_' | cHierarchyName;
+sHierarchyNameAppendSort = 'Sort_' | cHierarchyName ;
+
+sHierarchySubset = 'SYS.HierarchyElements' ;
+sWildcard = 'Hierarchy_*' ;
+sHierarchySubsetMDX = '{TM1FILTERBYPATTERN( {TM1SUBSETALL( [}ElementAttributes_' | cDimName | '] )}, "'| sWildcard |'")}' ;
+
+
+##########################################
+## Validate Inputs                                                                 ##
+##########################################
+sDimCheck = DIMIX('}Dimensions',cDimName);
+If(sDimCheck = 0);
+  ItemReject('Dimension is invalid');
+  ProcessBreak;
+EndIf;
+
+sParentCheck = DIMIX(cDimName, pHierarchyParent);
+If(sDimCheck = 0);
+  ItemReject('Parent is invalid');
+  ProcessBreak;
+EndIf;
+
+
+#############################################
+## Insert Attributes                                                                      ##
+#############################################
+AttrInsert(cDimName,'',sHierarchyNameAppend,'S');
+AttrInsert(cDimName,sHierarchyNameAppend,sHierarchyNameAppendWeight,'N');
+AttrInsert(cDimName,sHierarchyNameAppendWeight, sHierarchyNameAppendSort, 'N') ;
+
+########################################################
+## Insert New Consolidated element against Reporting or System Consolidation ##
+########################################################
+DimensionElementInsertDirect(cDimName,'',cHierarchyName,'C');
+DimensionElementComponentAdd(cDimName,cHierarchyParent,cHierarchyName,1);
+
+
+########################################################
+## Create Hierarchy elements subset to be used in front end and next process   ##
+########################################################
+If (SubsetExists (cDimName, sHierarchySubset) =0);
+  SubsetCreateByMDX(sHierarchySubset,sHierarchySubsetMDX);
+EndIf;
+
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+###############################################
+## Insert Top level attribute for next rebuild                                     ##
+###############################################
+AttrPutS(cHierarchyParent,cDimName,cHierarchyName,sHierarchyNameAppend);
+#endregion

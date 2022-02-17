@@ -1,0 +1,86 @@
+{
+	"@type":"NativeView",
+	"Name":"Planning horizon",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Subsets('SYS.String')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Subsets('SYS.Base and end year')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Level0')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('No Version')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Subsets('SYS.No Period')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('No Period')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Entity')/Hierarchies('Entity')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('No Entity')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('No Entity')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Currency')/Hierarchies('Currency')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('No Currency')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('No Currency')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.#########"
+}

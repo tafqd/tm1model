@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Capex Zero",
+	"Expression":"TM1SubsetAll([Capex List])"
+}

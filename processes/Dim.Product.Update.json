@@ -1,0 +1,42 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Product.Update",
+	"Code@Code.link":"Dim.Product.Update.ti",
+	"DataSource":
+	{
+		"Type":"ASCII",
+		"asciiDecimalSeparator":".",
+		"asciiDelimiterChar":",",
+		"asciiDelimiterType":"Character",
+		"asciiHeaderRecords":1,
+		"asciiQuoteCharacter":"\"",
+		"asciiThousandSeparator":",",
+		"dataSourceNameForClient":"C:\\Program Files\\IBM\\Cognos Express\\Xcelerator\\Custom\\TM1Data\\SourceFiles\\WIP\\ABC Company Products.csv",
+		"dataSourceNameForServer":"C:\\Program Files\\IBM\\Cognos Express\\Xcelerator\\Custom\\TM1Data\\SourceFiles\\WIP\\ABC Company Products.csv"
+	},
+	"Parameters":[],
+	"Variables":
+	[
+		{
+			"Name":"vProduct",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vProductCat",
+			"Type":"String",
+			"Position":2,
+			"StartByte":0,
+			"EndByte":0
+		},
+		{
+			"Name":"vUnit",
+			"Type":"String",
+			"Position":3,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}

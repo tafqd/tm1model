@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"TM1py Stock Prices Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('TM1py Stock Prices Measure')/Hierarchies('TM1py Stock Prices Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"TM1py Stock Prices Measure.hierarchies/TM1py Stock Prices Measure.json"
+	]
+}

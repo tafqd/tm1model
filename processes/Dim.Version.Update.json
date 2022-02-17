@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Version.Update",
+	"Code@Code.link":"Dim.Version.Update.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pVersion",
+			"Prompt":"Version Name",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pType",
+			"Prompt":"Version Type",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

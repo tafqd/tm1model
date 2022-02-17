@@ -1,0 +1,74 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, 2014-06-16, Initial Draft of process
+#GENERALCOMMENT Insert new asset class elements
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Inserts the new asset class element into the dimension, and adds it to the 'All Asset Classes' consolidation
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+sDimName = 'Asset Class';
+sConsol = 'All Asset Classes' ;
+
+sAccumHierarchy = 'Hierarchy_Accum Depreciation Account' ;
+sCostHierarchy = 'Hierarchy_Cost Account' ;
+sDeprHierarchy = 'Hierarchy_Depreciation Account' ;
+sWIPHierarchy = 'Hierarchy_WIP Account' ;
+
+##########################################################
+## Validate Inputs                                                                                                      ##
+##########################################################
+
+nAssetClassCheck = DIMIX(sDimName,pAssetClass);
+If (nAssetClassCheck <> 0);
+	ItemReject(pAssetClass | ' is already a valid Asset Class element');
+	ProcessBreak;
+EndIf;
+
+##########################################################
+## Insert Asset Class Element                                                                                           ##
+##########################################################
+
+DimensionElementInsertDirect(sDimName,'',pAssetClass,'N');
+DimensionElementComponentAdd (sDimName, sConsol, pAssetClass, 1);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+##########################################################
+## Populate required attributes for Account hierarchies                                             ##
+##########################################################
+
+### Accum. depr
+AttrPutS (pAccumDeprAcct, sDimName, pAssetClass, sAccumHierarchy );
+
+### Cost
+AttrPutS (pCostAcct, sDimName, pAssetClass, sCostHierarchy );
+
+### Depr
+AttrPutS (pDeprAcct, sDimName, pAssetClass, sDeprHierarchy );
+
+### WIP
+AttrPutS (pWIPAcct, sDimName, pAssetClass, sWIPHierarchy );
+
+
+#endregion

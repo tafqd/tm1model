@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Picklist Values",
+	"Expression":"{ EXCEPT( {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Currency].[All Currencies]}, ALL, RECURSIVE )}, 0)}, { [Currency].[Unspec Currency] }) }"
+}

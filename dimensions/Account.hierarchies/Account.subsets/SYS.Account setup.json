@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Account setup",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Account].[Profit and Loss],[Account].[Balance Sheet],[Account].[System]}, ALL, RECURSIVE )}"
+}

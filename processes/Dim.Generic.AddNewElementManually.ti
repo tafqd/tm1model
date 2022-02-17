@@ -1,0 +1,48 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+sDimName = pDimension;
+
+IF(pElement@<>'');
+	DIMENSIONELEMENTINSERT(sDimName,'',pElement,'N');
+ENDIF;
+IF(pElement@<>'' & pParent@<>'');
+	DIMENSIONELEMENTCOMPONENTADD(sDimName,pParent,pElement,1);
+ENDIF;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+IF(pDescription@='');
+   sDescription=pElement;
+   sDescAccount = pElement;
+   sAccountDesc = pElement;
+ELSE;
+   sDescription=pDescription;
+   sDescAccount =sDescription|' - '| pElement;
+   sAccountDesc = pElement|' - '|sDescription;
+ENDIF;
+
+ATTRPUTS(sDescription,sDimName,pElement,'Desc');
+ATTRPUTS(sDescAccount,sDimName,pElement,'Desc_Code_Account');
+ATTRPUTS(sAccountDesc,sDimName,pElement,'Code_Desc_Account');
+
+#IF( pParent@<>'');
+#   ATTRPUTS(pParent,dim,pAccount,'Parent');
+#ENDIF;
+#endregion

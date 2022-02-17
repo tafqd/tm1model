@@ -1,0 +1,48 @@
+{
+	"@type":"Process",
+	"Name":"Bedrock.Cube.Rule.Unload",
+	"Code@Code.link":"Bedrock.Cube.Rule.Unload.ti",
+	"DataSource":
+	{
+		"Type":"ASCII",
+		"asciiDecimalSeparator":".",
+		"asciiDelimiterChar":",",
+		"asciiDelimiterType":"Character",
+		"asciiHeaderRecords":0,
+		"asciiQuoteCharacter":"\"",
+		"asciiThousandSeparator":",",
+		"dataSourceNameForClient":"C:\\TM1Data\\Bedrock3\\Data\\Excel.RUX",
+		"dataSourceNameForServer":"C:\\TM1Data\\Bedrock3\\Data\\Excel.RUX"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pSourceCube",
+			"Prompt":"Unload rule from this cube.",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pRuleName",
+			"Prompt":"Optional: The name of the temporary rule file.",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pDebug",
+			"Prompt":"Debug Mode",
+			"Value":0,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":
+	[
+		{
+			"Name":"V1",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}
