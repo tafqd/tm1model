@@ -1,0 +1,21 @@
+{
+	"@type":"Cube",
+	"Name":"Pain & Panic",
+	"Rules@Code.link":"Pain & Panic.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('a_Idk')"
+		},
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('zDates')"
+		},
+		{
+			"@id":"Dimensions('DV Measures')"
+		}
+	],
+	"Views@Code.links":[]
+}

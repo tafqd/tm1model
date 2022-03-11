@@ -7,7 +7,7 @@
 		"Type":"ODBC",
 		"dataSourceNameForClient":"TM1_QUBEdocs",
 		"dataSourceNameForServer":"TM1_QUBEdocs",
-		"password":"gY3V;DQaMzqdCOaLbly6EwQT_XbDFLkDqO7cL]5TM_x`BuizqyS7I3hS=5:Jv3;jG^qtxLcrn=nCi<g0vy_b`I@pCt;pUiw8^vS^Km=MzAUeRy1jYM1VpoAKgpBdSDWT=WU^1V3XDTK4^V\\`@`]RKWxs;tvw8[?xh[qdbPRBZqn`bkAp]Z]mJov4oxP\\3VO3BeSyj8el",
+		"password":"pLf3DJb]7iWeZ32FaL6^fx_=9Hj:`@uhMg`X^quA4@LNXrT3YiCI0vFi;^YXC?rT>x?<I?57`RI6rM8nBEKo;ity?6f1^k:b:gIO6RzANQhaFLX`:Kg@TZg=cjLRT>ulQYt5brsjCrJ:pEq2j]y=iE<pN]`5^[RLye`_g4\\AYIWT6QeJD4<ar_0_`E?ojIsWtaM`RjaX",
 		"query":"select *",
 		"userName":"",
 		"usesUnicode":true

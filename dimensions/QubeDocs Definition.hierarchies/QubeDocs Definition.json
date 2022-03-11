@@ -32,6 +32,10 @@
 			"Type":"Consolidated"
 		},
 		{
+			"Name":"CUB:(Break+EverythingPlease)",
+			"Type":"Consolidated"
+		},
+		{
 			"Name":"CUB:Allocation Assumptions",
 			"Type":"Consolidated"
 		},
@@ -69,6 +73,10 @@
 		},
 		{
 			"Name":"CUB:Metrics",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"CUB:Pain & Panic",
 			"Type":"Consolidated"
 		},
 		{
@@ -121,6 +129,10 @@
 		},
 		{
 			"Name":"CUB:TEMP",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"CUB:Test^Test",
 			"Type":"Consolidated"
 		},
 		{
@@ -5180,6 +5192,11 @@
 		},
 		{
 			"ParentName":"All Cubes",
+			"ComponentName":"CUB:(Break+EverythingPlease)",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Cubes",
 			"ComponentName":"CUB:Allocation Assumptions",
 			"Weight":1
 		},
@@ -5226,6 +5243,11 @@
 		{
 			"ParentName":"All Cubes",
 			"ComponentName":"CUB:Metrics",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Cubes",
+			"ComponentName":"CUB:Pain & Panic",
 			"Weight":1
 		},
 		{
@@ -5291,6 +5313,11 @@
 		{
 			"ParentName":"All Cubes",
 			"ComponentName":"CUB:TEMP",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Cubes",
+			"ComponentName":"CUB:Test^Test",
 			"Weight":1
 		},
 		{
