@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"Assumption default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Product')/Hierarchies('Product')/Elements('All Inputs')"
+		},
+		{
+			"@id":"Dimensions('Product')/Hierarchies('Product')/Elements('All Products')"
+		}
+	]
+}

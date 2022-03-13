@@ -1,0 +1,166 @@
+{
+	"@type":"NativeView",
+	"Name":"SYS.Driver Data",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')/Subsets('SYS.Level0')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('SYS.Level0')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Project')/Hierarchies('Project')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+					},
+					{
+						"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('No Project')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Subsets('SYS.Allocation Pools')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('SYS.Level0')"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')"
+				},
+				"Expression":"TM1SubsetAll([Cost Centre From])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('All Cost Centres')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation List')/Hierarchies('Allocation List')/Subsets('SYS.Level0')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation List')/Hierarchies('Allocation List')/Elements('No Allocation')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('Profit and Loss')"
+					},
+					{
+						"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('Unspec Account')"
+					},
+					{
+						"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('No Allocation Account')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('No Allocation Account')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Subsets('SYS.Driver Amount')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Driver Amount')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":true,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.#########"
+}

@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"tp_{aed001f4-bd34-4537-840d-c8e04bb097e5}",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Forecast')"
+		},
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+		},
+		{
+			"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Budget')"
+		}
+	]
+}

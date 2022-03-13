@@ -1,0 +1,46 @@
+{
+	"@type":"Hierarchy",
+	"Name":"GM Classification",
+	"Elements":
+	[
+		{
+			"Name":"Unspec Classification",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"All Classifications",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"All Classifications",
+			"ComponentName":"Unspec Classification",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"GM Classification.subsets/Default.json",
+		"GM Classification.subsets/Level0.json",
+		"GM Classification.subsets/Report Default.json",
+		"GM Classification.subsets/SYS.Level0.json",
+		"GM Classification.subsets/temp__{3e05be0a-9608-44cd-a205-fc1884895829}.json",
+		"GM Classification.subsets/temp__{4cfcf98b-2225-49fc-98d5-e4e4cef4519a}.json",
+		"GM Classification.subsets/temp__{50fc571a-3b7f-41ab-83dd-0d1208494c72}.json",
+		"GM Classification.subsets/temp__{5b90c601-7b4f-48cf-962c-b8906d32051b}.json",
+		"GM Classification.subsets/temp__{5cbe16ae-af69-440b-b914-13fa65a0d584}.json",
+		"GM Classification.subsets/temp__{9c1db1fc-ab64-4353-9fc0-fcf7824f9f94}.json",
+		"GM Classification.subsets/temp__{b36a94d8-05e3-49d9-80c0-d7f20ea61d86}.json",
+		"GM Classification.subsets/temp__{ca04916d-daa5-4dd0-8524-137ff7a8e686}.json",
+		"GM Classification.subsets/}CTK_Viewbuild GM Assumptions.json",
+		"GM Classification.subsets/}CTK_Viewbuild GM Assumptions_L0.json",
+		"GM Classification.subsets/}CTK_Viewbuild GM Assumptions Zero.json",
+		"GM Classification.subsets/}CTK_Viewbuild Gross Margin.json",
+		"GM Classification.subsets/}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load.json",
+		"GM Classification.subsets/}CTK_Viewbuild Gross Margin_L0.json",
+		"GM Classification.subsets/}CTK_Viewbuild Gross Margin Zero.json",
+		"GM Classification.subsets/}CTK_ViewCopy Gross Margin.json"
+	]
+}

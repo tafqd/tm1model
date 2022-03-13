@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"TM1py Quarter",
+	"Elements":
+	[
+		{
+			"Name":"Q1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Q2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Q3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Q4",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

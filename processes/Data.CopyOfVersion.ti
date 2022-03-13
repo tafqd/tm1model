@@ -1,0 +1,195 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Johann Kassier Initial Draft of process
+#GENERALCOMMENT Uses zCopyDataAll to create a full dynamic copy of a specific version
+#DATASOURCECOMMENT
+#PROLOGCOMMENT Triggers zCopydataAll process to copy version data to the specified dynamic version
+#METADATACOMMENT
+#DATACOMMENT
+#EPILOGCOMMENT
+
+
+# Validate Parameters
+If (DIMIX('Version',pVersionFrom)=0);
+  Itemreject(pVersionFrom|' is an invalid version.');
+  Processerror;
+Endif;
+
+If (DIMIX('Version',pVersionTo)=0);
+  Itemreject(pVersionTo|' is an invalid version.');
+  Processerror;
+Endif;
+
+If (ELISANC('Version','Dynamic Versions',pVersionTo)=0);
+  Itemreject(pVersionTo|' is not a dynamic version.');
+  Processerror;
+Endif;
+
+# Execute zCopyData - PL - Phasing
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','PL',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','Period',
+   'pDim2ElementFrom','Phasing',
+   'pDim2ElementTo','Phasing',
+   'pDim3','PLMeasure',
+   'pDim3ElementFrom','Amount',
+   'pDim3Elementto','Amount',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+# Execute zCopyData - PL - everything else
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','PL',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','Period',
+   'pDim2ElementFrom','System.Level0.excl.Phasing',
+   'pDim2ElementTo','System.Level0.excl.Phasing',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+# Execute zCopyData - Assumptions
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','Assumption',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','',
+   'pDim2ElementFrom','',
+   'pDim2ElementTo','',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+# Execute zCopyData - Finance
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','Finance',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','',
+   'pDim2ElementFrom','',
+   'pDim2ElementTo','',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+
+# Execute zCopyData - Asset
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','Asset',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','',
+   'pDim2ElementFrom','',
+   'pDim2ElementTo','',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+
+# Execute zCopyData - Project
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','Project',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','',
+   'pDim2ElementFrom','',
+   'pDim2ElementTo','',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+
+# Execute zCopyData - HR
+   ExecuteProcess(
+   'zCopyData',
+   'vCube','HR',
+   'pDim1','Version',
+   'pDim1ElementFrom',pVersionFrom,
+   'pDim1ElementTo',pVersionTo,
+   'pDim2','',
+   'pDim2ElementFrom','',
+   'pDim2ElementTo','',
+   'pDim3','',
+   'pDim3ElementFrom','',
+   'pDim3Elementto','',
+   'pDim4','',
+   'pDim4ElementFrom','',
+   'pDim4ElementTo','',
+   'pBatchUpdates','n',
+   'pSkipRules','y',
+   'pClearOutOnly','n');
+
+#No copy done for Ratios as no STET in place - this is calculated for all versions
+
+#Reprocess feeders where applicable (only where feeder from Actual to Dynamic version, e.g for adjustments)
+CubeProcessFeeders('PL');
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#endregion

@@ -1,0 +1,101 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Peacock, 2015-04-21, Added code to update 'Reporting Years' consolidation
+#LASTCHANGE Inel Botha, 2014-06-25, Initial set up of process
+#GENERALCOMMENT This process flags the current reporting month and updates the 'Reporting Years' consolidation for reporting purposes
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Defines the variables, clears out the ReportingPeriod attribute, and flags the current reporting period
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+
+sReportMonth = CellGetS ('Assumptions', 'No Version', 'No Period', 'No Entity', 'No Currency', 'Reporting month', 'String');
+sReportYear = CellGetS ('Assumptions', 'No Version', 'No Period', 'No Entity', 'No Currency', 'Reporting year', 'String');
+
+sPeriodDim = 'Period' ;
+sPeriodAttrCube = '}ElementAttributes_Period' ;
+sReportAttr = 'ReportingPeriod' ;
+sProcess = '}CTK_ViewCall' ;
+sZeroOpt = 'Zero' ;
+sStr = sPeriodAttrCube | ',Period, All FYs-NElements,}ElementAttributes_Period,' | sReportAttr ;
+
+sShortMonth = Subst (sReportMonth, 1, 3) ;
+sShortYear = Subst (sReportYear, 3, 2);
+sFullPeriod = sShortMonth | '-' | sShortYear ;
+sPeriod = DimensionElementPrincipalName (sPeriodDim, sFullPeriod) ;
+
+sSYSConsol = 'System' ;
+sFYConsol = 'All FYs' ;
+sReportingConsol = 'Reporting Years' ;
+nNoOfChildren = ElcompN (sPeriodDim, sReportingConsol );
+sEndYear = Subst(Elcomp (sPeriodDim, sFYConsol, ElCompN (sPeriodDim, sFYConsol)),1,4) ;
+nNoOfYears = StringToNumber (sEndYear) - StringToNumber (sReportYear) ;
+
+##########################################################
+## Clear out existing ReportingPeriod flag                                                                 ##
+##########################################################
+
+ExecuteProcess (sProcess, 'pOpt', sZeroOpt, 'pStr', sStr );
+
+##########################################################
+## Flag specified period as the new Reporting Period                                               ##
+##########################################################
+
+AttrPutN (1, sPeriodDim, sPeriod, sReportAttr) ;
+
+##################################################
+## Check the needed consolidations exist                                              ##
+##################################################
+# Planning years consolidation
+If (Dimix (sPeriodDim, sReportingConsol) = 0);
+   DimensionElementInsertDirect (sPeriodDim, '', sReportingConsol, 'C') ;
+   DimensionElementComponentAddDirect (sPeriodDim, sSYSConsol, sReportingConsol, 1);
+EndIf;
+
+##################################################
+## Remove existing children from the consolidation                                ##
+##################################################
+x = 1;
+
+While ( x <= nNoOfChildren) ;
+   sChildToDelete = Elcomp (sPeriodDim, sReportingConsol, 1);
+   DimensionElementComponentDelete (sPeriodDim, sReportingConsol, sChildToDelete);
+   x = x+1; 
+End;
+
+##################################################
+## Add the planning years into the consolidation                                    ##
+##################################################
+
+x = 0;
+
+While (x <= nNoOfYears);
+
+   sYearToAdd = NumberToString (StringToNumber (sReportYear) + x) | '.FY' ;
+   DimensionElementComponentAdd (sPeriodDim, sReportingConsol, sYearToAdd, 1);
+   x = x + 1 ;
+
+End ;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

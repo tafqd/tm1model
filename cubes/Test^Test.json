@@ -1,0 +1,15 @@
+{
+	"@type":"Cube",
+	"Name":"Test^Test",
+	"Rules@Code.link":"Test^Test.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Activity')"
+		},
+		{
+			"@id":"Dimensions('Allocation Asm Measure')"
+		}
+	],
+	"Views@Code.links":[]
+}

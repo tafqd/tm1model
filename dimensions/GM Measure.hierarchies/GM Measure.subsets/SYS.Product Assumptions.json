@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Product Assumptions",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Unit Price')"
+		},
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Gross Margin %')"
+		}
+	]
+}

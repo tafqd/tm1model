@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild PL Zero",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('PL Measure')/Hierarchies('PL Measure')/Elements('Allocation Amount')"
+		}
+	]
+}

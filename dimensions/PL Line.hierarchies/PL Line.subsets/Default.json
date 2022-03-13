@@ -1,0 +1,91 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('All Lines')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 1')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 2')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 3')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 4')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 5')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 6')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 7')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 8')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 9')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 10')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Unspec PL Line')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('PL Line Consolidations')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Reporting')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('All Lines')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 1')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 2')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 3')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 4')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 5')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 6')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 7')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 8')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 9')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Line 10')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('Unspec PL Line')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('System')"
+		},
+		{
+			"@id":"Dimensions('PL Line')/Hierarchies('PL Line')/Elements('No PL Line')"
+		}
+	]
+}

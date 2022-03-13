@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Report Default",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[GM Classification].[All Classifications]}, ALL, RECURSIVE )}"
+}

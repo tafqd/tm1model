@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"TM1py Quarter",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('TM1py Quarter')/Hierarchies('TM1py Quarter')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"TM1py Quarter.hierarchies/TM1py Quarter.json"
+	]
+}

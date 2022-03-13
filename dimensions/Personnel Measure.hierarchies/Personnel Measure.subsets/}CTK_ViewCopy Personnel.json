@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Personnel",
+	"Expression":"TM1SubsetAll([Personnel Measure])"
+}

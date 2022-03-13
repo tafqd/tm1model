@@ -1,0 +1,80 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, 2014-05-29, Initial set up of process
+#GENERALCOMMENT This process converts a dynamic subset of all elements from the Reporting consolidation into the default subset which remains static
+#DATASOURCECOMMENT Scrolls through the full list of dimensions and if a subset called 'SYS.Dynamic Default' exists, and then executes the process to convert it to the Default (static) subset
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+##########################################################
+## Define variables                                                                                                    ##
+##########################################################
+
+sControlDim = '}Dimensions' ;
+sControlSub = 'SYS.All Dimensions' ;
+sControlMDX = '{TM1SUBSETALL( [}Dimensions] )}' ;
+
+If (SubsetExists (sControlDim, sControlSub) = 0);
+   SubsetCreateByMDX (sControlSub, sControlMDX) ;
+EndIf;
+
+nControlSubSize = SubsetGetSize (sControlDim, sControlSub) ;
+
+sGenDynamicSub = 'SYS.Dynamic Default' ;
+sGenDefaultSub = 'Default' ;
+
+sProcess = '}CTK_SubsetDynamicToStatic' ;
+
+##########################################################
+## Convert dynamic workflow subset into static workflow subset                              ##
+##########################################################
+
+sDim = 'Cost Centre' ;
+sDynamicSub = 'SYS.Approval' ;
+sStaticBudSub = 'SYS.Budget Workflow' ;
+sStaticFcstSub = 'SYS.Forecast Workflow' ;
+
+ExecuteProcess (sProcess, 'pDim', sDim, 'pSubset', sDynamicSub, 'pSubsetTo', sStaticBudSub, 'pAlias', 'Code and Description');
+ExecuteProcess (sProcess, 'pDim', sDim, 'pSubset', sDynamicSub, 'pSubsetTo', sStaticFcstSub, 'pAlias', 'Code and Description');
+
+##########################################################
+## Copy the dynamic subset and set it as the default (static) subset                         ##
+##########################################################
+
+x = 1;
+
+While ( x <= nControlSubSize) ;
+
+   sDimName = SubsetGetElementName (sControlDim, sControlSub, x);
+   If (sDimName@='Period');
+      sGenDynamicSub = 'SYS.Base periods';
+   EndIf;
+
+   If (SubsetExists (sDimName, sGenDynamicSub) = 1) ;
+      ExecuteProcess (sProcess, 'pDim', sDimName, 'pSubset', sGenDynamicSub, 'pSubsetTo', sGenDefaultSub, 'pAlias', '');
+   EndIf ;
+
+   x = x+1;
+
+End ;
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

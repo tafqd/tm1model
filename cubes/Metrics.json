@@ -1,0 +1,46 @@
+{
+	"@type":"Cube",
+	"Name":"Metrics",
+	"Rules@Code.link":"Metrics.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Metric')"
+		},
+		{
+			"@id":"Dimensions('Metric Indicator')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Metrics.views/All.json",
+		"Metrics.views/Application.json",
+		"Metrics.views/Capex.json",
+		"Metrics.views/Debt and Equity.json",
+		"Metrics.views/Default.json",
+		"Metrics.views/EBIT.json",
+		"Metrics.views/Inputs.json",
+		"Metrics.views/Landing page.json",
+		"Metrics.views/Metrics.json",
+		"Metrics.views/Ratios.json",
+		"Metrics.views/Revenue.json",
+		"Metrics.views/Taccos.json",
+		"Metrics.views/Thirsty.json",
+		"Metrics.views/Total Assets.json",
+		"Metrics.views/Trend by version.json",
+		"Metrics.views/Trend over time.json",
+		"Metrics.views/Variance.json"
+	]
+}

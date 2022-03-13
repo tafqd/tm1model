@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.SortOrder",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Account].[Profit and Loss]}, ALL, RECURSIVE )}"
+}

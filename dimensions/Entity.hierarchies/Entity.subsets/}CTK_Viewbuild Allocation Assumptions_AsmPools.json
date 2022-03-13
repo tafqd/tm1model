@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocation Assumptions_AsmPools",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('E100')"
+		}
+	]
+}

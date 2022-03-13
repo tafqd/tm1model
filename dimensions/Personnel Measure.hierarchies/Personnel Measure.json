@@ -1,0 +1,270 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Personnel Measure",
+	"Elements":
+	[
+		{
+			"Name":"Name",
+			"Type":"String"
+		},
+		{
+			"Name":"FTE",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Base Salary",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Start Date",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"End Date",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary % 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary % 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary % 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary Amount 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary Amount 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary Amount 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Benefit Fixed 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Benefit Fixed 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag – Benefit 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag – Benefit 4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Benefit 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Benefit 4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Salary increase override",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Base increase",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Bonus provision",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Bonus override",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Allocation %",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total Benefit",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Total Remuneration",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"System End Date",
+			"Type":"String"
+		},
+		{
+			"Name":"System Start Date",
+			"Type":"String"
+		},
+		{
+			"Name":"Notes",
+			"Type":"String"
+		},
+		{
+			"Name":"Total Base Salary",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Bonus",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Position",
+			"Type":"String"
+		},
+		{
+			"Name":"Salary increase %",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cost Centre",
+			"Type":"String"
+		},
+		{
+			"Name":"ACC Amount",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Bonus Liability",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Headcount",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"GL Accounts",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"8002",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"3003",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Benefit Fixed 1",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Benefit Fixed 2",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Benefit 3",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Benefit 4",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Salary Amount 1",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Salary Amount 2",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Benefit",
+			"ComponentName":"Salary Amount 3",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Remuneration",
+			"ComponentName":"Total Base Salary",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Remuneration",
+			"ComponentName":"Total Benefit",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Remuneration",
+			"ComponentName":"Bonus provision",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Base Salary",
+			"ComponentName":"Base Salary",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Base Salary",
+			"ComponentName":"Base increase",
+			"Weight":1
+		},
+		{
+			"ParentName":"Bonus Liability",
+			"ComponentName":"Bonus",
+			"Weight":1
+		},
+		{
+			"ParentName":"Bonus Liability",
+			"ComponentName":"Bonus provision",
+			"Weight":1
+		},
+		{
+			"ParentName":"GL Accounts",
+			"ComponentName":"8002",
+			"Weight":1
+		},
+		{
+			"ParentName":"GL Accounts",
+			"ComponentName":"3003",
+			"Weight":1
+		},
+		{
+			"ParentName":"8002",
+			"ComponentName":"Total Base Salary",
+			"Weight":1
+		},
+		{
+			"ParentName":"3003",
+			"ComponentName":"Bonus Liability",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Personnel Measure.subsets/___TMP1402953563077.json",
+		"Personnel Measure.subsets/__BACKUP_temp__{494a8a8f-5641-41a7-8d1d-89e938efe8b2}.json",
+		"Personnel Measure.subsets/All Members.json",
+		"Personnel Measure.subsets/Default.json",
+		"Personnel Measure.subsets/Input measures.json",
+		"Personnel Measure.subsets/Level0.json",
+		"Personnel Measure.subsets/Report default.json",
+		"Personnel Measure.subsets/SYS.All Measures.json",
+		"Personnel Measure.subsets/SYS.Consolidation_ToDisconnect.json",
+		"Personnel Measure.subsets/SYS.Level0.json",
+		"Personnel Measure.subsets/}CTK_Viewbuild Personnel.json",
+		"Personnel Measure.subsets/}CTK_Viewbuild Personnel_Data.Personnel.Load.json",
+		"Personnel Measure.subsets/}CTK_Viewbuild Personnel_L0.json",
+		"Personnel Measure.subsets/}CTK_Viewbuild Personnel Zero.json",
+		"Personnel Measure.subsets/}CTK_ViewCopy Personnel.json"
+	]
+}

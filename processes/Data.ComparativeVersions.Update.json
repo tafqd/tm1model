@@ -1,0 +1,31 @@
+{
+	"@type":"Process",
+	"Name":"Data.ComparativeVersions.Update",
+	"Code@Code.link":"Data.ComparativeVersions.Update.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pBaseVersion",
+			"Prompt":"Base version",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pComparativeVersion",
+			"Prompt":"Comparative version",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pType",
+			"Prompt":"Type of version",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

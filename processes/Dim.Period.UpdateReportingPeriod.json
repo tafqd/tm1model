@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Period.UpdateReportingPeriod",
+	"Code@Code.link":"Dim.Period.UpdateReportingPeriod.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

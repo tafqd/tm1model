@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Generic.CreateStaticDefaultSubset",
+	"Code@Code.link":"Dim.Generic.CreateStaticDefaultSubset.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.SetConsolidationWeightingToZero",
+	"Code@Code.link":"SYSTEM.SetConsolidationWeightingToZero.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimName",
+			"Prompt":"Dim Name",
+			"Value":"Version",
+			"Type":"String"
+		},
+		{
+			"Name":"pConsolidation",
+			"Prompt":"Consolidation Name",
+			"Value":"Dynamic Versions",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

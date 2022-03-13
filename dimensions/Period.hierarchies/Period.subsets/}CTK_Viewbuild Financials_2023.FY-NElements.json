@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Financials_2023.FY-NElements",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PERIOD] )}, \"2023.FY\")}, ALL, RECURSIVE )}, 0)}"
+}

@@ -1,0 +1,169 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, 2014-05-29, Initial set up of process
+#GENERALCOMMENT This process sets up subsets on the Period dimension based on the Base Year held in the Assumptions cube
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Checks the needed subsets exist and then creates the subset based on an MDX statement or by inserting specific element(s) into the subset
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+
+sPeriodDim = 'Period' ;
+sAlias = 'Caption' ;
+sYearConsol = 'All FYs' ;
+nNoOfYears = ElcompN (sPeriodDim, sYearConsol) ;
+sBaseYearSub = 'SYS.Base Year' ;
+sBasePeriodSub = 'SYS.Base periods' ;
+sHistoricSub = 'SYS.Historic Years' ;
+sFutureSub = 'SYS.Future Years' ;
+sReportSub = 'SYS.Reporting Years' ;
+
+sBasePeriodMDX = '{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Period].[' | pBaseYear | '.FY' | ']}, ALL, RECURSIVE )}, 0)}' ;
+sHistoricMDX = '{TM1FILTERBYLEVEL( { DRILLDOWNMEMBER( {[Period].[All FYs]}, {[Period].[All FYs]} ) }, 2)}' ; 
+
+######################
+## Set up base year subset   ##
+######################
+
+# If subset doesn't exist, create it
+IF (SubsetExists (sPeriodDim, sBaseYearSub) = 0);
+   SubsetCreate (sPeriodDim, sBaseYearSub) ;
+ENDIF;
+
+#Clear existing elements from the subset
+IF ( SubsetGetSize (sPeriodDim, sBaseYearSub) >0);
+   SubsetDeleteAllElements (sPeriodDim, sBaseYearSub);
+ENDIF;
+
+SubsetElementInsert (sPeriodDim, sBaseYearSub, pBaseYear, 1);
+
+########################
+## Set up base periods subset   ##
+########################
+
+# If subset doesn't exist, create it
+IF (SubsetExists (sPeriodDim, sBasePeriodSub) = 1);
+   SubsetDestroy (sPeriodDim, sBasePeriodSub) ;
+   SubsetCreateByMDX (sBasePeriodSub, sBasePeriodMDX) ;
+ELSE;
+   SubsetCreateByMDX (sBasePeriodSub, sBasePeriodMDX) ;
+ENDIF;
+
+########################
+## Set up historic years subset   ##
+########################
+
+# If subset doesn't exist, create it
+# If subset does exist, clear elements 
+IF (SubsetExists (sPeriodDim, sHistoricSub) = 1);
+   SubsetDeleteAllElements (sPeriodDim, sHistoricSub) ;
+ELSE;
+   SubsetCreate (sPeriodDim, sHistoricSub);
+ENDIF;
+
+#Only add years less than base year into subset
+x = 1;
+
+While ( x <= nNoOfYears);
+   sYearEl = Elcomp (sPeriodDim, sYearConsol, x) ;
+   If (Dimix (sPeriodDim, sYearEl) < Dimix (sPeriodDim, pBaseYear) );
+      SubsetElementInsert (sPeriodDim, sHistoricSub, sYearEl, x) ;
+   EndIf ;
+   x = x + 1 ;
+End;
+
+#########################
+## Set up reporting years subset  ##
+#########################
+
+# If subset doesn't exist, create it
+# If subset does exist, clear elements 
+IF (SubsetExists (sPeriodDim, sReportSub) = 1);
+   SubsetDeleteAllElements (sPeriodDim, sReportSub) ;
+ELSE;
+   SubsetCreate (sPeriodDim, sReportSub);
+ENDIF;
+
+#Add years less than base year and base year into subset
+x = 1;
+
+While ( x <= nNoOfYears);
+   sYearEl = Elcomp (sPeriodDim, sYearConsol, x) ;
+   If (Dimix (sPeriodDim, sYearEl) <= Dimix (sPeriodDim, pBaseYear) );
+      SubsetElementInsert (sPeriodDim, sReportSub, sYearEl, 1) ;
+   EndIf ;
+   x = x + 1 ;
+End;
+
+########################
+## Set up future years subset     ##
+########################
+
+# If subset doesn't exist, create it
+# If subset does exist, clear elements 
+IF (SubsetExists (sPeriodDim, sFutureSub) = 1);
+   SubsetDeleteAllElements (sPeriodDim, sFutureSub) ;
+ELSE;
+   SubsetCreate (sPeriodDim, sFutureSub);
+ENDIF;
+
+#Only add years greater than base year into subset
+x = 1;
+
+While ( x <= nNoOfYears);
+   sYearEl = Elcomp (sPeriodDim, sYearConsol, x) ;
+   If (Dimix (sPeriodDim, sYearEl) > Dimix (sPeriodDim, pBaseYear) );
+      SubsetElementInsert (sPeriodDim, sFutureSub, sYearEl, 1) ;
+   EndIf ;
+   x = x + 1 ;
+End;
+
+##########################
+## Set up picklist values subset      ##
+##########################
+sPickSub = 'SYS.Picklist Values';
+IF (SubsetExists (sPeriodDim, sPickSub) = 1);
+   SubsetDeleteAllElements (sPeriodDim, sPickSub) ;
+   SubsetAliasSet (sPeriodDim, sPickSub, sAlias);
+ELSE;
+   SubsetCreate (sPeriodDim, sPickSub);
+   SubsetAliasSet (sPeriodDim, sPickSub, sAlias);
+ENDIF;
+
+x = DimIx(sPeriodDim,pBaseYear|'.01');
+xMax = DimSiz(sPeriodDim);
+
+While(x <= xMax);
+  sPeriodEl = DimNm(sPeriodDim, x);
+  nInsert = SubsetGetSize(sPeriodDim, sPickSub) + 1;
+  If(ElISAnc(sPeriodDim, sYearConsol, sPeriodEl) = 1 & DType(sPeriodDim, sPeriodEl) @= 'N');
+    SubsetElementInsert (sPeriodDim, sPickSub, sPeriodEl, nInsert) ;
+  EndIf;
+  x = x + 1;
+End;
+
+
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

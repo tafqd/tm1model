@@ -1,0 +1,33 @@
+{
+	"@type":"Hierarchy",
+	"Name":"DV Measures",
+	"Elements":
+	[
+		{
+			"Name":"All",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Has Actuals",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Manual Override",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"All",
+			"ComponentName":"Has Actuals",
+			"Weight":1
+		},
+		{
+			"ParentName":"All",
+			"ComponentName":"Manual Override",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

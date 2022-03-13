@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild PL_Data.PL.Load",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('PL Measure')/Hierarchies('PL Measure')/Elements('Amount')"
+		}
+	]
+}

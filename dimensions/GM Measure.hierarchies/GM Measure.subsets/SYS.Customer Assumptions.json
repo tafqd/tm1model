@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Customer Assumptions",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Discount %')"
+		},
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('Rebate %')"
+		}
+	]
+}

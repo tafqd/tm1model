@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Reporting Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Reporting Measure')/Hierarchies('Reporting Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Reporting Measure.hierarchies/Reporting Measure.json"
+	]
+}

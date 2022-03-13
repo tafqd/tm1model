@@ -1,0 +1,25 @@
+{
+	"@type":"Subset",
+	"Name":"QUBEdocs.Application Definitions",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#Desc')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#Owner')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#Users')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#DocumentLinkName')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#DocumentLink')"
+		},
+		{
+			"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')/Elements('#IncludeInDiagrams')"
+		}
+	]
+}

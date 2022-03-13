@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Reserve Movement",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Reserve Movement')/Hierarchies('Reserve Movement')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Reserve Movement.hierarchies/Reserve Movement.json"
+	]
+}

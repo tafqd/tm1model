@@ -1,0 +1,18 @@
+{
+	"@type":"Cube",
+	"Name":"(Break+EverythingPlease)",
+	"Rules@Code.link":"(Break+EverythingPlease).rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('a_Idk')"
+		},
+		{
+			"@id":"Dimensions('Account')"
+		},
+		{
+			"@id":"Dimensions('Activity')"
+		}
+	],
+	"Views@Code.links":[]
+}

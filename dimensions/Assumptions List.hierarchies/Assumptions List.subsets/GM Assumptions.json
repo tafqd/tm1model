@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"GM Assumptions",
+	"Expression":"{TM1FILTERBYPATTERN( {TM1SUBSETALL( [Assumptions List] )}, \"*GM*\")}"
+}

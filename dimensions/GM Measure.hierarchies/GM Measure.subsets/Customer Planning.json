@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Customer Planning",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[GM Measure].[Customer Measures]}, ALL, RECURSIVE )}"
+}

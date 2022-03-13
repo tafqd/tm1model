@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.String",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions Measure')/Hierarchies('Assumptions Measure')/Elements('String')"
+		}
+	]
+}

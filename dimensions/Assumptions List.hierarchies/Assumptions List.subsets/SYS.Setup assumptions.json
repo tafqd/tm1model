@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Setup assumptions",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Capex Model On')"
+		},
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Personnel Model On')"
+		},
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Reporting Currency')"
+		}
+	]
+}

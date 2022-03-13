@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"Report Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Cost')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Depreciation Start Period')"
+		}
+	]
+}

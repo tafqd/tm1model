@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"Default Cost Centre",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Default Cost Centre')"
+		}
+	]
+}

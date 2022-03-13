@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"Data.UpdateDynamicVersionsWithActuals",
+	"Code@Code.link":"Data.UpdateDynamicVersionsWithActuals.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pVersion",
+			"Prompt":"Update version?",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pYear",
+			"Prompt":"Update year?",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

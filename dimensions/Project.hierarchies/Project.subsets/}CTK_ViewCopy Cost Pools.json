@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Cost Pools",
+	"Expression":"TM1SubsetAll([Project])"
+}

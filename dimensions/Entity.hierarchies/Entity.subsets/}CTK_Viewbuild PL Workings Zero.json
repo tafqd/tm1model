@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild PL Workings Zero",
+	"Expression":"TM1SubsetAll([Entity])"
+}

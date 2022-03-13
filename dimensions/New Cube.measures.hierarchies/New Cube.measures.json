@@ -1,0 +1,15 @@
+{
+	"@type":"Hierarchy",
+	"Name":"New Cube.measures",
+	"Elements":
+	[
+		{
+			"Name":"Value 1",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"New Cube.measures.subsets/All Members.json"
+	]
+}

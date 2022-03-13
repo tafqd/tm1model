@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.All Input",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Period].[All Input]}, ALL, RECURSIVE )}, 0)}"
+}

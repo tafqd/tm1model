@@ -1,0 +1,93 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Capex Measure",
+	"Elements":
+	[
+		{
+			"Name":"Cost",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Depreciation",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Depreciation Rate",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Depreciation Start Period",
+			"Type":"String"
+		},
+		{
+			"Name":"Rate Override",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Work in Progress",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Capitalised Amount",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Accumulated Capitalised",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Accumulated Depreciation",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Opening WIP",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Notes",
+			"Type":"String"
+		},
+		{
+			"Name":"Asset Class",
+			"Type":"String"
+		},
+		{
+			"Name":"Cost Centre",
+			"Type":"String"
+		},
+		{
+			"Name":"Carrying Value",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Accumulated WIP",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Carrying Value",
+			"ComponentName":"Accumulated Capitalised",
+			"Weight":1
+		},
+		{
+			"ParentName":"Carrying Value",
+			"ComponentName":"Accumulated Depreciation",
+			"Weight":-1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Capex Measure.subsets/All Members.json",
+		"Capex Measure.subsets/Default.json",
+		"Capex Measure.subsets/Level0.json",
+		"Capex Measure.subsets/Report Default.json",
+		"Capex Measure.subsets/SYS.Level0.json",
+		"Capex Measure.subsets/SYS.Report measures.json",
+		"Capex Measure.subsets/}CTK_Viewbuild Capex.json",
+		"Capex Measure.subsets/}CTK_Viewbuild Capex_L0.json",
+		"Capex Measure.subsets/}CTK_Viewbuild Capex Zero.json",
+		"Capex Measure.subsets/}CTK_ViewCopy Capex.json"
+	]
+}

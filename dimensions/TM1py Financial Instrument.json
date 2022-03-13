@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"TM1py Financial Instrument",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('TM1py Financial Instrument')/Hierarchies('TM1py Financial Instrument')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"TM1py Financial Instrument.hierarchies/TM1py Financial Instrument.json"
+	]
+}

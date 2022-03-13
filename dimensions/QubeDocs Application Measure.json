@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"QubeDocs Application Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('QubeDocs Application Measure')/Hierarchies('QubeDocs Application Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"QubeDocs Application Measure.hierarchies/QubeDocs Application Measure.json"
+	]
+}

@@ -1,0 +1,181 @@
+{
+	"@type":"NativeView",
+	"Name":"Financials",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.01')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.02')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.03')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.04')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.05')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.06')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.07')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.08')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.09')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.10')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.11')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.12')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.00')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.Driver')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2014.Input')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Account')/Hierarchies('Account')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Profit and Loss')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Balance Sheet')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Assets')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Liabilities')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Total Equity')"
+					},
+					{
+						"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Cash Flow')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('All Currencies')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Version')/Hierarchies('Version')"
+				},
+				"Expression":"TM1SubsetAll([Version])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Actual')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')"
+				},
+				"Expression":"[Financial Measure].MEMBERS"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Total Amount')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Subsets('All Members')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centres')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00"
+}

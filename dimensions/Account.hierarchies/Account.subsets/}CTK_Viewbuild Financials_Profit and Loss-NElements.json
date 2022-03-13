@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Financials_Profit and Loss-NElements",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [ACCOUNT] )}, \"Profit and Loss\")}, ALL, RECURSIVE )}, 0)}"
+}

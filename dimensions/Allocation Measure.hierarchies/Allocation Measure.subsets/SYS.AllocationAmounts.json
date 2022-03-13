@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.AllocationAmounts",
+	"Expression":"{TM1FILTERBYPATTERN( {TM1SUBSETALL( [Allocation Measure] )}, \"Allocation Amount*\")}"
+}

@@ -1,0 +1,63 @@
+{
+	"@type":"Cube",
+	"Name":"Allocations",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Version')"
+		},
+		{
+			"@id":"Dimensions('Period')"
+		},
+		{
+			"@id":"Dimensions('Entity')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre From')"
+		},
+		{
+			"@id":"Dimensions('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Project')"
+		},
+		{
+			"@id":"Dimensions('Currency')"
+		},
+		{
+			"@id":"Dimensions('Report Type')"
+		},
+		{
+			"@id":"Dimensions('Allocation Pool')"
+		},
+		{
+			"@id":"Dimensions('Allocation Driver')"
+		},
+		{
+			"@id":"Dimensions('Allocation Account')"
+		},
+		{
+			"@id":"Dimensions('Allocation List')"
+		},
+		{
+			"@id":"Dimensions('Allocation Measure')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"Allocations.views/All.json",
+		"Allocations.views/Allocation Calculation.json",
+		"Allocations.views/Default.json",
+		"Allocations.views/Financial Summary.json",
+		"Allocations.views/SYS.Allocated costs by Source.json",
+		"Allocations.views/SYS.Allocation By Account.json",
+		"Allocations.views/SYS.Allocation By Cost Centre.json",
+		"Allocations.views/SYS.Allocation Recon.json",
+		"Allocations.views/SYS.Allocation Rules.json",
+		"Allocations.views/SYS.Allocation Variances.json",
+		"Allocations.views/SYS.Driver Data.json",
+		"Allocations.views/SYS.Financial Impact.json",
+		"Allocations.views/SYS.Financials.json",
+		"Allocations.views/SYS.Financial Summary.json"
+	]
+}

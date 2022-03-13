@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"GM Classification",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('GM Classification')/Hierarchies('GM Classification')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"GM Classification.hierarchies/GM Classification.json"
+	]
+}

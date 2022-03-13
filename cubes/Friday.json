@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"Friday",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('Capex Measure')"
+		},
+		{
+			"@id":"Dimensions('Allocation List')"
+		}
+	],
+	"Views@Code.links":[]
+}

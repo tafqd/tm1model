@@ -1,0 +1,64 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+vi_StartIdx  = Long (ps_SearchStr) + 1;
+vs_FileName  = '';
+vs_FilePath  = GetProcessErrorFileDirectory;
+
+# Search for presence of given file
+vs_FileName  = WildcardFileSearch (vs_FilePath | ps_SearchStr | '*.log', '');
+WHILE (vs_FileName @<> '');
+# Get its date and subtract from today's date.  If more than nn days – specified in the parameter, then delete it
+vLogFileDate = DAYNO ( SUBST (vs_FileName, vi_StartIdx, 4) | '-' | SUBST (vs_FileName, vi_StartIdx + 4, 2) | '-' | SUBST (vs_FileName, vi_StartIdx + 4 + 2, 2)) ;
+vTodayDate   = DAYNO(TODAY(1));
+vDifference  = vTodayDate - vLogFileDate;
+IF (vDifference > pi_Days);
+AsciiDelete (vs_FilePath | vs_FileName);
+vs_FileName = '';
+ENDIF;
+# Search for the next file
+vs_FileName = WildcardFileSearch (vs_FilePath | ps_SearchStr | '*.log', vs_FileName);
+END;
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# Delete other .log files here, which users/developers would have created that is not required
+vs_LogFile1  = 'TM1ProcessError_';
+vs_LogFile2  = 'tm1s';
+vs_FileName  = '';
+vs_FilePath  = GetProcessErrorFileDirectory;
+
+vs_FileName  = WildcardFileSearch (vs_FilePath | '*.log', '');
+WHILE (vs_FileName @<> '');
+# Ensure it is not one of the TI errors or the timestamped tm1s.log file
+IF (Scan (vs_LogFile1, vs_FileName) = 0 & Scan (vs_LogFile2, vs_FileName) = 0);
+AsciiDelete (vs_FilePath | vs_FileName);
+vs_FileName  = '';
+ENDIF;
+vs_FileName = WildcardFileSearch (vs_FilePath | '*.log', vs_FileName);
+END;
+
+# Delete miscelaneous files like .txt, .csv, .cma files from log directory
+# Below is an example for .txt alone
+vs_FileName  = WildcardFileSearch (vs_FilePath | '*.txt', '');
+WHILE (vs_FileName @<> '');
+AsciiDelete (vs_FilePath | vs_FileName);
+vs_FileName = WildcardFileSearch (vs_FilePath | '*.txt', '');
+END;
+#endregion

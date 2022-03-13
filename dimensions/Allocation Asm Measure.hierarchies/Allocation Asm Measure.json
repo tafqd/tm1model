@@ -1,0 +1,81 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Allocation Asm Measure",
+	"Elements":
+	[
+		{
+			"Name":"All Drivers",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Floor Space",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"AP Invoices",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"AR Invoices",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Phone Calls",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"GIS Clients",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"test",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Include in Pool",
+			"Type":"String"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"Floor Space",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"AP Invoices",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"AR Invoices",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"Phone Calls",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"GIS Clients",
+			"Weight":1
+		},
+		{
+			"ParentName":"All Drivers",
+			"ComponentName":"test",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Allocation Asm Measure.subsets/SYS.Allocation Drivers.json",
+		"Allocation Asm Measure.subsets/SYS.Include in Pool.json",
+		"Allocation Asm Measure.subsets/}CTK_Viewbuild Allocation Assumptions.json",
+		"Allocation Asm Measure.subsets/}CTK_Viewbuild Allocation Assumptions_AsmPools.json",
+		"Allocation Asm Measure.subsets/}CTK_Viewbuild Allocation Assumptions_L0.json",
+		"Allocation Asm Measure.subsets/}CTK_Viewbuild Allocation Assumptions Zero.json"
+	]
+}

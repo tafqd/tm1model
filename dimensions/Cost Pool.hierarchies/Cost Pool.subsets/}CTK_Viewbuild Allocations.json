@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocations",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Cost Pool')/Hierarchies('Cost Pool')/Elements('Pool 1')"
+		}
+	]
+}

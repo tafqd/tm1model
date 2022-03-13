@@ -1,0 +1,18 @@
+{
+	"@type":"Chore",
+	"Name":"zSaveData",
+	"StartTime":"2014-11-26T09:00Z",
+	"ExecutionMode":"SingleCommit",
+	"Frequency":"P1DT00H00M00S",
+	"Tasks":
+	[
+		{
+			"Step":0,
+			"Parameters":[],
+			"Process":
+			{
+				"@id":"Processes('zSaveData')"
+			}
+		}
+	]
+}

@@ -1,0 +1,52 @@
+{
+	"@type":"Subset",
+	"Name":"Input measures",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Remuneration')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Base Salary')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base Salary')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Base increase')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Total Benefit')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit Fixed 1')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit Fixed 2')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit 3')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Benefit 4')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 1')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 2')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Salary Amount 3')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('Bonus provision')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('FTE')"
+		},
+		{
+			"@id":"Dimensions('Personnel Measure')/Hierarchies('Personnel Measure')/Elements('ACC Amount')"
+		}
+	]
+}

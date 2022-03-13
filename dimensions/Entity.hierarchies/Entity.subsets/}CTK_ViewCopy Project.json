@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_ViewCopy Project",
+	"Expression":"TM1SubsetAll([Entity])"
+}

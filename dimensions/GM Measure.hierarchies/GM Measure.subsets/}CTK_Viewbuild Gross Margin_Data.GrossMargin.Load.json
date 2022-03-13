@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Gross Margin_Data.GrossMargin.Load",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('GM Measure')/Hierarchies('GM Measure')/Elements('SYS.ToClear')"
+		}
+	]
+}

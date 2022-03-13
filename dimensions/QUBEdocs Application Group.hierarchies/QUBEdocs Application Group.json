@@ -1,0 +1,32 @@
+{
+	"@type":"Hierarchy",
+	"Name":"QUBEdocs Application Group",
+	"Elements":
+	[
+		{
+			"Name":"HEADER",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Planning Templates",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reports",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Views",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Key calculations",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"QUBEdocs Application Group.subsets/QUBEdocs.Header.json",
+		"QUBEdocs Application Group.subsets/QUBEdocs.Item Groups.json"
+	]
+}

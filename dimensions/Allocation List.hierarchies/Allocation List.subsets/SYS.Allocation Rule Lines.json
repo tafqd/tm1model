@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Allocation Rule Lines",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Allocation List].[All Allocations]}, ALL, RECURSIVE )}"
+}

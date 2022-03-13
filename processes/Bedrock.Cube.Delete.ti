@@ -1,0 +1,139 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+# This process deletes cubes.
+
+
+### Constants ###
+
+cProcess = 'Bedrock.Cube.Delete';
+cTimeStamp = TimSt( Now, '\Y\m\d\h\i\s' );
+sRandomInt = NumberToString( INT( RAND( ) * 1000 ));
+cDebugFile = GetProcessErrorFileDirectory | cProcess | '.' | cTimeStamp | '.' | sRandomInt ;
+
+
+### Initialise Debug ###
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Prolog.debug';
+
+  # Log start time
+  AsciiOutput( sDebugFile, 'Process Started: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+  # Log parameters
+  AsciiOutput( sDebugFile, 'Parameters: pCubes     : ' | pCubes );
+  AsciiOutput( sDebugFile, '            pDelimiter : ' | pDelimiter );
+
+EndIf;
+
+
+### Validate Parameters ###
+
+nErrors = 0;
+
+# If blank delimiter specified then convert to default
+If( pDelimiter @= '' );
+  pDelimiter = '&';
+EndIf;
+
+# If no cubes have been specified then terminate process
+If( Trim( pCubes ) @= '' );
+  nErrors = 1;
+  sMessage = 'No cubes specified';
+  If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ItemReject( sMessage );
+EndIf;
+
+
+### Split parameter into individual cubes and delete ###
+
+sCubes = pCubes;
+nDelimiterIndex = 1;
+
+While( nDelimiterIndex <> 0 );
+  nDelimiterIndex = Scan( pDelimiter, sCubes );
+  If( nDelimiterIndex = 0 );
+    sCube = sCubes;
+  Else;
+    sCube = Trim( SubSt( sCubes, 1, nDelimiterIndex - 1 ) );
+    sCubes = Trim( Subst( sCubes, nDelimiterIndex + Long(pDelimiter), Long( sCubes ) ) );
+  EndIf;
+  # Don't attempt to process a blank Cube
+  If( sCube @<> '' );
+    If( CubeExists( sCube ) = 1 );
+      If( pDebug >= 1 );
+        AsciiOutput( sDebugFile, 'Cube: ' | sCube | ' OK' );
+      EndIf;
+      If( pDebug <= 1 );
+        CubeDestroy( sCube );
+      EndIf;
+    Else;
+      If( pDebug >= 1 );
+        AsciiOutput( sDebugFile, 'Cube: ' | sCube | ' does not exist' );
+      EndIf;
+    EndIf;
+  EndIf;
+End;
+
+
+### End Prolog ###
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+
+### Initialise Debug ###
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Epilog.debug';
+
+  # Log errors
+  If( nErrors <> 0 );
+    AsciiOutput( sDebugFile, 'Errors Occurred' );
+  EndIf;
+
+  # Log finish time
+  AsciiOutput( sDebugFile, 'Process Finished: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+EndIf;
+
+
+### If errors occurred terminate process with a major error status ###
+
+If( nErrors <> 0 );
+  ProcessQuit;
+EndIf;
+
+
+### End Epilog ###
+#endregion

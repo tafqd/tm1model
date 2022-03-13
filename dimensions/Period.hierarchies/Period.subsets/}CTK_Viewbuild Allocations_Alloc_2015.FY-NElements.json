@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocations_Alloc_2015.FY-NElements",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {TM1FILTERBYPATTERN( {TM1SUBSETALL( [PERIOD] )}, \"2015.FY\")}, ALL, RECURSIVE )}, 0)}"
+}

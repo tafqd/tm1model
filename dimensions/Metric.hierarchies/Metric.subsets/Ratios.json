@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Ratios",
+	"Expression":"{TM1DRILLDOWNMEMBER( {[Metric].[Ratios]}, ALL, RECURSIVE )}"
+}

@@ -1,0 +1,151 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Reserve Movement",
+	"Elements":
+	[
+		{
+			"Name":"Closing Balance",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Opening Balance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total Movement",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Transfers In",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Depreciation",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Interest In",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Surpluses In",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Other Transfers In",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Disposal",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Transfers Out",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Interest Out",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Capex",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Funding Out",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Other Transfers Out",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Net Interest",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Closing Balance",
+			"ComponentName":"Opening Balance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Closing Balance",
+			"ComponentName":"Total Movement",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Movement",
+			"ComponentName":"Transfers In",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Movement",
+			"ComponentName":"Transfers Out",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers In",
+			"ComponentName":"Depreciation",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers In",
+			"ComponentName":"Interest In",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers In",
+			"ComponentName":"Surpluses In",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers In",
+			"ComponentName":"Other Transfers In",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers In",
+			"ComponentName":"Disposal",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers Out",
+			"ComponentName":"Capex",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers Out",
+			"ComponentName":"Interest Out",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers Out",
+			"ComponentName":"Funding Out",
+			"Weight":1
+		},
+		{
+			"ParentName":"Transfers Out",
+			"ComponentName":"Other Transfers Out",
+			"Weight":1
+		},
+		{
+			"ParentName":"Net Interest",
+			"ComponentName":"Interest In",
+			"Weight":1
+		},
+		{
+			"ParentName":"Net Interest",
+			"ComponentName":"Interest Out",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Reserve Movement.subsets/}CTK_Viewbuild Reserves.json",
+		"Reserve Movement.subsets/}CTK_Viewbuild Reserves_L0.json",
+		"Reserve Movement.subsets/}CTK_Viewbuild Reserves Zero.json"
+	]
+}

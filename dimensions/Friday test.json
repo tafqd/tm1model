@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Friday test",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Friday test')/Hierarchies('Friday test')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Friday test.hierarchies/Friday test.json"
+	]
+}

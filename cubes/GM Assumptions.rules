@@ -1,0 +1,102 @@
+#Region System
+FEEDSTRINGS;
+SKIPCHECK;
+#EndRegion
+
+#Region Gross Margin Model On
+#Name Gross Margin Model On
+#Desc STET all rules if Gross Margin model is not turned on
+#Date November-2014
+#Author Inel Peacock
+#Group STET Rules
+[] = N:
+	If(DB('Assumptions',!Version,'No Period','No Entity','No Currency','Gross Margin Model On','Value') = 1,
+		Continue,
+		STET
+	);
+#EndRegion
+
+#Region STETS
+#Name STET actual months
+#Desc Limits rules to all months that have not been actualised. Actuals are populated by a Turbo Integrator process.
+#Date 11/05/2014
+#Author Michael Mackie
+[] = N:
+IF (DB('Assumptions',!Version,!Period,'No Entity','No Currency','Month Contains Actuals','Value') =1,
+	STET,
+Continue);
+
+#Name STETS
+#Desc STET Annual and Phased Periods
+#Date April-2014
+#Author Louise Davenport
+#Group STET Rules
+[]=N:
+	IF(ELISANC('Period', 'All Input',!Period) = 1,
+		STET,
+	CONTINUE);
+#EndRegion
+
+
+
+#Region Phased Assumptions
+#Name Phase Annual Entry to Months
+#Desc Allow Entry in either Annual or Months where amounts can change
+#Date November-2014
+#Author Inel Peacock
+#Group Rules
+[] = N:
+	IF(DB('GM Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Currency,!GM Classification,!Customer,!Product,!GM Assumption Measure) <> 0 &
+	SUBST(!Period,6,6)@<>'Driver',
+		DB('GM Assumptions',!Version, SUBST(!Period,1,4)|'.Input',!Currency,!GM Classification,!Customer,!Product,!GM Assumption Measure),
+	Continue
+	);
+#EndRegion
+
+#Region Category assumptions
+#Name Cateogry assumptions
+#Desc If assumptions are entered at product or customer category level, apply down to individual products or customers
+#Date November-2014
+#Author Inel Peacock
+#Group Rules
+#[] = N:
+#IF(ELLEV('Customer', !Customer)=0 & Scan ('.Input',!Customer)=0,
+#	IF(DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,Attrs('Customer',!Customer,'Customer Category')|'.Input',!Product,!GM Assumption Measure) = 0,
+#		CONTINUE,
+#		DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,Attrs('Customer',!Customer,'Customer Category')|'.Input',!Product,!GM Assumption Measure)
+#	),
+#	Continue);
+
+#[] = N:
+#IF(ELLEV('Product', !Product)=0 & Scan ('.Input',!Product)=0,
+#	IF(DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,!Customer,Attrs('Product',!Product,'Product Category')|'.Input',!GM Assumption Measure) = 0,
+#		CONTINUE,
+#		DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,!Customer,Attrs('Product',!Product,'Product Category')|'.Input',!GM Assumption Measure)
+#	),
+#	Continue);
+#EndRegion
+
+FEEDERS;
+
+#Region Feed Phased Assumptions
+#Name Feed Input Entry to Months
+#Desc Allow Entry in either Annual or Months where amounts can change
+#Date November-2014
+#Author Inel Peacock
+#Group Feeders
+['All Input']=>
+DB('GM Assumptions',!Version, SUBST(!Period,1,4)|'.FY',!Currency,!GM Classification,!Customer,!Product,!GM Assumption Measure);
+#EndRegion
+
+#Region Feed Category Assumptions
+#Name Feed category Assumptions
+#Desc Allow Entry in either cateogry or individual customer or product levels
+#Date November-2014
+#Author Inel Peacock
+#Group Feeders
+['Product':'All Inputs']=>
+DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,!Customer,'All Products',!GM Assumption Measure);
+
+['Customer':'All Inputs'] =>
+DB('GM Assumptions',!Version, !Period,!Currency,!GM Classification,'All Customers',!Product,!GM Assumption Measure);
+#EndRegion

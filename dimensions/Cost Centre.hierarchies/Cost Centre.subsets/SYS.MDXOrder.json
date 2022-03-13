@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.MDXOrder",
+	"Expression":"{{FILTER({{ORDER({FILTER( { [Cost Centre].[Warehouse Network].Children }, [Cost Centre].[Order Override]  > 0)}, [Cost Centre].[Order Override] )},{TM1SORT({FILTER( { [Cost Centre].[Warehouse Network].Children},              [Cost Centre].[Order Override]  = 0)}, ASC)}}, [Cost Centre].[Hierarchy_All Cost Centres] = \"Warehouse Network\")},[Cost Centre].[No Cost Centre]}"
+}

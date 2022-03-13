@@ -1,0 +1,328 @@
+#Region System
+FEEDSTRINGS;
+SKIPCHECK;
+#EndRegion
+
+#Region STET Versions
+#Name Stet Versions & Periods
+#Desc Stet Rules from applying to various things
+#Date June-2014
+#Author Louise Davenport
+#Group Stet Rules
+#Stet anything but Dynamic Versions
+[]=N:
+	IF(ELISANC('Version', 'Dynamic Versions',!Version)=0,
+		STET,
+	CONTINUE); 
+# Stet certain measures
+[{'Rate Override','Opening WIP','Depreciation Start Period'}]=N:STET;
+#EndRegion
+
+#Region Turn model on / off
+#Name Turn model on / off
+#Desc Turn model on / off based on setup assumption
+#Date November-2014
+#Author Inel Peacock
+#Group Stet Rules
+[] = N:
+IF (DB('Assumptions',!Version, 'No Period','No Entity','No Currency', 'Capex Model On','String')@='Yes',
+	Continue,
+	STET) ;
+#EndRegion
+
+#Region Conversion from Local to Group
+#Name Calculate Group 
+#Desc Convert Local Numbers to Group Reporting Currency
+#Date June-2014
+#Author Louise Davenport
+#Group Local to Group Conversion
+[ReportType:'Converted']= N:
+	# Don't make them have to enter a 1 when there is only one currency and populate into the reporting Currency
+	 IF(!Currency @= DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),
+		['Local'],
+		['Local']
+		\ DB('Assumptions', !Version,!Period, 'No Entity', !Currency, 'Exchange Rate', 'Value')
+	 );
+
+[ReportType:'Group']= N:
+	# Don't make them have to enter a 1 when there is only one currency and populate into the reporting Currency
+	 IF(!Currency @= DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),
+		 ['All Currencies','Converted'],
+	 CONTINUE);
+#EndRegion
+
+#Region STET Group
+#Name Stet Group Report Type
+#Desc Stet Rules below from applying to group (apply to local)
+#Date June-2014
+#Author Louise Davenport
+#Group Stet Rules
+#Stet anything but Local
+[]=N:
+	IF(!ReportType @<> 'Local',
+		STET,
+	CONTINUE); 
+#EndRegion
+
+#Region Depreciation Rate
+#Name Determine Depreciation Rate
+#Desc Determine  the Depreciation Ratebased on either default rates or Rate override
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+['No Period','Depreciation Rate']=N:
+	IF(['Rate Override'] <> 0, 
+		['Rate Override'],
+	DB('Capex','No Version',!Period,'No Entity','No Cost Centre','No Project','No Currency',!ReportType,
+	DB('Capex',!Version,!Period,!Entity,!Cost Centre, !Project,!Currency, !ReportType,'No Asset Class', !CapexList,'Asset Class'),
+	'No Capex List', !CapexMeasure));
+# Stet any further rules on depreciation rate
+['Depreciation Rate']=N: STET;
+#EndRegion
+
+#Region STET Anything buy Fiscal periods i.e. 00, Input, driver etc
+#Name Stet Periods
+#Desc Stet Rules from applying to various things
+#Date June-2014
+#Author Louise Davenport
+#Group Stet Rules
+#Stet anything but All FYs periods within planning years
+[] = N:
+	IF (ELISANC('Period', !Version|' Years', SubSt(!Period,1,4)|'.FY') = 0,
+		STET, 
+	Continue);
+#EndRegion
+
+#Region Allocate to Asset Class
+#Name Allocate to Asset Class
+#Desc Allocate Costs to the Asset Class Selected
+#Date June-2014
+#Author Louise Davenport
+#Group Allocation Rules
+[]=N:
+	IF(ELISANC('Asset Class', 'All Asset Classes', !AssetClass) = 1,
+		IF(!AssetClass @= DB('Capex', !Version, 'No Period', !Entity, !Cost Centre, !Project, !Currency, !Report Type, 'No Asset Class', !Capex List, 'Asset Class'),
+			['No Asset Class'],
+		STET),
+	CONTINUE);
+
+#EndRegion
+
+#Region Populate Cost Centre measure
+#Name Populate Cost Centre
+#Desc If Capex is not being centrally planned, pre-populate the Cost Centre measure in template
+#Date June-2014
+#Author Inel Botha
+#Group Cost Centre rules
+['Cost Centre'] =S:
+	IF (DB('Assumptions', 'No Version','No Period', 'No Entity','No Currency', 'Capex – centrally planned', 'String')@<>'Yes',
+		IF(!Period @= 'No Period',
+			IF(DTYPE('Cost Centre', !Cost Centre)@='N',
+				IF(!Cost Centre@<>'Capex Cost Centre' & !Cost Centre @<> 'Personnel Cost Centre',
+					IF(DTYPE('Capex List', !Capex List)@='N',
+						!Cost Centre,
+						STET),
+				STET),
+			STET),
+		STET),
+	STET);
+#EndRegion
+
+#Region STET Asset Classes
+#Name Stet Asset Classes
+#Desc STET Asset Classes as allocated to those above
+#Date June-2014
+#Author Louise Davenport
+#Group Stet Rules
+#STET Asset Classes as allocated to those above
+[] = N:
+	IF (ELISANC('Asset Class', 'All Asset Classes', !AssetClass) = 1,
+		STET,
+	Continue);
+#EndRegion
+
+#Region Work in Prgress
+#Name Calculate Work in Prgress
+#Desc Determine a Work in progress amount if any
+#Date June 2014
+#Author Louise Davenport
+#Group Capex Calculations
+#Include Opening WIP and look at capitalisation date
+# Stet any WIP if no depreciation start date - will be capitalised straight away
+['Work in Progress']=N:
+	IF(DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period'))=0,
+		STET, 
+	CONTINUE);
+# Populate the First period in the base year with the Opening WIP + and purchase for that period
+['Work in Progress']=N:
+	IF(DIMIX('Period',!Period) < DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period')),
+		['Cost'],
+	Continue);
+# Remove out of WIP when capitalised
+['Work in Progress']=N:
+		IF(DIMIX('Period',!Period) = DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period')),
+			DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,'Accumulated WIP')*-1,
+		Continue);
+#EndRegion
+ 
+#Region Capitalised Amount
+#Name Calculate Capitalised Amount
+#Desc Determine a Capitalised Amount either WIP or Spend
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+#If there is no Capitalisation date then it will be just the cost 
+['Capitalised Amount']=N:
+	IF(DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period') @= '', 
+		['Cost'],
+	CONTINUE);
+#If there is a Depreciation Start period (Capitalisation date) then take the WIP amount 
+# If the period is before the capitalisation date then none...
+['Capitalised Amount']=N:
+	IF(DIMIX('Period',!Period) < DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period')),
+		STET,
+	Continue);
+['Capitalised Amount']=N:
+	IF(DIMIX('Period',!Period) = DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period')),
+		['Work in Progress']*-1 + ['Cost'],
+	CONTINUE);
+['Capitalised Amount']=N:
+	IF(DIMIX('Period',!Period) > DimIx('Period',DB('Capex',!Version,'No Period',!Entity,!CostCentre,!Project,!Currency,!ReportType,'No Asset Class',!CapexList,'Depreciation Start Period')),
+		['Cost'],
+	CONTINUE);
+ 
+#EndRegion
+
+#Region Accumulated WIP
+#Name Accumulated WIP
+#Desc Calculate the Accumulated WIP Amount
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+#For the first period in the base year take the capitalised amount, otherwise accumulate from prior period.
+['Accumulated WIP']=N:
+	IF(!Period @= DB('Assumptions', !Version,'No Period', 'No Entity','No Currency', 'Base Year', 'String')|'.01',
+		['Work in Progress']+['No Period','Opening WIP'],
+	DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure) + ['Work in Progress']);
+#EndRegion
+
+#Region Accumulated Capitalised
+#Name Accumulated Capitalised
+#Desc Calculate the Accumulated Capitalised Amount
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+#For the first period in the base year take the capitalised amount, otherwise accumulate from prior period.
+['Accumulated Capitalised']=N:
+	IF(!Period @= DB('Assumptions', !Version,'No Period', 'No Entity','No Currency', 'Base Year', 'String')|'.01',
+		['Capitalised Amount'],
+	DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure) + ['Capitalised Amount']);
+#EndRegion
+
+
+#Region Depreciation
+#Name Depreciation Calculate
+#Desc Calculate the Depreciation on a Straight Line basis
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+['Depreciation']=N:
+	IF(DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,'Carrying Value')+['Capitalised Amount'] <
+	['Accumulated Capitalised']*['No Period','No Asset Class','Depreciation Rate']\12,
+	DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,'Carrying Value')+['Capitalised Amount'],
+	['Accumulated Capitalised']*['No Period','No Asset Class','Depreciation Rate']\12);
+#EndRegion
+
+#Region Accumulated Depreciation
+#Name Accumulated Depreciation
+#Desc Calculate the Accumulated Depreciation
+#Date June-2014
+#Author Louise Davenport
+#Group Capex Calculations
+#For the first period in the base year take the capitalised amount, otherwise accumulate from prior period.
+['Accumulated Depreciation']=N:
+	IF(!Period @= DB('Assumptions', !Version,'No Period', 'No Entity','No Currency', 'Base Year', 'String')|'.01',
+		['Depreciation'],
+	DB('Capex',!Version,ATTRS('Period',!Period,'previousperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure) + ['Depreciation']);
+#EndRegion
+
+
+FEEDERS;
+#Region Feed Conversion from Local to Group
+['Dynamic Versions','Planning Years','All Currencies','Local']=>
+	['Converted'] ;
+['Dynamic Versions','Planning Years','All Currencies','Converted']=>
+	DB('Capex',!Version,!Period,!Entity, !Cost Centre, !Project, 
+	DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),'Group',
+	!AssetClass,!CapexList,!Capex Measure);
+#EndRegion
+
+#Region Feed Asset Class Allocation
+['Dynamic Versions','No Period','No Asset Class','Local', 'Asset Class']=>
+	DB('Capex',!Version,'All FYs',!Entity,!CostCentre,!Project,!Currency,!ReportType,
+	DB('Capex', !Version, 'No Period', !Entity, !Cost Centre, !Project, !Currency, !Report Type, 'No Asset Class', !Capex List, 'Asset Class'),'Cost');
+['Dynamic Versions','Planning Years','No Asset Class','Local']=>
+	['All Asset Classes'];
+#EndRegion 
+
+#Region Feed Depreciation Rate
+['Dynamic Versions','No Period','Local','No Asset Class','Rate Override'] =>
+	['Depreciation Rate'];
+['Dynamic Versions','No Period','Local','No Asset Class','Asset Class'] =>
+	['Depreciation Rate'];
+#EndRegion
+
+#Region Feed Work in Prgress
+['Dynamic Versions','Planning Years','Local','Cost'] =>
+	['Work in Progress'];
+['Dynamic Versions','No Period','Local','No Asset Class','Opening WIP']=>
+	DB('Capex',!Version,DB('Assumptions', !Version,'No Period', 'No Entity','No Currency', 'Base Year', 'String')|'.01',
+	!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,'Work in Progress');
+['Dynamic Versions','No Period','Local','No Asset Class','Depreciation Start Period']=>
+DB('Capex',!Version,DB('Assumptions', !Version,'No Period', 'No Entity','No Currency', 'Base Year', 'String')|'.01',
+	!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,'Work in Progress');
+#EndRegion
+
+#Region Feed Capitalised Amount
+['Dynamic Versions','Planning Years','Local',{'Cost','Work in Progress'}]=>
+	['Planning Years','Capitalised Amount'];
+#EndRegion
+
+#Region Feed Accumulated WIP
+['Dynamic Versions','Planning Years','Local','Work in Progress'] =>
+	['Planning Years','Accumulated WIP'];
+['Dynamic Versions','Planning Years','Local','Accumulated WIP'] =>
+	DB('Capex',!Version,ATTRS('Period',!Period,'Nextperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure);
+#EndRegion
+
+#Region Feed Accumulated Capitalised
+['Dynamic Versions','Planning Years','Local','Capitalised Amount'] =>
+	['Planning Years','Accumulated Capitalised'];
+['Dynamic Versions','Planning Years','Local','Accumulated Capitalised'] =>
+	DB('Capex',!Version,ATTRS('Period',!Period,'Nextperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure);
+#EndRegion
+
+#Region Feed Depreciation
+['Dynamic Versions','Planning Years','Local','Accumulated Capitalised'] =>
+	['Planning Years','Depreciation'];
+#EndRegion
+
+#Region Feed Accumulated Depreciation
+['Dynamic Versions','Planning Years','Local','Depreciation'] =>
+	['Planning Years','Accumulated Depreciation'];
+['Dynamic Versions','Planning Years','Local','Accumulated Depreciation'] =>
+	DB('Capex',!Version,ATTRS('Period',!Period,'Nextperiod'),!Entity,!Cost Centre,!Project,!Currency,!Report Type,!Asset Class,!Capex List,!Capex Measure);
+#EndRegion
+
+#Region Feed Other Cubes
+#Feed PL Cube
+['Dynamic Versions','Planning Years','Local','Depreciation Accounts','All Capex Lists', 'Depreciation'] =>
+	DB('PL',!Version, !Period,!Entity,!Cost Centre, !Project, !Currency, !Report Type, ATTRS('AssetClass',!AssetClass,'Hierarchy_Depreciation Account'),'Amount');
+#Feed Financials Cube
+['Dynamic Versions','Planning Years','Local','Accum Depreciation Accounts','All Capex Lists', 'Depreciation'] =>
+	DB('Financials',!Version, !Period,!Entity,!Cost Centre, !Project, !Currency, !ReportType, ATTRS('AssetClass',!AssetClass,'Hierarchy_Accum Depreciation Account'),'Amount');
+['Dynamic Versions','Planning Years','Local','Cost Accounts','All Capex Lists', 'Capitalised Amount'] =>
+	DB('Financials',!Version, !Period,!Entity,!Cost Centre, !Project, !Currency, !ReportType, ATTRS('AssetClass',!AssetClass,'Hierarchy_Cost Account'),'Amount');
+['Dynamic Versions','Planning Years','Local','WIP Accounts','All Capex Lists', 'Work in Progress'] =>
+	DB('Financials',!Version, !Period,!Entity,!Cost Centre, !Project, !Currency, !ReportType, ATTRS('AssetClass',!AssetClass,'Hierarchy_WIP Account'),'Amount');
+#EndRegion

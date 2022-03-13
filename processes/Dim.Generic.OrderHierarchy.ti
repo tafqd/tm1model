@@ -1,0 +1,217 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Louise Davenport, 27-May-2015, Changes to exclude consolidation under certain criteria
+#LASTCHANGE Louise Davenport, 26-May-2015, Initial Draft of process
+#GENERALCOMMENT Process to Order Hierarchy first based on any Order Override attributes then on Alphabetical order
+#DATASOURCECOMMENT None
+#PROLOGCOMMENT Loops through each level of hierarchy, disconnects elements from the consolidation and reattaches them in the correct order
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT None
+
+#######################################
+## Define Variables                                                       ##
+#######################################
+# Use reporting consolidation for the moment but may want to use a parameter...
+s_TopConsol = 'Reporting';
+n_MaxLevel = ELLEV(pDimName, s_TopConsol);
+s_MDXSubset = 'SYS.MDXOrder';
+s_StaticSubset = 'SYS.StaticOrder';
+s_OrderAttribute = 'Order Override';
+s_ListMDXSubset = 'SYS.MDXList';
+s_ListStaticSubset = 'SYS.StaticList';
+s_ToStaticProcess = '}CTK_SubsetDynamicToStatic';
+s_AttrDim = '}ElementAttributes_' | pDimName;
+s_DefaultMember = 'No ' | pDimName;
+
+
+# Check that the dimension Exists
+If(DimensionExists(pDimName) = 0);
+  ProcessQuit;
+EndIf;
+
+# Check that the Consolidation exists
+If(DimIx(pDimName, s_TopConsol) = 0);
+  ProcessQuit;
+EndIf;
+
+# Ensure the Required Attribute exists
+If(DimIx(s_AttrDim, s_OrderAttribute) = 0);
+  AttrInsert(pDimName, '', s_OrderAttribute, 'N');
+EndIf;
+
+
+#######################################
+##  Organise Children under Reporting                        ##
+#######################################
+# Need to do this separately as want to use the hierarchies further down to determine weightings
+# MDX Statement will expand down from a consolidation
+s_Consol = s_TopConsol;
+s_MDX = '{{ORDER({FILTER( { ['|pDimName|'].['|s_Consol|'].Children }, ['|pDimName|'].['|s_OrderAttribute|']  > 0)}, ['|pDimName|'].['|s_OrderAttribute|'] )},{TM1SORT({FILTER( { ['|pDimName|'].['|s_Consol|'].Children}, ['|pDimName|'].['|s_OrderAttribute|']  = 0)}, ASC)}}';
+
+## Destroy Dynamic Subset if they exist
+If(SubsetExists(pDimName, s_MDXSubset) = 1);
+  SubsetDestroy(pDimName, s_MDXSubset);
+EndIf;
+## Create Subsets
+SubsetCreateByMDX(s_MDXSubset, s_MDX);
+
+# Need to create Static Subset
+ExecuteProcess(s_ToStaticProcess, 'pDim', pDimName, 'pSubset', s_MDXSubset, 'pSubsetTo', s_StaticSubset, 'pAlias', '');
+
+## Loop through Static Subset once created to remove elements from the consolidation
+n_SubsetCtrl = 1;
+n_SubsetMax = SubsetGetSize(pDimName, s_StaticSubset);
+
+While(n_SubsetCtrl <= n_SubsetMax);
+  # Get Element within subset
+  s_Element = SubsetGetElementName(pDimName, s_StaticSubset, n_SubsetCtrl);
+
+  # Delete Element from Consolidation
+  DimensionElementComponentDelete(pDimName, s_Consol, s_Element);
+
+  n_SubsetCtrl = n_SubSetCtrl + 1;
+End;
+
+## Loop through Static Subset to add elements to the consolidation
+# Reset Ctrl
+n_SubsetCtrl = 1;
+
+While(n_SubsetCtrl <= n_SubsetMax);
+  # Get Element within subset
+  s_Element = SubsetGetElementName(pDimName, s_StaticSubset, n_SubsetCtrl);
+
+  # For Reporting structure Weight all to 0;
+  n_Weight = 0;
+
+  # Add Element to Consolidation
+  DimensionElementComponentAdd(pDimName, s_Consol, s_Element, n_Weight);
+
+  n_SubsetCtrl = n_SubSetCtrl + 1;
+End;
+
+
+#######################################
+##  Organise Hierarchies                                               ##
+#######################################
+# Need to address each child within consolidation and loop down
+# Need to to it at Hierarchy level as
+n_HierarchyCtrl = 1;
+n_HierarchyMax = ElCompN(pDimName,s_TopConsol);
+
+While(n_HierarchyCtrl <= n_HierarchyMax);
+  s_Hierarchy = ElComp(pDimName, s_TopConsol, n_HierarchyCtrl);
+  s_HierarchyAttr = 'Hierarchy_' | s_Hierarchy;
+  s_WeightAttr = 'Weight_' | s_Hierarchy;
+
+  # Within Each of these hierarchies need a list of consolidations (i.e. exclude level 0)
+  If(SubsetExists(pDimName, s_ListMDXSubset) = 1);
+    SubsetDestroy(pDimName, s_ListMDXSubset);
+  EndIf;
+  # Limit MDX to only consolidations that have a mapping to this hierarchy (others will be dealt with within their own hierarchy
+  s_ListMdx = '{FILTER({Except({TM1DRILLDOWNMEMBER( {['|pDimName|'].['|s_Hierarchy|']}, ALL, RECURSIVE )}, {TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {['|pDimName|'].['|s_Hierarchy|']}, ALL, RECURSIVE )}, 0)})},
+                      ['|pDimName|'].['|s_HierarchyAttr|'] <> "")}';
+  SubsetCreateByMDX(s_ListMDXSubset, s_ListMDX);
+
+  # Create a Static Copy of this subset
+  ExecuteProcess(s_ToStaticProcess, 'pDim', pDimName, 'pSubset', s_ListMDXSubset, 'pSubsetTo', s_ListStaticSubset, 'pAlias', '');
+
+  # Loop through Static Subset of Consolidations once created to order each level 
+  n_ConsolCtrl = 1;
+  n_ConsolMax = SubsetGetSize(pDimName, s_ListStaticSubset);
+  While(n_ConsolCtrl <= n_ConsolMax);
+    s_Consol = SubsetGetElementName(pDimName, s_ListStaticSubset, n_ConsolCtrl);
+    # Need to check whether this consolidation has children
+    n_Consol = ElCompN(pDimName, s_Consol);
+
+    # Only do the following if the consolidation has more than one child (no point in ordering 1 child)
+    If(n_Consol > 1);
+      
+      ## Now need to execute the Code to order elements under each consolidation ##
+      # MDX Statement will expand down from a consolidation - Need to add a default "No dimname" member which should hopefully Exist, and Limit to mapping = consol
+      s_MDX = '{{FILTER({{ORDER({FILTER( { ['|pDimName|'].['|s_Consol|'].Children }, ['|pDimName|'].['|s_OrderAttribute|']  > 0)}, ['|pDimName|'].['|s_OrderAttribute|'] )},{TM1SORT({FILTER( { ['|pDimName|'].['|s_Consol|'].Children}, 
+             ['|pDimName|'].['|s_OrderAttribute|']  = 0)}, ASC)}}, ['|pDimName|'].['|s_HierarchyAttr|'] = "'|s_Consol|'")},['|pDimName|'].['|s_DefaultMember|']}';
+
+      ## Destroy Dynamic Subset if they exist
+      If(SubsetExists(pDimName, s_MDXSubset) = 1);
+        SubsetDestroy(pDimName, s_MDXSubset);
+      EndIf;
+      ## Create Subsets
+      SubsetCreateByMDX(s_MDXSubset, s_MDX);
+
+      # Need to create Static Subset
+      ExecuteProcess(s_ToStaticProcess, 'pDim', pDimName, 'pSubset', s_MDXSubset, 'pSubsetTo', s_StaticSubset, 'pAlias', '');
+      n_SubsetMax = SubsetGetSize(pDimName, s_StaticSubset);
+   
+      ## Loop through Static Subset once created to remove elements from the consolidation
+      # Reset Ctrl
+      n_SubsetCtrl = 1;
+
+      While(n_SubsetCtrl <= n_SubsetMax);
+        # Get Element within subset
+        s_Element = SubsetGetElementName(pDimName, s_StaticSubset, n_SubsetCtrl);
+        # Exclude Default Member (for MDX purposes)
+        If(s_Element @<> s_DefaultMember);
+           # Delete Element from Consolidation
+           DimensionElementComponentDelete(pDimName, s_Consol, s_Element);
+         EndIf;
+
+        n_SubsetCtrl = n_SubSetCtrl + 1;
+      End;
+
+      ## Loop through Static Subset to add elements to the consolidation
+      # Reset Ctrl
+      n_SubsetCtrl = 1;
+
+       While(n_SubsetCtrl <= n_SubsetMax);
+          # Get Element within subset
+          s_Element = SubsetGetElementName(pDimName, s_StaticSubset, n_SubsetCtrl);
+          # Exclude Default Member (for MDX purposes)
+          If(s_Element @<> s_DefaultMember);
+            # Need to get Weight - If limit MDX to only elements that have a mapping for this Hierarchy should be ok
+            n_Weight = AttrN(pDimName, s_Element, s_WeightAttr);
+
+            If(n_Weight = 0);
+              n_Weight = 1;
+            EndIf;
+
+            # Add Element to Consolidation
+            DimensionElementComponentAdd(pDimName, s_Consol, s_Element, n_Weight);
+          EndIf;
+
+          n_SubsetCtrl = n_SubSetCtrl + 1;
+        End;
+
+
+     ## End of Sorting elements
+    EndIf;
+
+    n_ConsolCtrl = n_ConsolCtrl + 1;
+  End;
+
+
+  ## End of Looping through Consols under a Hierarchy
+
+  n_HierarchyCtrl = n_HierarchyCtrl + 1;
+End;
+
+## End of Looping through Hierarchies
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

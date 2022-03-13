@@ -1,0 +1,37 @@
+{
+	"@type":"Process",
+	"Name":"EXEC.Data.Allocations.CalculateAllocations",
+	"Code@Code.link":"EXEC.Data.Allocations.CalculateAllocations.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pAllocVersion",
+			"Prompt":"Defintions Version",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionFrom",
+			"Prompt":"Version From",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersionTo",
+			"Prompt":"Version To",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pYear",
+			"Prompt":"Year",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

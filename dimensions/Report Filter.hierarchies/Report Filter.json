@@ -1,0 +1,37 @@
+{
+	"@type":"Hierarchy",
+	"Name":"Report Filter",
+	"Elements":
+	[
+		{
+			"Name":"Expanded_Zeroes",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Expanded_No Zeroes",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lowest_Zeroes",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lowest_No Zeroes",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Collapsed_Zeroes",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Collapsed_No Zeroes",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"Report Filter.subsets/Default.json",
+		"Report Filter.subsets/Level0.json",
+		"Report Filter.subsets/Report Default.json"
+	]
+}

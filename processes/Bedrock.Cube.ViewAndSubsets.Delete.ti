@@ -1,0 +1,158 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+# This process deletes a view and all subsets that have the same name
+
+cProcess = 'Bedrock.Cube.ViewAndSubsets.Delete';
+cTimeStamp = TimSt( Now, '\Y\m\d\h\i\s' );
+sRandomInt = NumberToString( INT( RAND( ) * 1000 ));
+cDebugFile = GetProcessErrorFileDirectory | cProcess | '.' | cTimeStamp | '.' | sRandomInt ;
+nErrors = 0;
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Prolog.debug';
+
+  # Log start time
+  AsciiOutput( sDebugFile, 'Process Started: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+  # Log parameters
+  AsciiOutput( sDebugFile, 'Parameters: pCube  : ' | pCube );
+  AsciiOutput( sDebugFile, '            pView  : ' | pView );
+  AsciiOutput( sDebugFile, '            pSubset: ' | pSubset );
+  AsciiOutput( sDebugFile, '            pMode  : ' | NumberToString( pMode) );
+
+EndIf;
+
+### Validate Paramters ##
+IF(
+pMode = 0);
+  If( pDebug >= 1 );
+    sMessage = 'Mode 0: Do not destroy views and subsets.';
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessBreak;
+ENDIF;
+
+If( Trim( pCube ) @= '' );
+  If( pDebug >= 1 );
+    sMessage = 'No cube specified';
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;
+EndIf;
+
+
+If( pView @= '' & pSubset @= '' );
+  If( pDebug >= 1 );
+    sMessage = 'No view or subset name has been provided.';
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+  ProcessQuit;
+ElseIf( pView @<> '' & pSubset @= '' );
+  ## Use the nominated view name for the subset name.
+  cView = pView;
+  cSubset = pView;
+ElseIf( pView @= '' & pSubset @<> '' );
+  ## Use the nominated subset name for the view name.
+  cView = pSubset;
+  cSubset = pSubset;
+Else;
+  cView = pView;
+  cSubset = pSubset;
+EndIf;
+
+
+## Clean up view
+If( pDebug >= 1 );
+    AsciiOutput( sDebugFile, 'Destroying view ' | cView | ' on cube ' | pCube );
+EndIf;
+If( pDebug <= 1 );
+    ViewDestroy(pCube, cView);
+EndIf;
+
+
+## Clean up subsets
+IF(
+pMode = 1);
+  If( pDebug >= 1 );
+    sMessage = 'Destroying subset ' | cSubset | ' for the ' | cView | ' view.' ;
+    AsciiOutput( sDebugFile, sMessage );
+  EndIf;
+
+  nDimCount = 0;
+  i = 1;
+  sDimName = TabDim( pCube, i );
+  While( sDimName @<> '' );
+    If( SubsetExists (sDimName, cSubset) = 1 );
+      If( pDebug >= 1 );
+          AsciiOutput( sDebugFile, 'Destroying subset ' | cSubset | ' on dimension ' | sDimName );
+      EndIf;
+      If( pDebug <= 1 );
+          SubsetDestroy( sDimName, cSubset );
+      EndIf;
+    EndIf;
+    sDimName = TabDim( pCube, i );
+    i = i + 1;
+  End;
+ENDIF;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#####################################################################################
+##~~Copyright bedrocktm1.org 2011 www.bedrocktm1.org/how-to-licence.php Ver 3.0.2~~##
+#####################################################################################
+
+
+### Initialise Debug ###
+
+If( pDebug >= 1 );
+
+  # Set debug file name
+  sDebugFile = cDebugFile | 'Epilog.debug';
+
+  # Log errors
+  If( nErrors <> 0 );
+    AsciiOutput( sDebugFile, 'Errors Occurred' );
+  EndIf;
+
+  # Log finish time
+  AsciiOutput( sDebugFile, 'Process Finished: ' | TimSt( Now, '\d-\m-\Y \h:\i:\s' ) );
+
+EndIf;
+
+
+### If errors occurred terminate process with a major error status ###
+
+If( nErrors <> 0 );
+  ProcessQuit;
+EndIf;
+
+
+### End Epilog ###
+
+
+
+
+#endregion

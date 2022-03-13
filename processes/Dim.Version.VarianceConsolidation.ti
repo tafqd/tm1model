@@ -1,0 +1,50 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Inel Botha, 2014-09-25, Updated naming convention to be [Base Version] vs [Variance Version]
+#LASTCHANGE Inel Botha, 2014-05-29, Initial set up of process
+#GENERALCOMMENT This process sets up subsets holding the base year and the months of the base year derived from values held in the Assumptions cube
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT Checks the needed subsets exists and then creates the subset based on an MDX statement
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A
+
+
+##########################################################
+## Define variables                                                                                                   ##
+##########################################################
+
+sDim = 'Version' ;
+
+sVarConsol = pBaseVersion | ' vs ' | pVarVersion ;
+
+sType = 'C' ;
+sParent = 'Variances' ;
+
+##########################################################
+## Create the new consolidation and add elements as children                                ##
+##########################################################
+
+DimensionElementInsert (sDim, sVarConsol, '', sType);
+DimensionElementComponentAdd (sDim, sParent, sVarConsol, 1);
+DimensionElementComponentAdd (sDim, sVarConsol, pBaseVersion, 1);
+DimensionElementComponentAdd (sDim, sVarConsol, pVarVersion, -1);
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

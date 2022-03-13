@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Dynamic Default",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [Assumptions List] )}, 0)}"
+}

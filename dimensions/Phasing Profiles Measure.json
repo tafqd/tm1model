@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"Phasing Profiles Measure",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('Phasing Profiles Measure')/Hierarchies('Phasing Profiles Measure')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"Phasing Profiles Measure.hierarchies/Phasing Profiles Measure.json"
+	]
+}

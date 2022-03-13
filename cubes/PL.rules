@@ -1,0 +1,369 @@
+#Region System
+FEEDSTRINGS;
+SKIPCHECK;
+#EndRegion
+
+#Taf test comment
+
+#Region Variance calculations
+#Name Calculate values for variance consolidations
+#Desc Calculate values for the variance consolidations
+#Date June-2014
+#Author Inel Botha
+#Group Financials Rules
+[]=C:
+	IF(ELISANC('Version','Variances',!Version)=1 & DTYPE('Version',!Version)@='C',
+		IF(AttrS('PL Account', !PL Account, 'SYSTEMDebitCredit')@='DR',
+			DB ('PL', ELCOMP('Version', !Version, 2),!Period, !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)-
+			DB ('PL', ELCOMP('Version', !Version, 1),!Period, !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure),
+			DB ('PL', ELCOMP('Version', !Version, 1),!Period, !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)-
+			DB ('PL', ELCOMP('Version', !Version, 2),!Period, !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)
+		),
+	CONTINUE);
+#EndRegion
+
+
+#Region Stets
+#Name Dynamic version and actual limit
+#Desc Limits subsequent rules to dynamic versions (including the actual version)
+#Date 11/05/2014
+#Author Michael Mackie. Dynamic Versions and Actual now contains Budget. This is because they want to make NZD Adjustment Amount work on Budget too.
+#Group Rule Control
+[] = N: IF (ELISANC('Version','Dynamic Versions and Actual',!Version)=1,CONTINUE,STET);
+
+#Name Dynamic version limit
+#Desc Limits subsequent rules to dynamic versions
+#Date 11/05/2014
+#Author Michael Mackie
+[] = N: IF (ELISANC('Version','Dynamic Versions',!Version)=1,CONTINUE,STET);
+
+#Name STET adjustments
+#Desc Do not apply rules to adjustment amounts
+#Date 11/05/2014
+#Author Michael Mackie
+['Local','Adjustment'] = N: STET;
+
+#Name STET actual months
+#Desc Limits rules to all months that have not been actualised. Actuals are populated by a Turbo Integrator process.
+#Date 11/05/2014
+#Author Michael Mackie
+[] = N:
+	IF (DB('Assumptions',!Version,!Period,'No Entity','No Currency','Month Contains Actuals','Value') =1,
+		 STET,
+	Continue);
+
+#Name STET Years outside of the base year and end year - Use Period Consolidations
+#Desc Limits rules to Only years within the Base Year to End Year range for the version
+#Date 20/05/2014
+#Author Louise Davenport
+[] = N:
+IF (ELISANC('Period', !Version|' Years', SubSt(!Period,1,4)|'.FY') = 0,
+	STET,
+Continue);
+
+#EndRegion
+
+#Region Currency Conversion
+#Name Convert Currency to local currency and apply inflation
+#Desc Convert all amounts planned in other currencies currencies to the local currency.  Plans are usually captured in local currencies.  Inflation is applied at this level.
+#Date 11/05/2014
+#Author Michael Mackie
+[{'Amount','Adjustment','Inflation'},'Converted'] = N:
+	# Don't make them have to enter a 1 when there is only one currency and populate into the reporting Currency
+	 IF(!Currency @= DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),
+		 ['Local'],
+		 ['Local']
+		 \ DB('Assumptions', !Version,!Period, 'No Entity', !Currency, 'Exchange Rate', 'Value')
+	 );
+
+[{'Amount','Adjustment','Inflation'},'Group'] = N:
+	# Don't make them have to enter a 1 when there is only one currency and populate into the reporting Currency
+	 IF(!Currency @= DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),
+		['All Currencies','Converted'],
+	 CONTINUE);
+#EndRegion
+
+#Region Drivers
+#Name Driver Rules
+#Desc Phase costs based on various drivers
+#Date 11/05/2014
+#Author Michael Mackie
+# Check whether "Gross Margin Model On" in Assumptions cube and Source Cube Attribute is "Gross Margin" and populate the Driver driver with 6 (used to colour code template)
+['Amount']=N:
+	IF(Subst(!Period,6,6)@= 'Driver',
+		IF(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Gross Margin Model On', 'Value')> 0 &
+			AttrS('PL Account', !PL Account, 'Source Cube')@= 'Gross Margin',
+			6,
+		CONTINUE),
+	Continue);
+
+# Check whether "Capex Model On" in Assumptions cube and Source Cube Attribute is "Capex" and populate the Driver driver with 7 (used to colour code template)
+['Amount']=N:
+	IF(Subst(!Period,6,6)@= 'Driver',
+		IF(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Capex Model On', 'Value')> 0 &
+			AttrS('PL Account', !PL Account, 'Source Cube')@= 'Capex',
+			7,
+		CONTINUE),
+	Continue);
+
+# Check whether "Personnel Model On" in Assumptions cube and Source Cube Attribute is "Personnel" and populate the Driver driver with 7 (used to colour code template)
+['Amount']=N:
+	IF(Subst(!Period,6,6)@= 'Driver',
+		IF(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Personnel Model On', 'Value')> 0 &
+			AttrS('PL Account', !PL Account, 'Source Cube')@= 'Personnel',
+			8,
+		CONTINUE),
+	Continue);
+
+# Check whether there is a value in the Workings cube and populate the Driver driver with 9 (used to colour code template)
+['Amount']=N:
+	IF(Subst(!Period,6,6)@= 'Driver',
+		IF(DB('Workings',!Version,Subst(!Period,1,4)|'.FY',!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,'All Lines','Amount')<>0,
+			9,
+		CONTINUE),
+	Continue);
+
+# Make consolidations 0
+['Amount']=C:
+	IF(Subst(!Period,6,6)@= 'Driver',
+		0,
+	Continue);
+
+# Stet rules on Annual, drivers etc
+[]= IF(ELISANC('Period','All FYs',!Period)=1,CONTINUE,STET);
+
+#Name Driver Driver 6 - Gross Margin
+#Desc Pull from Gross Margin cube if Gross Margin Model turned on
+#Date 12/11/2014
+#Author Inel Peacock
+#Group Driver
+# Populate amount where above check is valid
+['Amount'] = N:
+IF(DB('PL',!Version,Subst(!Period,1,4) | '.Driver',!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,!PL Measure) =6,
+	DB('Gross Margin',!Version,!Period,!Entity,!Cost Centre,!Currency,!Report Type,'All Classifications','All Customers','All Products',!PL Account),
+Continue);
+
+#Name Driver Driver 7 - Capex
+#Desc Pull from Capex cube if Capex Model turned on
+#Date 05/06/2014
+#Author Louise Davenport
+#Group Driver
+# Populate amount where above check is valid
+['Amount'] = N:
+IF(DB('PL',!Version,Subst(!Period,1,4) | '.Driver',!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,!PL Measure) =7,
+	DB('Capex',!Version,!Period,!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PLAccount,'All Capex Lists','Depreciation'),
+Continue);
+
+#Name Driver Driver 8 - Personnel
+#Desc Pull from Personnel cube if Personnel Model turned on
+#Date 05/06/2014
+#Author Louise Davenport
+#Group Driver
+# Populate amount where above check is valid - Personnel Measures have Aliases equalling the PLAccount
+['Amount'] = N:
+IF(DB('PL',!Version,Subst(!Period,1,4) | '.Driver',!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,!PL Measure)= 8,
+	DB('Personnel',!Version,!Period,!Entity,!CostCentre,!Project,!Currency,!ReportType,'Total Employees', !PLAccount),
+Continue);
+
+#Name Driver Driver 9 - Workings
+#Desc Drill to Workings cube which gives you the option of forecasting in more detail
+#Date 20/05/2014
+#Author Louise Davenport
+#Group Driver
+# Populate amount where above check is valid
+['Amount'] = N:
+IF(DB('PL',!Version,Subst(!Period,1,4) | '.Driver',!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,!PL Measure) =9,
+	DB('Workings',!Version,!Period,!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,'All Lines','Amount'),
+Continue);
+
+#EndRegion
+
+#Region Inflation
+#Name Stet inflation
+#Desc Don't Apply Inflation to certain accounts where flagged
+#Date 20/05/2014
+#Author Louise Davenport
+['Inflation'] = N:
+	IF(AttrS('PL Account', !PLAccount, 'Inflation Override')@<> '',
+		STET,
+	CONTINUE);
+
+#Name Apply inflation
+#Desc Apply Inflation based on assumptions at currency level if entered otherwise No Currency level
+#Date 20/05/2014
+#Author Louise Davenport
+['Inflation'] = N:
+	# Inflation either entered against no entity and no currency (to apply to all) or No Entity and a specific currency
+    # If entered against a currency
+	IF(DB('Assumptions',!Version, !Period,'No Entity',!Currency, 'Cumulative Inflation Rate','%')<> 0,
+	DB('Assumptions',!Version, !Period,'No Entity',!Currency, 'Cumulative Inflation Rate','%') *
+	['Total Amount pre Inflation'],
+	# Else if not currency specific
+	DB('Assumptions',!Version, !Period,'No Entity','No Currency', 'Cumulative Inflation Rate','%') *
+	 ['Total Amount pre Inflation']);
+#EndRegion
+
+#Region Phasing
+#Name Phasing drivers
+#Desc Phase input amounts based on a driver if Phasing Model is turned on
+#Desc Full year amounts to go to Input period, Amount etc measure, Dirvers to go to Input Period, Driver Measure
+#Date 24/11/2014
+#Author Louise Davenport
+[]=N:
+	IF(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Phasing Model On', 'Value')> 0,
+		CONTINUE,
+	STET);
+
+[ReportType:'Local','Amount'] = N:
+	IF(ELISANC('Period','All FYs',!Period)=1,CONTINUE
+	,STET);
+
+##Last Year
+# User Defined
+# Autobalancing for Last Year
+[ReportType:'Local','Amount'] = N:
+	IF(DB('PL',!Version, SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver') @='Last Year',
+		# If Auto Balancing then
+		If(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Phasing Auto Balance', 'Value')> 0,
+			DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | SUBST(!Period,5,3),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+			 \
+			DB('PL',!Version,ELCOMP('Period',ATTRS('Period',!Period,'Previous Year') | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+			*
+		# Find out amount remaining for the year
+		(DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)-
+		DB('PL',!Version,ELCOMP('Period',SUBST(!Period,1,4) | '.YTD',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)),
+		Continue)
+	,CONTINUE);
+# Non Auto Balancing for Last Year
+[ReportType:'Local','Amount'] = N:
+	IF(DB('PL',!Version, SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver') @='Last Year',
+
+		DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | SUBST(!Period,5,3),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+		 \
+		DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | '.FY',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+
+		* DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)
+	,CONTINUE);
+
+##Phasing Profiles
+# Look at specific version first otherwise use no version
+[ReportType:'Local','Amount'] = N:
+	IF(DB('PL',!Version, SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver') @<>'',
+		# If Auto Balancing then
+		If(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Phasing Auto Balance', 'Value')> 0,
+			  If(db('Phasing Profiles', !Version, SUBST(!Period,1,4)|'.FY',
+				DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver'),'Value')<> 0,
+			# Use proportions based on YTG
+			db('Phasing Profiles', !Version, !Period,
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver'),'Value')\
+			 db('Phasing Profiles', !Version, ELCOMP('Period',SUBST(!Period,1,4) | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')	,'Value'),
+			db('Phasing Profiles', 'No Version', !Period,
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')	,'Value')\
+			db('Phasing Profiles', 'No Version', ELCOMP('Period',SUBST(!Period,1,4) | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')	,'Value'))
+		*
+			(DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure) -
+			DB('PL',!Version,ELCOMP('Period',SUBST(!Period,1,4) | '.YTD',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)),
+		Continue)
+	,Continue);
+# Non Autobalancing for Phasing Profiles
+[ReportType:'Local','Amount'] = N:
+	IF(DB('PL',!Version, SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver') @<>'',
+		If(	db('Phasing Profiles', !Version, Subst(!Period,1,4),
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')
+		,'Value')<> 0,
+			# Use Version
+			db('Phasing Profiles', !Version, !Period,
+			DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')
+			,'%'),
+			# No Version
+			db('Phasing Profiles', 'No Version', !Period,
+				DB('PL',!Version,SUBST(!Period,1,4) | '.Input',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, 'Driver')
+			,'%'))
+		* DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)
+	,Continue);
+
+# If not User Defined then look at "Default Phasing" attribute
+[ReportType:'Local','Amount'] = N:
+	IF(AttrS('PL Account', !PL Account, 'Default Phasing') @<>'',
+		Continue
+	,Stet);
+[ReportType:'Local','Amount'] = N:
+	IF(AttrS('PL Account', !PL Account, 'Default Phasing') @='Last Year',
+		# If Auto Balancing then
+		If(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Phasing Auto Balance', 'Value')> 0,
+			DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | SUBST(!Period,5,3),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+			 \
+			DB('PL',!Version,ELCOMP('Period',ATTRS('Period',!Period,'Previous Year') | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+			*
+		# Find out amount remaining for the year
+		(DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)-
+		DB('PL',!Version,ELCOMP('Period',SUBST(!Period,1,4) | '.YTD',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)),
+		# If Not Auto Balancing then
+		DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | SUBST(!Period,5,3),!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+		 \
+		DB('PL',!Version,ATTRS('Period',!Period,'Previous Year') | '.FY',!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account,!PL Measure)
+		* DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure))
+	,CONTINUE);
+# PL accounts with Default Phasing Attribute not as Last Year
+[ReportType:'Local','Amount'] = N:
+	# If Auto Balancing then
+		If(DB('Assumptions', !Version, 'No Period', 'No Entity', 'No Currency', 'Phasing Auto Balance', 'Value')> 0,
+			  If(db('Phasing Profiles', !Version, SUBST(!Period,1,4)|'.FY', AttrS('PL Account', !PL Account, 'Default Phasing'),'Value')<> 0,
+			# Use proportions based on YTG
+			db('Phasing Profiles', !Version, !Period, AttrS('PL Account', !PL Account, 'Default Phasing'),'Value')\
+			 db('Phasing Profiles', !Version, ELCOMP('Period',SUBST(!Period,1,4) | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			AttrS('PL Account', !PL Account, 'Default Phasing')	,'Value'),
+			db('Phasing Profiles', 'No Version', !Period,
+			AttrS('PL Account', !PL Account, 'Default Phasing')	,'Value')\
+			db('Phasing Profiles', 'No Version', ELCOMP('Period',SUBST(!Period,1,4) | '.YTG',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			AttrS('PL Account', !PL Account, 'Default Phasing')	,'Value'))
+		*
+			(DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure) -
+			DB('PL',!Version,ELCOMP('Period',SUBST(!Period,1,4) | '.YTD',DB('Assumptions',!Version,SUBST(!Period,1,4)|'.FY','No Entity','No Currency','Month Contains Actuals','Value')),
+			!Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure)),
+		# Non auto balancing
+		If(	db('Phasing Profiles', !Version, Subst(!Period,1,4), AttrS('PL Account', !PL Account, 'Default Phasing'),'Value')<> 0,
+			# Use Version
+			db('Phasing Profiles', !Version, !Period, AttrS('PL Account', !PL Account, 'Default Phasing'),'%'),
+			# No Version
+			db('Phasing Profiles', 'No Version', !Period, AttrS('PL Account', !PL Account, 'Default Phasing'),'%'))
+		* DB('PL',!Version,SUBST(!Period,1,4) | '.Input', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure));
+
+#EndRegion
+
+
+FEEDERS;
+#Region Feeders
+
+#Name Feed Report Type
+#Desc Feed Reporting from Local
+#Date 20/05/2014
+#Author Louise Davenport
+#Group Feeders
+['Dynamic Versions','Planning Years','All Currencies','Local']=>
+	['Converted'];
+['Dynamic Versions','Planning Years','All Currencies','Converted']=>
+	DB('PL',!Version,!Period,!Entity,!CostCentre,!Project,
+	DB('Assumptions', 'No Version','No Period', 'No Entity', 'No Currency', 'Reporting Currency', 'String'),'Group',
+	!PLAccount,!PLMeasure);
+
+#Name Feed Inflation
+#Desc Feed Inflation from Previous Year's Value
+#Date 20/05/2014
+#Author Louise Davenport
+#Group Feeders
+['Dynamic Versions','Planning Years', 'Local', 'Total Amount pre Inflation'] =>
+	DB('PL',!Version,!Period,!Entity,!Cost Centre,!Project,!Currency,!Report Type,!PL Account,'Inflation');
+
+
+#Name Feed Auto Phasing
+#Desc Feed months when a phasing amount is specified
+#Date 24/11/2014
+#Author Louise Davenport
+['Dynamic Versions','All Input','Local','Amount']=>
+	DB('PL', !Version, SUBST(!Period,1,4) | '.FY', !Entity, !Cost Centre, !Project, !Currency, !Report Type, !PL Account, !PL Measure);

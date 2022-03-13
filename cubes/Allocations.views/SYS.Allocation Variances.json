@@ -1,0 +1,374 @@
+{
+	"@type":"NativeView",
+	"Name":"SYS.Allocation Variances",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Source Amount')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Allocation Account')/Hierarchies('Allocation Account')/Elements('Profit and Loss')"
+					}
+				]
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Allocation List')/Hierarchies('Allocation List')/Subsets('SYS.Level0')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('Unspec Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('Capex Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('Personnel Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C999')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C110')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C111')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C100')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C300')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C200')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C112')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C330')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C212')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C220')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C230')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C120')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C130')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C210')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C310')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C113')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C121')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C122')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C123')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C131')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('C320')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('No Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('All Cost Centre Codes')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('Unallocated_All Cost Centres')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('10')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('30')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('34')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('38')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('40')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre From')/Hierarchies('Cost Centre From')/Elements('50')"
+					}
+				]
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('All Cost Centre Codes')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('Unspec Cost Centre')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C100')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C200')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C300')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C110')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C120')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C130')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C210')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C220')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C230')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C310')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C320')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C330')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C111')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C112')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C113')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C121')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C122')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C123')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C131')"
+					},
+					{
+						"@id":"Dimensions('Cost Centre')/Hierarchies('Cost Centre')/Elements('C999')"
+					}
+				]
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Version')/Hierarchies('Version')/Elements('Working Budget')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Entity')/Hierarchies('Entity')/Elements('All Entities')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Subsets('SYS.All Projects')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('All Projects')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Currency')/Hierarchies('Currency')/Elements('All Currencies')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Subsets('Default')"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Report Type')/Hierarchies('Report Type')/Elements('Local')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Period')/Hierarchies('Period')"
+				},
+				"Elements":
+				[
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.01')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.02')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.03')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.04')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.05')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.06')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.07')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.08')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.09')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.10')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.11')"
+					},
+					{
+						"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.12')"
+					}
+				]
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Period')/Hierarchies('Period')/Elements('2015.FY')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')"
+				},
+				"Expression":"TM1SubsetAll([Allocation Pool])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Pool')/Hierarchies('Allocation Pool')/Elements('All Allocation Pools')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')"
+				},
+				"Expression":"TM1SubsetAll([Allocation Driver])"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('Allocation Driver')/Hierarchies('Allocation Driver')/Elements('All Drivers')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":true,
+	"SuppressEmptyRows":true,
+	"FormatString":"0.#########"
+}

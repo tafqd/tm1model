@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Placeholder",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Product')/Hierarchies('Product')/Elements('3G Smart Phones')"
+		}
+	]
+}

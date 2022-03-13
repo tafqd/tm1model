@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"Level0",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [Report Type] )}, 0)}"
+}

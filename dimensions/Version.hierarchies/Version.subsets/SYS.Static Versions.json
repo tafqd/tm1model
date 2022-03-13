@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Static Versions",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1DRILLDOWNMEMBER( {[Version].[Static Versions]}, ALL, RECURSIVE )}, 0)}"
+}

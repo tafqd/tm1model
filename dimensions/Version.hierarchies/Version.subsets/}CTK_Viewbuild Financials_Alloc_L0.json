@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Financials_Alloc_L0",
+	"Expression":"{TM1FILTERBYLEVEL( {TM1SUBSETALL( [VERSION] )}, 0)}"
+}

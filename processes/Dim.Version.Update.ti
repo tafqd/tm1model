@@ -1,0 +1,79 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+#LASTCHANGE Peter Currie Initial Draft of process
+#GENERALCOMMENT Insert new Version Elements
+#DATASOURCECOMMENT N/A
+#PROLOGCOMMENT N/A
+#METADATACOMMENT N/A
+#DATACOMMENT N/A
+#EPILOGCOMMENT N/A 
+
+#
+cDimName = 'Version';
+cVersion = pVersion;
+cType = pType;
+
+# Insert attribute used for filtering BI prompt values
+sBIPromptAttr = 'PromptValue' ;
+AttrInsert (cDimName, '', sBIPromptAttr, 'N');
+
+#Versions will either be "Working Versions", "Top Down Versions", or "Static Versions"
+
+#Validate Inputs
+sVersionCheck = DIMIX(cDimName,cVersion);
+If(sVersionCheck <> 0);
+	ItemReject(cVersion | ' is already a valid Version element');
+	ProcessBreak;
+EndIf;
+If((cType @<> 'Working') & (cType @<> 'Top Down') & (cType @<> 'Static'));
+	ItemReject(cVersion | ' must be either Working, Top Down, or Static type');
+	ProcessBreak;
+EndIf;
+
+sInsertPoint = 'System';
+#Insert Consolidated elements
+cParent = 'Working Versions';
+DimensionElementInsertDirect(cDimName,'',cParent,'C');
+DimensionElementComponentAdd(cDimName,sInsertPoint,cParent,1);
+cParent = 'Top Down Versions';
+DimensionElementInsertDirect(cDimName,'',cParent,'C');
+DimensionElementComponentAdd(cDimName,sInsertPoint,cParent,1);
+cParent = 'Static Versions';
+DimensionElementInsertDirect(cDimName,'',cParent,'C');
+DimensionElementComponentAdd(cDimName,sInsertPoint,cParent,1);
+cParent = 'Variances';
+DimensionElementInsertDirect(cDimName,'',cParent,'C');
+DimensionElementComponentAdd(cDimName,sInsertPoint,cParent,1);
+
+#Insert Version Element
+DimensionElementInsertDirect(cDimName,'',cVersion,'N');
+
+If(cType @= 'Working');
+	cParent1 = 'Working Versions';
+	DimensionElementComponentAdd(cDimName,cParent1,cVersion,1);
+ElseIf(cType @= 'Top Down');
+	cParent2 = 'Top Down Versions';
+	DimensionElementComponentAdd(cDimName,cParent2,cVersion,1);
+ElseIf(cType @= 'Static');
+	cParent3 = 'Static Versions';
+	DimensionElementComponentAdd(cDimName,cParent3,cVersion,1);
+EndIf;
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

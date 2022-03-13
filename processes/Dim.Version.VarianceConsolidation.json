@@ -1,0 +1,25 @@
+{
+	"@type":"Process",
+	"Name":"Dim.Version.VarianceConsolidation",
+	"Code@Code.link":"Dim.Version.VarianceConsolidation.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pBaseVersion",
+			"Prompt":"Base version",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pVarVersion",
+			"Prompt":"Variance version",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

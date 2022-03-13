@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Hierarchy Parents",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('Reporting')"
+		},
+		{
+			"@id":"Dimensions('Account')/Hierarchies('Account')/Elements('SYSTEM')"
+		}
+	]
+}

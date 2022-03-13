@@ -1,0 +1,10 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocations_Alloc",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Allocation Measure')/Hierarchies('Allocation Measure')/Elements('Source Amount')"
+		}
+	]
+}

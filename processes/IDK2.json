@@ -1,0 +1,19 @@
+{
+	"@type":"Process",
+	"Name":"IDK2",
+	"Code@Code.link":"IDK2.ti",
+	"DataSource":
+	{
+		"Type":"ASCII",
+		"asciiDecimalSeparator":".",
+		"asciiDelimiterChar":",",
+		"asciiDelimiterType":"Character",
+		"asciiHeaderRecords":0,
+		"asciiQuoteCharacter":"\"",
+		"asciiThousandSeparator":",",
+		"dataSourceNameForClient":"\\\\cortell.local\\FolderRedirection\\Christina.Roehricht\\Desktop\\test.txt",
+		"dataSourceNameForServer":"\\\\cortell.local\\FolderRedirection\\Christina.Roehricht\\Desktop\\test.txt"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

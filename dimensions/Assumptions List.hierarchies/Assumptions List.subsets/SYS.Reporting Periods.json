@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Reporting Periods",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Reporting year')"
+		},
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Reporting month')"
+		}
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"Personnel and capex centrally planned",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Capex – centrally planned')"
+		},
+		{
+			"@id":"Dimensions('Assumptions List')/Hierarchies('Assumptions List')/Elements('Personnel – centrally planned')"
+		}
+	]
+}

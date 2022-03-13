@@ -1,0 +1,16 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Drill through subset",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Amount')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Adjustment')"
+		},
+		{
+			"@id":"Dimensions('Financial Measure')/Hierarchies('Financial Measure')/Elements('Total Amount')"
+		}
+	]
+}

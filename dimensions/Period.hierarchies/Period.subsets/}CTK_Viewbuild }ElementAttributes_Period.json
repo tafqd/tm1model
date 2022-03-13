@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild }ElementAttributes_Period",
+	"Expression":"TM1SubsetAll([Period])"
+}

@@ -1,0 +1,15 @@
+{
+	"@type":"Cube",
+	"Name":"你好",
+	"Rules@Code.link":"你好.rules",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('a_Idk')"
+		},
+		{
+			"@id":"Dimensions('Account')"
+		}
+	],
+	"Views@Code.links":[]
+}

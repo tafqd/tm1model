@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"TafDimension",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('TafDimension')/Hierarchies('TafDimension')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"TafDimension.hierarchies/TafDimension.json"
+	]
+}

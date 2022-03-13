@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocations_Alloc",
+	"Expression":"TM1SubsetAll([Cost Centre])"
+}

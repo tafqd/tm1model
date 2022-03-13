@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"}CTK_Viewbuild Allocation Assumptions_L0",
+	"Expression":"TM1SubsetAll([Cost Pool])"
+}

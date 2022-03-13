@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"___TMP1402953563077",
+	"Expression":"{[Personnel Measure].[Name], [Personnel Measure].[System End Date], [Personnel Measure].[System Start Date], [Personnel Measure].[Notes]}"
+}

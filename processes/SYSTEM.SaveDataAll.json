@@ -1,0 +1,11 @@
+{
+	"@type":"Process",
+	"Name":"SYSTEM.SaveDataAll",
+	"Code@Code.link":"SYSTEM.SaveDataAll.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

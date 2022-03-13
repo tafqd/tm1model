@@ -1,0 +1,13 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('Unspec Project')"
+		},
+		{
+			"@id":"Dimensions('Project')/Hierarchies('Project')/Elements('P111')"
+		}
+	]
+}

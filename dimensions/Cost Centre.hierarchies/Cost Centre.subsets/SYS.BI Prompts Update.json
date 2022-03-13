@@ -1,0 +1,5 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.BI Prompts Update",
+	"Expression":"{FILTER( {TM1SUBSETALL( [Cost Centre] )}, [Cost Centre].[PromptValue] = 1.000000)}"
+}

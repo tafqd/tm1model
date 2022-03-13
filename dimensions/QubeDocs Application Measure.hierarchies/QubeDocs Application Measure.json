@@ -1,0 +1,49 @@
+{
+	"@type":"Hierarchy",
+	"Name":"QubeDocs Application Measure",
+	"Elements":
+	[
+		{
+			"Name":"#Name",
+			"Type":"String"
+		},
+		{
+			"Name":"#Desc",
+			"Type":"String"
+		},
+		{
+			"Name":"#Owner",
+			"Type":"String"
+		},
+		{
+			"Name":"#Users",
+			"Type":"String"
+		},
+		{
+			"Name":"#DocumentLink",
+			"Type":"String"
+		},
+		{
+			"Name":"#DocumentLinkName",
+			"Type":"String"
+		},
+		{
+			"Name":"#Link",
+			"Type":"String"
+		},
+		{
+			"Name":"#LinkName",
+			"Type":"String"
+		},
+		{
+			"Name":"#IncludeInDiagrams",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"QubeDocs Application Measure.subsets/QUBEdocs.Application Definitions.json",
+		"QubeDocs Application Measure.subsets/QUBEdocs.Desc.json",
+		"QubeDocs Application Measure.subsets/QUBEdocs.Measures.json"
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"@type":"Dimension",
+	"Name":"zDaysOrder",
+	"AllLeavesHierarchyName":"",
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('zDaysOrder')/Hierarchies('zDaysOrder')"
+	},
+	"Hierarchies@Code.links":
+	[
+		"zDaysOrder.hierarchies/zDaysOrder.json"
+	]
+}

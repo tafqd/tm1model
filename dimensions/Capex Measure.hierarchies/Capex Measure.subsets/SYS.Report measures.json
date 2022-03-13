@@ -1,0 +1,28 @@
+{
+	"@type":"Subset",
+	"Name":"SYS.Report measures",
+	"Elements":
+	[
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Notes')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Asset Class')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Cost Centre')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Depreciation Rate')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Rate Override')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Opening WIP')"
+		},
+		{
+			"@id":"Dimensions('Capex Measure')/Hierarchies('Capex Measure')/Elements('Depreciation Start Period')"
+		}
+	]
+}
